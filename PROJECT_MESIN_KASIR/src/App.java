@@ -14,7 +14,7 @@ public class App {
                             |Ayam Goreng Utuh 	: 45,000    |\n
                             |				    |\n
 	                        |Minuman: 			    |\n
-                            |Teh Tawar 		: 5,000     |\n
+                            |Teh Tawar 		: 5,000      |\n
                             |===================================| \n
                         										\n");
         System.out.println("Selamat datang silahkan masukan makanan yang anda mau \n");
