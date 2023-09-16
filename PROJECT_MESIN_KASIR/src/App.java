@@ -23,9 +23,8 @@ public class App {
         System.out.println("silahkan masukan minuman yang anda mau");
         String minuman = input.nextLine();
         if (minuman=="teh_tawar"){
-            System.out.println(harga[3]);
+        System.out.println(harga[3]);
         }
         input.close();
     }
 }
-
