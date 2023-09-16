@@ -4,7 +4,7 @@ public class App {
         double harga []={12500,10000,45000,5000};
         Scanner input = new Scanner(System.in);
 
-        String barang,minuman,ayam_goreng,ikan_goreng,nasi_goreng,teh_tawar;
+        String ayam_goreng,ikan_goreng,nasi_goreng,teh_tawar;
         int jumlahBarang,totalHarga;
         double diskonDadakan = 0.5,hargaFinal;
         System.out.println("|===================================|");
@@ -19,13 +19,12 @@ public class App {
         System.out.println("|Teh Tawar 		    : 5,000       |");
         System.out.println("|===================================|");
         System.out.println("Selamat datang silahkan masukan makanan yang anda mau");
-        barang = input.nextLine();
+        String barang = input.nextLine();
         System.out.println("silahkan masukan minuman yang anda mau");
-        minuman = input.nextLine();
+        String minuman = input.nextLine();
         if (minuman=="teh_tawar"){
-            System.out.println(harga[3]);
+        System.out.println(harga[3]);
         }
         input.close();
     }
 }
-
