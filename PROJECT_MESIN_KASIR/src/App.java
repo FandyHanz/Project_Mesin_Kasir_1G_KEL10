@@ -1,13 +1,27 @@
 import java.util.Scanner;
-public class App {
-    static int harga;
-    static int addNumbers(double pilihanMakan,double pilihanMinum){
-        return (harga = (int) (pilihanMakan + pilihanMinum));
+class harga{
+    int pilihanMakan,pilihanMinum;
+     int hargaTot;
+    public harga(double pilihanMakan2, double pilihanMinum2) {
     }
+    public void addNumbers(double piMak,double piMin){
+        this.pilihanMakan=(int)piMak;
+        this.pilihanMinum=(int)piMin;
+    }
+    public int solve() {
+        int hargaTot=this.pilihanMakan+this.pilihanMinum;
+        return hargaTot;
+        
+    }
+}
+    public class App {
     public static void main(String[] args){
+        double pilihanMakan,pilihanMinum;
         double[] harga={12500,10000,45000,5000};
+
         Scanner input = new Scanner(System.in);
 
+        harga obj=new harga(pilihanMakan,pilihanMinum);
         int jumlahBarang,totalHarga;
         double diskonDadakan = 0.5;
         System.out.println("|===================================|");
@@ -23,7 +37,7 @@ public class App {
         System.out.println("|===================================|");
         System.out.println("Selamat datang silahkan masukan makanan yang anda mau");
         String barang = input.nextLine();
-        double pilihanMakan, pilihanMinum;
+
         if(barang.equals("nasi goreng")){
             System.out.println(harga[0]);
             pilihanMakan = 0;
@@ -45,9 +59,7 @@ public class App {
         System.out.println(harga[3]);
         pilihanMinum = 3;
         }
-      int hasil = addNumbers(pilihanMakan,pilihanMinum);
-	    System.out.println("Total Harga" + hasil);
-        
+        System.out.println("total"+ obj.solve());
         input.close();
     }
 }
