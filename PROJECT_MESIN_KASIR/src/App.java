@@ -1,15 +1,15 @@
 import java.util.Scanner;
 public class App {
-    double hargaFinal;
-    static int addNumbers(int pilihanMakan,int pilihanMinum){
-        hargaFinal = pilihanMakan + pilihanMinum;
+    static int harga;
+    static int addNumbers(double pilihanMakan,double pilihanMinum){
+        return (harga = (int) (pilihanMakan + pilihanMinum));
     }
     public static void main(String[] args){
         double[] harga={12500,10000,45000,5000};
         Scanner input = new Scanner(System.in);
 
         int jumlahBarang,totalHarga;
-        double diskonDadakan = 0.5,hargaFinal;
+        double diskonDadakan = 0.5;
         System.out.println("|===================================|");
 	    System.out.println("|Selamat Datang di Resto Bunga Harum|");
 	    System.out.println("|===================================|");
@@ -23,7 +23,7 @@ public class App {
         System.out.println("|===================================|");
         System.out.println("Selamat datang silahkan masukan makanan yang anda mau");
         String barang = input.nextLine();
-        int pilihanMakan, pilihanMinum;
+        double pilihanMakan, pilihanMinum;
         if(barang.equals("nasi goreng")){
             System.out.println(harga[0]);
             pilihanMakan = 0;
@@ -45,7 +45,7 @@ public class App {
         System.out.println(harga[3]);
         pilihanMinum = 3;
         }
-      int hasil = addNumber(pilihanMakan,pilihanminum);
+      int hasil = addNumbers(pilihanMakan,pilihanMinum);
 	    System.out.println("Total Harga" + hasil);
         
         input.close();
