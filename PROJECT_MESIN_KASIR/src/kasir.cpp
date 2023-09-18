@@ -2,7 +2,7 @@
 
 int main(){
 	std::string a,b;
-	double harga[]={12500, 10000, 45000, 5000};
+	double[] harga={12500, 10000, 45000, 5000};
 	
 	std::cout<<"	|===================================|\n";
 	std::cout<<"	|Selamat Datang di Resto Bunga Harum|\n";
