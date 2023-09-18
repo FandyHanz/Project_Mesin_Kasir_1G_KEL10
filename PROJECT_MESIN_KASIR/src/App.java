@@ -1,9 +1,8 @@
 import java.util.Scanner;
 public class App {
     double hargaFinal;
-    public void addNumbers(int pilihanMakan,int pilihanMinum){
+    static int addNumbers(int pilihanMakan,int pilihanMinum){
         hargaFinal = pilihanMakan + pilihanMinum;
-        System.out.println("harga");
     }
     public static void main(String[] args){
         double[] harga={12500,10000,45000,5000};
@@ -46,7 +45,8 @@ public class App {
         System.out.println(harga[3]);
         pilihanMinum = 3;
         }
-        System.out.println("total harga"+ ;
+      int hasil = addNumber(pilihanMakan,pilihanminum);
+	    System.out.println("Total Harga" + hasil);
         
         input.close();
     }
