@@ -1,4 +1,4 @@
-package Fitur
+package Fitur;
 
 /**
  * Melaporkan
