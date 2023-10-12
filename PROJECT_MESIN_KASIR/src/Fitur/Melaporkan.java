@@ -3,7 +3,6 @@ package Fitur;
 /**
  * Melaporkan
  */
-private class Melaporkan {
-
+public class Melaporkan {
     
 }
