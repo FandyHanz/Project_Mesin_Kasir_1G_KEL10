@@ -5,66 +5,73 @@ import java.util.Scanner;
 class Catatanmetodepembayaran {
 
     public static void main(String[] args) {
-        Scanner input12 = new Scanner(System.in);
-        Scanner input12Bar = new Scanner(System.in);
-        Scanner input12Harga = new Scanner(System.in);
-        Scanner input12Method = new Scanner(System.in);
-        String makanan, minuman, Method, perubahan;
-        int hargaMakanan, hargaMinuman, jumlahMak, jumlahMin, totalbarang, hargatotal, counter;
-        counter = 0;
-        System.out.println("Masukan nama Makanan: ");
-        makanan = input12.nextLine();
-        System.out.println("Masukan jumlah makanan: ");
-        jumlahMak = input12Bar.nextInt();
-        System.out.println("Masukan Harga: ");
-        hargaMakanan = input12Harga.nextInt();
-        System.out.println("Masukan nama Minuman: ");
-        minuman = input12.nextLine();
-        System.out.println("Masukan Jumlah Minuman: ");
-        jumlahMin = input12Bar.nextInt();
-        System.out.println("Masukan Harga: ");
-        hargaMinuman = input12Harga.nextInt();
-        System.out.println("apakah, dan anda ingin melakukan perubahan pesanan (y/n) :");
-        perubahan = input12.nextLine();
+        //4 Scanner dikurangi menjadi 2
+        Scanner inputStr = new Scanner(System.in);
+        Scanner inputInt = new Scanner(System.in);
+        String makanan, minuman, perubahan;
+        int hargaMakanan, hargaMinuman, jumlahMak, jumlahMin, totalbarang, hargatotal, Method;
+        int counter = 0;
+
+        //Program Kasir
+        System.out.print("Masukan nama Makanan: ");
+        makanan = inputStr.nextLine();
+        System.out.print("Masukan jumlah makanan: ");
+        jumlahMak = inputInt.nextInt();
+        System.out.print("Masukan Harga: ");
+        hargaMakanan = inputInt.nextInt();
+        System.out.print("Masukan nama Minuman: ");
+        minuman = inputStr.nextLine();
+        System.out.print("Masukan Jumlah Minuman: ");
+        jumlahMin = inputInt.nextInt();
+        System.out.print("Masukan Harga: ");
+        hargaMinuman = inputInt.nextInt();
+        System.out.println("Apakah anda ingin melakukan perubahan pesanan (y/n)?");
+        System.out.print(">>");
+        perubahan = inputStr.nextLine();
         do {
             if (perubahan.equalsIgnoreCase("y")) {
-                System.out.println("Masukan nama Makanan: ");
-                makanan = input12.nextLine();
-                System.out.println("Masukan jumlah makanan: ");
-                jumlahMak = input12Bar.nextInt();
-                System.out.println("Masukan Harga: ");
-                hargaMakanan = input12Harga.nextInt();
-                System.out.println("Masukan nama Minuman: ");
-                minuman = input12.nextLine();
-                System.out.println("Masukan Jumlah Minuman: ");
-                jumlahMin = input12Bar.nextInt();
-                System.out.println("Masukan Harga: ");
-                hargaMinuman = input12Harga.nextInt();
+                System.out.print("Masukan nama Makanan: ");
+                makanan = inputStr.nextLine();
+                System.out.print("Masukan jumlah makanan: ");
+                jumlahMak = inputInt.nextInt();
+                System.out.print("Masukan Harga: ");
+                hargaMakanan = inputInt.nextInt();
+                System.out.print("Masukan nama Minuman: ");
+                minuman = inputStr.nextLine();
+                System.out.print("Masukan Jumlah Minuman: ");
+                jumlahMin = inputInt.nextInt();
+                System.out.print("Masukan Harga: ");
+                hargaMinuman = inputInt.nextInt();
             } else {
                 continue;
             }
             counter += 1;
             counter++;
         } while (perubahan.equalsIgnoreCase("y") && counter++ <= 1);
+
+        //Proses
         totalbarang = jumlahMak + jumlahMin;
         hargaMinuman *= jumlahMin;
         hargaMakanan *= jumlahMak;
         hargatotal = hargaMakanan + hargaMinuman;
+
+        //Catatan Order dan Pembayaran
         System.out.println("Pesanan anda adalah " + makanan + " dan " + minuman);
-        System.out.println("Dengan quantity sebanyak " + totalbarang);
-        System.out.println("Jumlah pesana anda adalah " + hargatotal);
-        System.out.println("Dengan Metode apakah anda membayar(cash/bank): ");
-        Method = input12Method.nextLine();
+        System.out.println("Dengan jumlah sebanyak " + totalbarang);
+        System.out.println("Jumlah pesanan anda adalah " + hargatotal);
+        System.out.println("Dengan Metode apakah anda membayar?");
+        System.out.println("[1] Cash | [2] Bank");
+        System.out.print(">>");
+        Method = inputInt.nextInt();
         switch (Method) {
-            case ("cash"):
-                System.out.println("Terimakasih,semoga hari anda menyenangkan ");
+            case 1:
+                System.out.println("Terimakasih. Semoga hari anda menyenangkan!");
                 break;
-            case ("bank"):
-                System.out.println("Terimaksih Silahkan menuju atm terdekat");
+            case 2:
+                System.out.println("Terimakasih. Silahkan menuju atm terdekat");
                 break;
         }
-        input12.close();
-        input12Bar.close();
-        input12Harga.close();
+        inputStr.close();
+        inputInt.close();
     }
 }
