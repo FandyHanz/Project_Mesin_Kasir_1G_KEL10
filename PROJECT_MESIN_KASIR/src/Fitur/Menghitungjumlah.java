@@ -5,6 +5,7 @@ class Menghitungjumlah {
         int hargaMakanan=makanan*qty;
         int hargaMinuman=minuman*qty;
         int Total=hargaMakanan+hargaMinuman;
+        System.out.println(Total);
     }
 }
 

@@ -1,5 +1,5 @@
 package Fitur;
 
-private class Mencetakstruk {
+public class Mencetakstruk {
     
 }

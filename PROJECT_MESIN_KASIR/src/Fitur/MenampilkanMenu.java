@@ -1,5 +1,5 @@
 package Fitur;
 
-private class MenampilkanMenu {
+public class MenampilkanMenu {
     
 }

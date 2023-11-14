@@ -21,7 +21,7 @@ class harga{
 
         Scanner input = new Scanner(System.in);
         App obj= new App();
-        harga obj1=new harga();
+        //harga obj1=new harga();
 
 
         int jumlahBarang,totalHarga,hargaFix,nominal,exchange;
@@ -83,13 +83,13 @@ class harga{
         System.out.println(harga[3]);
         pilihanMinum = 3;
         }
-        System.out.println("total"+ obj1.solve());
+        //System.out.println("total"+ obj1.solve());
         
-        if(totalHarga<=25000){
-            System.out.println("selamat anda mendapatakan diskon sebesar 5%, menjadi: ");
-            hargaFix=totalHarga-(totalHarga*(int)0.05);
-            System.out.println(hargaFix);
-        }
+        //if(totalHarga<=25000){
+        //    System.out.println("selamat anda mendapatakan diskon sebesar 5%, menjadi: ");
+            //hargaFix=totalHarga-(totalHarga*(int)0.05);
+        //    System.out.println(hargaFix);
+        //}
         System.out.println("masukan nominal pembayaran: ");
         nominal = input.nextInt();
         
