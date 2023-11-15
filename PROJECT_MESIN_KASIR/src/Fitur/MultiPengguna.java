@@ -8,14 +8,16 @@ public class MultiPengguna {
         Scanner input = new Scanner(System.in);
         String ps, usr, adminpw, admin, akun;
         int counter = 4;
-
-        //Variabel diganti ke Array
-        String id[] = {"Admin", "Fadlih", "Afrizal"};
-        String pass[] = {"bestAdmin", "Donat", "Udahkuduga"};
+        
+        //Array 2D!!!
+        String idA[][] = {
+            {"Admin", "Fadlih", "Afrizal"},
+            {"bestAdmin", "Donat", "Udahkuduga"}
+        };
 
         //Akun admin akan ada di indeks 0
-        admin = id[0];
-        adminpw = pass[0];
+        admin = idA[0][0];
+        adminpw = idA[1][0];
 
         //Sistem Login
         System.out.println("---{[ Login Sistem Kasir ]}---");
@@ -30,7 +32,7 @@ public class MultiPengguna {
             System.out.print("Masukkan Password: ");
             ps = input.nextLine();
 
-            if ((usr.equals(id[0]) && ps.equals(pass[0])) || (usr.equals(id[1]) && ps.equals(pass[1])) || (usr.equals(id[2]) && ps.equals(pass[2]))) {
+            if ((usr.equals(idA[0][0]) && ps.equals(idA[1][0])) || (usr.equals(idA[0][1]) && ps.equals(idA[1][1])) || (usr.equals(idA[0][2]) && ps.equals(idA[1][2]))) {
                 if (usr.equals(admin) && ps.equals(adminpw)) {
                     System.out.println("Login sebagai Admin berhasil!");
                     System.out.println("Selamat datang kembali, administrator");

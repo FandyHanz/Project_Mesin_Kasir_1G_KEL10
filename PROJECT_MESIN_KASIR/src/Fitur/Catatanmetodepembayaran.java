@@ -13,11 +13,15 @@ class Catatanmetodepembayaran {
         int pilihMak, pilihMin;
         boolean pesananConfirm = false;
 
-        //Deklarasi Array
-        String[] food = {"Ayam Goreng", "Ayam Bakar", "Ayam Kremes", "Nasi Goreng", "Nasi Lemak"};
-        int[] fPrice = {12000, 13500, 15000, 11000, 15000};
-        String[] drinks = {"Teh Hangat", "Es Teh Manis", "Joshua", "Soda Gembira", "Kopi Hitam"};
-        int[] dPrice = {3500, 3500, 7500, 7500, 5000};
+        //Diganti ke Array 2D!
+        String[][] menuRes = {
+            {"Ayam Goreng", "Ayam Bakar", "Ayam Kremes", "Nasi Goreng", "Nasi Lemak"},
+            {"Teh Hangat", "Es Teh Manis", "Joshua", "Soda Gembira", "Kopi Hitam"}
+        };
+        int[][] price = {
+            {12000, 13500, 15000, 11000, 15000},
+            {3500, 3500, 7500, 7500, 5000}
+        };
 
         //Meminta input pengguna
         do {
@@ -50,11 +54,11 @@ class Catatanmetodepembayaran {
             System.out.print(">>");
             perubahan = inputStr.nextLine();
 
-            if (pilihMak < food.length && pilihMin < drinks.length){
-            makanan = food[pilihMak];
-            hargaMakanan = fPrice[pilihMak];
-            minuman = drinks[pilihMin];
-            hargaMinuman = dPrice[pilihMin];
+            if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length){
+            makanan = menuRes[0][pilihMak];
+            hargaMakanan = price[0][pilihMak];
+            minuman = menuRes[1][pilihMin];
+            hargaMinuman = price[1][pilihMin];
             } else {
                 System.out.println("[WARNING] ID MAKANAN TIDAK VALID!");
                 System.out.println("Mohon input kembali dengan input yang benar!");
