@@ -5,6 +5,8 @@ import java.util.Scanner;
 class Catatanmetodepembayaran {
 
     public static void main(String[] args) {
+        //TOOK TOO LONG! I added this OUTER loop.
+        
         //4 Scanner dikurangi menjadi 2
         Scanner inputStr = new Scanner(System.in);
         Scanner inputInt = new Scanner(System.in);
@@ -22,8 +24,11 @@ class Catatanmetodepembayaran {
             {12000, 13500, 15000, 11000, 15000},
             {3500, 3500, 7500, 7500, 5000}
         };
+        
+        //TOOK TOO LONG! I added this OUTER loop.
+        do{
 
-        //Meminta input pengguna
+            //Inner Loop input dari pengguna
         do {
 
             //Tampilan Menu Makanan & Minuman
@@ -85,6 +90,10 @@ class Catatanmetodepembayaran {
         System.out.println("Yaitu " + makanan + " sebanyak " + jumlahMak);
         System.out.println("Dan " + minuman + " sebanyak " + jumlahMin);
         System.out.println("Jumlah pesanan anda adalah " + hargatotal);
+
+        //INNER LOOOOOOPPPP buat Metode pembayaran
+        boolean metodebenar = false;
+        do{
         System.out.println("Dengan Metode apakah anda membayar?");
         System.out.println("[1] Cash | [2] Bank");
         System.out.print(">>");
@@ -92,11 +101,27 @@ class Catatanmetodepembayaran {
         switch (Method) {
             case 1:
                 System.out.println("Terimakasih. Semoga hari anda menyenangkan!");
+                metodebenar = true;
                 break;
             case 2:
                 System.out.println("Terimakasih. Silahkan menuju atm terdekat");
+                metodebenar = true;
                 break;
+            default:
+                System.out.println("Metode Pembayaran tidak valid/tidak ada!");
         }
+        } while (metodebenar == false);
+
+        System.out.print("Apakah ada pesanan lain? [y/n] : ");
+        String quitornot = inputStr.nextLine();
+        if (quitornot.equalsIgnoreCase("N")){
+            break;
+        } else {
+            continue;
+        }
+
+        } while (true);
+
         inputStr.close();
         inputInt.close();
     }
