@@ -4,6 +4,19 @@ import java.util.Scanner;
 
 class Catatanmetodepembayaran {
 
+    public static int pelanggan(String[][] menuRes, int[][] price, String[][] user, Scanner inputInt, Scanner inputStr) {
+        int result = 0;
+        for (int i = 0; i < user.length; i++) {
+            System.out.print("pelanggan ke- " + i + ": ");
+            for (int j = 0; j < user[0].length; j++) {
+                System.out.println("makanan dan minuman- " + (j + 1) + ": ");
+                user[i][j] = inputStr.nextLine();
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         //4 Scanner dikurangi menjadi 2
         Scanner inputStr = new Scanner(System.in);
@@ -24,6 +37,15 @@ class Catatanmetodepembayaran {
         };
 
         //Meminta input pengguna
+        System.out.print("Pesan untuk berapa orang: ");
+        int row = inputInt.nextInt();
+        System.out.println("Pesan berapa porsi: ");
+        int column = inputInt.nextInt();
+
+        String [][] User = new String [row][column];
+        
+        pelanggan (String[][] menuRes, int[][] price, String[][] user, Scanner inputInt, Scanner inputStr);
+
         do {
 
             //Tampilan Menu Makanan & Minuman
