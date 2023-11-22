@@ -1,12 +1,9 @@
 package Fitur;
-
 import java.util.Scanner;
 
-class Catatanmetodepembayaran {
+class TampilanKasir {
 
     public static void main(String[] args) {
-        //TOOK TOO LONG! I added this OUTER loop.
-        
         //4 Scanner dikurangi menjadi 2
         Scanner inputStr = new Scanner(System.in);
         Scanner inputInt = new Scanner(System.in);
@@ -24,13 +21,14 @@ class Catatanmetodepembayaran {
             {12000, 13500, 15000, 11000, 15000},
             {3500, 3500, 7500, 7500, 5000}
         };
-        
-        //TOOK TOO LONG! I added this OUTER loop.
-        do{
+        int[][] stock ={
+            {99, 99, 99, 99, 99},
+            {99, 99, 99, 99, 99}
+        };
 
-            //Inner Loop input dari pengguna
+        //Semua berada di satu LOOP yang besar...
+        for (int i = 1 ; i < 10000 ; i++) {
         do {
-
             //Tampilan Menu Makanan & Minuman
             System.out.println("=========<{[ FOOD ]}>=========");
             System.out.println("Menu makananan   | Harga      ");
@@ -47,15 +45,15 @@ class Catatanmetodepembayaran {
             System.out.println("[3] Soda Gembira | Rp. 7500   ");
             System.out.println("[4] Kopi Hitam   | Rp. 5000   ");
 
-            System.out.print("Masukan ID Makanan (0~4): ");
+            System.out.print("Masukan ID Makanan yang dipesan (0~4): ");
             pilihMak = inputInt.nextInt();
-            System.out.print("Masukan jumlah makanan: ");
+            System.out.print("Masukan jumlah makanan yang dipesan: ");
             jumlahMak = inputInt.nextInt();
-            System.out.print("Masukan ID Minuman (0~4): ");
+            System.out.print("Masukan ID Minuman yang dipesan (0~4): ");
             pilihMin = inputInt.nextInt();
-            System.out.print("Masukan Jumlah Minuman: ");
+            System.out.print("Masukan Jumlah Minuman yang dipesan: ");
             jumlahMin = inputInt.nextInt();
-            System.out.println("Apakah anda ingin mengkonfirmasi pesanan (y/n)?");
+            System.out.println("Apakah pelanggan mengkonfirmasi pesanan (y/n)?");
             System.out.print(">>");
             perubahan = inputStr.nextLine();
 
@@ -83,44 +81,45 @@ class Catatanmetodepembayaran {
         hargaMinuman *= jumlahMin;
         hargaMakanan *= jumlahMak;
         hargatotal = hargaMakanan + hargaMinuman;
+        //Mengurangi makanan & minuman
+        stock[0][pilihMak] -= jumlahMak;
+        stock[1][pilihMin] -= jumlahMin;
 
         //Catatan Order dan Pembayaran
-        System.out.println("Pesanan anda adalah " + makanan + " dan " + minuman);
+        System.out.println("Pesanan pelanggan ke-" + i + " adalah " + makanan + " dan " + minuman);
         System.out.println("Dengan jumlah barang sebanyak " + totalbarang);
         System.out.println("Yaitu " + makanan + " sebanyak " + jumlahMak);
         System.out.println("Dan " + minuman + " sebanyak " + jumlahMin);
-        System.out.println("Jumlah pesanan anda adalah " + hargatotal);
-
-        //INNER LOOOOOOPPPP buat Metode pembayaran
-        boolean metodebenar = false;
-        do{
-        System.out.println("Dengan Metode apakah anda membayar?");
+        System.out.println("Jumlah pesanan pelanggan adalah " + hargatotal);
+        System.out.println("Dengan Metode apakah pelanggan membayar?");
         System.out.println("[1] Cash | [2] Bank");
         System.out.print(">>");
         Method = inputInt.nextInt();
         switch (Method) {
             case 1:
-                System.out.println("Terimakasih. Semoga hari anda menyenangkan!");
-                metodebenar = true;
+                System.out.println("Pelanggan membayar secara cash, membuka tray kasir...");
                 break;
             case 2:
-                System.out.println("Terimakasih. Silahkan menuju atm terdekat");
-                metodebenar = true;
+                System.out.println("Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
                 break;
-            default:
-                System.out.println("Metode Pembayaran tidak valid/tidak ada!");
         }
-        } while (metodebenar == false);
+        System.out.println("==================================");
+        System.out.println("Update Sisa Stock Makanan: ");
+        System.out.println(makanan = menuRes[0][pilihMak] + " x" + stock[0][pilihMak]);
+        System.out.println("Update Sisa Stock Minuman: ");
+        System.out.println(minuman = menuRes[1][pilihMin] + " x" + stock[1][pilihMin]);
+        System.out.println("==================================");
 
-        System.out.print("Apakah ada pesanan lain? [y/n] : ");
-        String quitornot = inputStr.nextLine();
-        if (quitornot.equalsIgnoreCase("N")){
-            break;
-        } else {
-            continue;
+        System.out.println("Apakah ada pelanggan yang ingin membeli lagi?");
+        System.out.println("Input 'N' jika tidak ada pelanggan yang ingin membeli lagi.");
+        System.out.print(">>");
+        String moreCost = inputStr.nextLine();
+            if (moreCost.equalsIgnoreCase("n")){
+                break;
+            } else {
+                continue;
+            }
         }
-
-        } while (true);
 
         inputStr.close();
         inputInt.close();
