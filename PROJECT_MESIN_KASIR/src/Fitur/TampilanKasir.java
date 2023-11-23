@@ -1,5 +1,7 @@
 package Fitur;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 class TampilanKasir {
 
@@ -7,6 +9,13 @@ class TampilanKasir {
         //4 Scanner dikurangi menjadi 2
         Scanner inputStr = new Scanner(System.in);
         Scanner inputInt = new Scanner(System.in);
+        //Tanggal hari ini di import untuk laporan penjualan setelah restoran tutup
+        LocalDate tanggalHariIni = LocalDate.now();
+        DateTimeFormatter formatHariIni = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String hariIni = tanggalHariIni.format(formatHariIni);
+        //Menambah variabel untuk total penghasilan dan jumlah pelanggan hari ini:
+        int totalToday = 0, totalcustomer = 0;
+
         String makanan= "x", minuman="x", perubahan;
         int hargaMakanan=0, hargaMinuman=0, jumlahMak, jumlahMin, totalbarang, hargatotal, Method;
         int pilihMak, pilihMin;
@@ -81,6 +90,8 @@ class TampilanKasir {
         hargaMinuman *= jumlahMin;
         hargaMakanan *= jumlahMak;
         hargatotal = hargaMakanan + hargaMinuman;
+        //Total hari ini + Harga Total Pesanan Sebelumnya
+        totalToday += hargatotal;
         //Mengurangi makanan & minuman
         stock[0][pilihMak] -= jumlahMak;
         stock[1][pilihMin] -= jumlahMin;
@@ -115,11 +126,18 @@ class TampilanKasir {
         System.out.print(">>");
         String moreCost = inputStr.nextLine();
             if (moreCost.equalsIgnoreCase("n")){
+                totalcustomer = i;
                 break;
             } else {
                 continue;
             }
         }
+        System.out.println("==================================");
+        System.out.println("Restoran sekarang tutup");
+        System.out.println("==================================");
+        System.out.println("Laporan penjualan pada " + hariIni);
+        System.out.println("Pemasukan Hari ini: " + totalToday);
+        System.out.println("dengan jumlah pelanggan: " + totalcustomer);
 
         inputStr.close();
         inputInt.close();
