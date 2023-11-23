@@ -30,18 +30,94 @@ public static String langENGLISH(String langSelect) {
         System.out.print("Apakah anda kasirnya? (y/t): ");
         langSelect = inputL.nextLine();
         if (langSelect.equalsIgnoreCase("y")) {
-            System.out.println("selamat datang di laman berbahasa indonesia");
+            kasirID(langSelect);
         } else {
             pelanggan (langSelect);
         }
         inputL.close();
         return temp;
     }
-    public static void struck (int i, String makanan, String minuman, int totalbarang, int hargatotal, int Method, Scanner inputInt, int jumlahMak, int jumlahMin, int hargaMinuman, int hargaMakanan){
-     
+
+    public static void kasirID(String langSelect){
+        Scanner input = new Scanner(System.in);
+        String ps, usr, adminpw, admin, akun;
+        int counter = 4;
+        
+        //Array 2D!!!
+        String idA[][] = {
+            {"Admin", "Fadlih", "Afrizal"},
+            {"bestAdmin", "Donat", "Udahkuduga"}
+        };
+
+        //Akun admin akan ada di indeks 0
+        admin = idA[0][0];
+        adminpw = idA[1][0];
+
+        //Sistem Login
+        System.out.println("---{[ Login Sistem Kasir ]}---");
+        System.out.print("Siapakah anda? (Staff/Pelanggan) : ");
+        akun = input.nextLine();
+        if (akun.equalsIgnoreCase("Staff")) {
+            do {
+
+            //Dipindah kedalam agar bisa ada kesempatan login
+            System.out.print("Masukkan ID Pengguna: ");
+            usr = input.nextLine();
+            System.out.print("Masukkan Password: ");
+            ps = input.nextLine();
+
+            if ((usr.equals(idA[0][0]) && ps.equals(idA[1][0])) || (usr.equals(idA[0][1]) && ps.equals(idA[1][1])) || (usr.equals(idA[0][2]) && ps.equals(idA[1][2]))) {
+                if (usr.equals(admin) && ps.equals(adminpw)) {
+                    System.out.println("Login sebagai Admin berhasil!");
+                    System.out.println("Selamat datang kembali, administrator");
+                    System.out.println("Apa yang ingin anda lakukan hari ini?");
+                    System.out.println("[1] Setup diskon, [2] Restock");
+                    //Lanjutkan Tampilan Admin mulai dari sini...
+                } else {
+                    System.out.println("Login sebagai kasir berhasil!");
+                    System.out.println("Selamat datang kembali " + usr);
+                    System.out.println("Apa yang ingin anda lakukan hari ini?");
+                    System.out.println("[1] Input diskon, [2] Layani Pelanggan");
+                    //Lanjutkan Tampilan kasir mulai dari sini...
+                }
+            } else {
+                //Counter dipindah kesini agar counter menambah hanya saat login salah
+                counter--;
+                System.out.println("[DENIED] USERNAME DAN PASSWORD SALAH!!!");
+                System.out.println("Login gagal! Mohon cek kembali username dan password anda!");
+                if (counter > 0){
+                    System.out.println("Sisa kesempatan login : " +  counter);
+                } else {
+                    System.out.println("Kesempatan Login Habis! Sistem akan Di-Lockdown!");
+                }
+            }
+        } while (akun.equalsIgnoreCase("staff") && counter > 0);
+        } else if (akun.equalsIgnoreCase("pelanggan")) {
+            System.out.println("Coming soon...");
+        } 
+        input.close();
+    }
+    
+    public static void pembukuanID (int i, int totalcustomer, Scanner inputStr, int [][] stock, int pilihMak, int jumlahMak, int pilihMin, int jumlahMin, String makanan, String minuman,  String [][] menuRes ){
+       
+       stock[0][pilihMak] -= jumlahMak;
+       stock[1][pilihMin] -= jumlahMin;
+
+       System.out.println("==================================");
+       System.out.println("Update Sisa Stock Makanan: ");
+       System.out.println(makanan = menuRes[0][pilihMak] + " x" + stock[0][pilihMak]);
+       System.out.println("Update Sisa Stock Minuman: ");
+       System.out.println(minuman = menuRes[1][pilihMin] + " x" + stock[1][pilihMin]);
+       System.out.println("==================================");
+       System.out.println("==================================");
+       System.out.println("Update Sisa Stock Makanan: ");
+       System.out.println(makanan = menuRes[0][pilihMak] + " x" + stock[0][pilihMak]);
+       System.out.println("Update Sisa Stock Minuman: ");
+       System.out.println(minuman = menuRes[1][pilihMin] + " x" + stock[1][pilihMin]);
+       System.out.println("==================================");
     }
 
-    public static void pelanggan(String langSelect) {
+    public static void pelanggan (String langSelect) {
        //4 Scanner dikurangi menjadi 2
        Scanner inputStr = new Scanner(System.in);
        Scanner inputInt = new Scanner(System.in);
@@ -149,13 +225,6 @@ public static String langENGLISH(String langSelect) {
                System.out.println("Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
                break;
        }
-       System.out.println("==================================");
-       System.out.println("Update Sisa Stock Makanan: ");
-       System.out.println(makanan = menuRes[0][pilihMak] + " x" + stock[0][pilihMak]);
-       System.out.println("Update Sisa Stock Minuman: ");
-       System.out.println(minuman = menuRes[1][pilihMin] + " x" + stock[1][pilihMin]);
-       System.out.println("==================================");
-
        System.out.println("Apakah ada pelanggan yang ingin membeli lagi?");
        System.out.println("Input 'N' jika tidak ada pelanggan yang ingin membeli lagi.");
        System.out.print(">>");
@@ -183,6 +252,11 @@ public static String langENGLISH(String langSelect) {
         Scanner inputL = new Scanner(System.in);
         String langSelect;
 
+        System.out.println(" \t \t ===================================== \t \t");
+        System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
+        System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
+         System.out.println(" \t \t ===================================== \t \t");
+        System.out.println();
         System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
         langSelect = inputL.nextLine();
         if (langSelect.equalsIgnoreCase("en")) {
@@ -190,6 +264,6 @@ public static String langENGLISH(String langSelect) {
         } else if (langSelect.equalsIgnoreCase("id")) {
             langINDO(langSelect);
         }
-        inputL.close();
+            inputL.close();
     }
 }
