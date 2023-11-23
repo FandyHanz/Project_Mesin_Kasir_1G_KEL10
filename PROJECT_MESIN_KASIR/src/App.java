@@ -85,7 +85,7 @@ class App {
 
                                     break;
                                 case "3":
-                                    pembukuanID(counter, counter, input, stock, counter, counter, counter, counter, decision, admin, idA);
+                                        pembukuanID(counter, counter, input, null, counter, counter, counter, counter, decision, admin, idA);
                                     break;
                                 case "4":
                                     if (decision.equalsIgnoreCase("4") && akun != null) {
@@ -119,6 +119,14 @@ class App {
             }
         }
         input.close();
+    }
+    
+    public static void SetupDiskon(){
+
+    }
+
+    public static void Restock(){
+
     }
 
     public static void pembukuanID(int i, int totalcustomer, Scanner inputStr, int[][] stock, int pilihMak,
