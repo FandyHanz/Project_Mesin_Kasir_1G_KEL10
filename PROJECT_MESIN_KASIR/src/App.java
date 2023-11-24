@@ -45,7 +45,7 @@ class App {
         if (langSelect.equalsIgnoreCase("y")) {
             System.out.println("Hello this page is english");
         } else {
-
+            EnPelanggan(langSelect);
         }
         inputL.close();
         return temp;
@@ -328,7 +328,10 @@ class App {
         }
         inputL.close();
     }
+    
+public static void EnPelanggan( String langSelect){
 
+}
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
