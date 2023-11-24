@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 class App {
@@ -176,34 +177,7 @@ class App {
     }
 
     public static void pelanggan(String langSelect) {
-        // 4 Scanner dikurangi menjadi 2
-        Scanner inputStr = new Scanner(System.in);
-        Scanner inputInt = new Scanner(System.in);
-        // Tanggal hari ini di import untuk laporan penjualan setelah restoran tutup
-        LocalDate tanggalHariIni = LocalDate.now();
-        DateTimeFormatter formatHariIni = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String hariIni = tanggalHariIni.format(formatHariIni);
-        // Menambah variabel untuk total penghasilan dan jumlah pelanggan hari ini:
-        int totalToday = 0, totalcustomer = 0;
-
-        String makanan = "x", minuman = "x", perubahan;
-        int hargaMakanan = 0, hargaMinuman = 0, jumlahMak, jumlahMin, totalbarang = 0, hargatotal = 0, Method;
-        int pilihMak, pilihMin;
-        boolean pesananConfirm = false;
-
-        // Diganti ke Array 2D!
-        String[][] menuRes = {
-                { "Ayam Goreng", "Ayam Bakar", "Ayam Kremes", "Nasi Goreng", "Nasi Lemak" },
-                { "Teh Hangat", "Es Teh Manis", "Joshua", "Soda Gembira", "Kopi Hitam" }
-        };
-        int[][] price = {
-                { 12000, 13500, 15000, 11000, 15000 },
-                { 3500, 3500, 7500, 7500, 5000 }
-        };
-        int[][] stock = {
-                { 99, 99, 99, 99, 99 },
-                { 99, 99, 99, 99, 99 }
-        };
+        
 
         // Semua berada di satu LOOP yang besar...
         for (int i = 1; i < 10000; i++) {
@@ -308,7 +282,6 @@ class App {
     }
 
     public static void main(String[] args) {
-
         Scanner inputL = new Scanner(System.in);
         String langSelect;
 
@@ -316,6 +289,7 @@ class App {
         System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
         System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
         System.out.println(" \t \t ===================================== \t \t");
+        System.out.println("\t \t \t \t" + tanggalHariIni);
         System.out.println();
         System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
         langSelect = inputL.nextLine();
@@ -330,7 +304,7 @@ class App {
     }
     
 public static void EnPelanggan( String langSelect){
-
+    
 }
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
