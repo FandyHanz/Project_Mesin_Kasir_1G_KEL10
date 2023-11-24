@@ -4,6 +4,36 @@ import java.time.format.DateTimeFormatter;
 
 class App {
 
+    // 4 Scanner dikurangi menjadi 2
+       public static Scanner inputStr = new Scanner(System.in);
+       public static Scanner inputInt = new Scanner(System.in);
+        // Tanggal hari ini di import untuk laporan penjualan setelah restoran tutup
+        public static LocalDate tanggalHariIni = LocalDate.now();
+        public static DateTimeFormatter formatHariIni = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        public static String hariIni = tanggalHariIni.format(formatHariIni);
+        // Menambah variabel untuk total penghasilan dan jumlah pelanggan hari ini:
+       public static int totalToday = 0, totalcustomer = 0;
+
+        public static String makanan = "x", minuman = "x", perubahan;
+        public static int hargaMakanan = 0, hargaMinuman = 0, jumlahMak, jumlahMin, totalbarang = 0, hargatotal = 0, Method;
+        public static int pilihMak, pilihMin;
+        public static boolean pesananConfirm = false;
+
+        // Diganti ke Array 2D!
+        public static String[][] menuRes = {
+                { "Ayam Goreng", "Ayam Bakar", "Ayam Kremes", "Nasi Goreng", "Nasi Lemak" },
+                { "Teh Hangat", "Es Teh Manis", "Joshua", "Soda Gembira", "Kopi Hitam" }
+        };
+        public static int[][] price = {
+                { 12000, 13500, 15000, 11000, 15000 },
+                { 3500, 3500, 7500, 7500, 5000 }
+        };
+        public static int[][] stock = {
+                { 99, 99, 99, 99, 99 },
+                { 99, 99, 99, 99, 99 }
+        };
+        public static int i = 0;
+
     public static String langENGLISH(String langSelect) {
         Scanner inputL = new Scanner(System.in);
         String temp = null;
@@ -39,6 +69,7 @@ class App {
     }
 
     public static void kasirID(String langSelect) {
+
         Scanner input = new Scanner(System.in);
         String ps, usr, adminpw, admin, akun, decision;
         int counter = 4;
@@ -85,7 +116,8 @@ class App {
 
                                     break;
                                 case "3":
-                                        pembukuanID(counter, counter, input, null, counter, counter, counter, counter, decision, admin, idA);
+                                    pembukuanID(i, totalcustomer, inputStr, stock, pilihMak, jumlahMak, pilihMin, jumlahMin, makanan, minuman, menuRes);
+                                    
                                     break;
                                 case "4":
                                     if (decision.equalsIgnoreCase("4") && akun != null) {
@@ -233,6 +265,7 @@ class App {
             // Mengurangi makanan & minuman
             stock[0][pilihMak] -= jumlahMak;
             stock[1][pilihMin] -= jumlahMin;
+            pembukuanID(i, totalcustomer, inputStr, stock, pilihMak, jumlahMak, pilihMin, jumlahMin, makanan, minuman, menuRes);
             // Catatan Order dan Pembayaran
             System.out.println("Pesanan pelanggan ke-" + i + " adalah " + makanan + " dan " + minuman);
             System.out.println("Dengan jumlah barang sebanyak " + totalbarang);
@@ -261,8 +294,8 @@ class App {
             } else {
                 continue;
             }
-
         }
+
         System.out.println("==================================");
         System.out.println("Restoran sekarang tutup");
         System.out.println("==================================");
