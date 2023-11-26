@@ -23,36 +23,37 @@ class TampilanKasir {
 
         //Diganti ke Array 2D!
         String[][] menuRes = {
+            //menuRes[0], untuk makanan
             {"Ayam Goreng", "Ayam Bakar", "Ayam Kremes", "Nasi Goreng", "Nasi Lemak"},
+            //menuRes[1], untuk minuman
             {"Teh Hangat", "Es Teh Manis", "Joshua", "Soda Gembira", "Kopi Hitam"}
         };
+        String[] namaList = {"Makanan", "Minuman"};
         int[][] price = {
             {12000, 13500, 15000, 11000, 15000},
             {3500, 3500, 7500, 7500, 5000}
         };
         int[][] stock ={
-            {99, 99, 99, 99, 99},
-            {99, 99, 99, 99, 99}
+            //Placeholder di 9999.
+            {9999, 9999, 9999, 9999, 9999},
+            {9999, 9999, 9999, 9999, 9999}
         };
 
         //Semua berada di satu LOOP yang besar...
         for (int i = 1 ; i < 10000 ; i++) {
         do {
             //Tampilan Menu Makanan & Minuman
-            System.out.println("=========<{[ FOOD ]}>=========");
-            System.out.println("Menu makananan   | Harga      ");
-            System.out.println("[0] Ayam Goreng  | Rp. 12000  ");
-            System.out.println("[1] Ayam Bakar   | Rp. 13500  ");
-            System.out.println("[2] Ayam Kremes  | Rp. 15000  ");
-            System.out.println("[3] Nasi Goreng  | Rp. 11000  ");
-            System.out.println("[4] Nasi Lemak   | Rp. 15000  ");
-            System.out.println("========<{[ DRINKS ]}>========");
-            System.out.println("Menu Minuman     | Harga      ");
-            System.out.println("[0] Teh Hangat   | Rp. 3500   ");
-            System.out.println("[1] Es Teh Manis | Rp. 3500   ");
-            System.out.println("[2] Joshua       | Rp. 7500   ");
-            System.out.println("[3] Soda Gembira | Rp. 7500   ");
-            System.out.println("[4] Kopi Hitam   | Rp. 5000   ");
+            for (int j = 0; j < namaList.length; j++) {
+                if (j == 0) {
+                    System.out.println("=========<{[ FOOD ]}>=========");
+                } else if (j == 1) {
+                    System.out.println("========<{[ DRINKS ]}>========");
+                }
+                for (int j2 = 0; j2 < menuRes[j].length; j2++) {
+                    System.out.println("[ ID:" + j2 + " ] " + menuRes[j][j2]);
+                    System.out.println("Harga : " + price[j][j2]);
+                }
+            }
 
             System.out.print("Masukan ID Makanan yang dipesan (0~4): ");
             pilihMak = inputInt.nextInt();
@@ -67,10 +68,27 @@ class TampilanKasir {
             perubahan = inputStr.nextLine();
 
             if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length){
-            makanan = menuRes[0][pilihMak];
-            hargaMakanan = price[0][pilihMak];
-            minuman = menuRes[1][pilihMin];
-            hargaMinuman = price[1][pilihMin];
+                //Pengecekan kalau stok kurang atau habis.
+                if (jumlahMak > stock[0][pilihMak] || jumlahMin > stock[1][pilihMin]){
+                    //FAILSAFE UNTUK PENCEGAHAN STOCK MINUS. MASIH ADA BUG. PLS FIX.
+                    System.out.println("Pesanan pelanggan melebihi kapasitas stock yang ada!");
+                    System.out.println("Makanan yang dipesan: " + menuRes[0][pilihMak] + " sejumlah " + jumlahMak);
+                    System.out.println("Stock yang tersedia: " + stock[0][pilihMak]);
+                    int makOverload = jumlahMak - stock[0][pilihMak];
+                    System.out.println("Diperlukan " + makOverload + " " + menuRes[0][pilihMak] + " lagi untuk memenuhi pesanan tersebut!");
+
+                    System.out.println("Minuman yang dipesan: " + menuRes[1][pilihMin]);
+                    System.out.println("Makanan yang dipesan: " + menuRes[1][pilihMin] + " sejumlah " + jumlahMin);
+                    System.out.println("Stock yang tersedia: " + stock[1][pilihMak]);
+                    int minOverload = jumlahMak - stock[1][pilihMin];
+                    System.out.println("Diperlukan " + minOverload + " " + menuRes[1][pilihMin] + " lagi untuk memenuhi pesanan tersebut!");
+                    continue;
+                } else {
+                    makanan = menuRes[0][pilihMak];
+                    hargaMakanan = price[0][pilihMak];
+                    minuman = menuRes[1][pilihMin];
+                    hargaMinuman = price[1][pilihMin];
+                }
             } else {
                 System.out.println("[WARNING] ID MAKANAN TIDAK VALID!");
                 System.out.println("Mohon input kembali dengan input yang benar!");
