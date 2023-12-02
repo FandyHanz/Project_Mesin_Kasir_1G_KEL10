@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Set;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -355,7 +356,7 @@ class App {
 
         public static void main(String[] args) {
                 Scanner inputL = new Scanner(System.in);
-                String langSelect, temps = SetupDiskon();
+                String langSelect;
 
                 System.out.println(" \t \t ===================================== \t \t");
                 System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
@@ -363,8 +364,10 @@ class App {
                 System.out.println(" \t \t ===================================== \t \t");
                 System.out.println("\t \t \t \t" + tanggalHariIni);
                 System.out.println();
-                if (DayOfMonth % 2 == 1) {
-                        
+                while (DayOfMonth % 2 == 1){
+                        String temps = SetupDiskon();
+                        System.out.println(temps);
+                        break;
                 }
                 System.out.println();
                 System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
