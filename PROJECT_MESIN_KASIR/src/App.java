@@ -33,7 +33,7 @@ class App {
             { 99, 99, 99, 99, 99 },
             { 99, 99, 99, 99, 99 }
     };
-    public static int i = 0;
+    public static int i = 0,DayOfMonth = 0;
 
     public static String langENGLISH() {
         Scanner inputL = new Scanner(System.in);
@@ -113,7 +113,7 @@ class App {
                             decision = input.nextLine();
                             switch (decision) {
                                 case "1":
-
+                                    SetupDiskon();
                                     break;
                                 case "2":
                                     Restock();
@@ -163,8 +163,26 @@ class App {
     }
 
     public static void SetupDiskon() {
+        LocalDate today = LocalDate.now();
+        DayOfMonth= today.getDayOfMonth();
+        Scanner input = new Scanner(System.in);
 
-    }
+            System.out.println("Hari ini tanggal ganjil! Masukkan diskon spesial:");
+
+            System.out.print("Masukkan diskon untuk hari ini (misal: 10 untuk 10%): ");
+            int diskon = input.nextInt();
+            System.out.println("===========================================");
+            System.out.println("|           Promo Hari Ini                |");
+            System.out.println("===========================================");
+            System.out.println("|             Diskon Spesial             |");
+            System.out.println("===========================================");
+            System.out.println("|    Diskon " + diskon + "% untuk hari ini!        |");
+            System.out.println("===========================================");
+
+        
+        
+        }
+
 
     public static void Restock() {
         Scanner input = new Scanner(System.in);
@@ -177,8 +195,8 @@ class App {
                     if (stock[i][j] == 99) {
                         System.out.print("| All is set up |");
                     }
-                
-                }else if (stock[i][j] == 99){
+
+                } else if (stock[i][j] == 99) {
                     System.out.print("| doesnt need restock |");
                 }
             }
@@ -187,9 +205,9 @@ class App {
         System.out.println("===========================================================================");
         System.out.println("Logout (y/n): ");
         decision = input.nextLine();
-            if (decision.equalsIgnoreCase("y")){
-                langINDO();
-            }
+        if (decision.equalsIgnoreCase("y")) {
+            langINDO();
+        }
     }
 
     public static void pembukuanID() {
@@ -323,7 +341,9 @@ class App {
         System.out.println(" \t \t ===================================== \t \t");
         System.out.println("\t \t \t \t" + tanggalHariIni);
         System.out.println();
-        SetupDiskon();
+        if (DayOfMonth % 2 == 1) {
+            SetupDiskon();
+        }
         System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
         langSelect = inputL.nextLine();
         if (langSelect.equalsIgnoreCase("en")) {
