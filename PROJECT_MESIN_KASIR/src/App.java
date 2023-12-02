@@ -169,19 +169,22 @@ class App {
     public static void Restock() {
         Scanner input = new Scanner(System.in);
         String decision;
+        System.out.println("=========================================================================");
         for (int i = 0; i < stock.length; i++) {
             for (int j = 0; j < stock[0].length; j++) {
                 if (stock[i][j] < 99) {
                     stock[i][j] = 99;
                     if (stock[i][j] == 99) {
-                        System.out.println("All is set up");
+                        System.out.print("| All is set up |");
                     }
                 
                 }else if (stock[i][j] == 99){
-                    System.out.println("doesnt need restock");
+                    System.out.print("| doesnt need restock |");
                 }
             }
+            System.out.println();
         }
+        System.out.println("===========================================================================");
         System.out.println("Logout (y/n): ");
         decision = input.nextLine();
             if (decision.equalsIgnoreCase("y")){
@@ -206,6 +209,7 @@ class App {
 
         // Semua berada di satu LOOP yang besar...
         for (int i = 1; i < 10000; i++) {
+            boolean isbreak = true;
             do {
                 // Tampilan Menu Makanan & Minuman
                 System.out.println("=========<{[ FOOD ]}>=========");
@@ -240,10 +244,12 @@ class App {
                     hargaMakanan = price[0][pilihMak];
                     minuman = menuRes[1][pilihMin];
                     hargaMinuman = price[1][pilihMin];
-                } else {
+
+                } else if (pilihMak > menuRes[0].length && pilihMin > menuRes[1].length) {
                     System.out.println("[WARNING] ID MAKANAN TIDAK VALID!");
                     System.out.println("Mohon input kembali dengan input yang benar!");
-                    continue;
+                    isbreak = false;
+                    break;
                 }
 
                 if (perubahan.equalsIgnoreCase("y")) {
@@ -317,6 +323,7 @@ class App {
         System.out.println(" \t \t ===================================== \t \t");
         System.out.println("\t \t \t \t" + tanggalHariIni);
         System.out.println();
+        SetupDiskon();
         System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
         langSelect = inputL.nextLine();
         if (langSelect.equalsIgnoreCase("en")) {
