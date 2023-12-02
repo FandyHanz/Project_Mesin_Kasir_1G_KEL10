@@ -21,20 +21,20 @@ class App {
         public static int pilihMak, pilihMin;
         public static boolean pesananConfirm = false;
 
-    // Diganti ke Array 2D!
-    public static String[][] menuRes = {
-            { "Ayam Goreng", "Ayam Bakar", "Ayam Kremes", "Nasi Goreng", "Nasi Lemak" },
-            { "Teh Hangat", "Es Teh Manis", "Joshua", "Soda Gembira", "Kopi Hitam" }
-    };
-    public static int[][] price = {
-            { 12000, 13500, 15000, 11000, 15000 },
-            { 3500, 3500, 7500, 7500, 5000 }
-    };
-    public static int[][] stock = {
-            { 99, 99, 99, 99, 99 },
-            { 99, 99, 99, 99, 99 }
-    };
-    public static int i = 0,DayOfMonth = 0;
+        // Diganti ke Array 2D!
+        public static String[][] menuRes = {
+                        { "Ayam Goreng", "Ayam Bakar", "Ayam Kremes", "Nasi Goreng", "Nasi Lemak" },
+                        { "Teh Hangat", "Es Teh Manis", "Joshua", "Soda Gembira", "Kopi Hitam" }
+        };
+        public static int[][] price = {
+                        { 12000, 13500, 15000, 11000, 15000 },
+                        { 3500, 3500, 7500, 7500, 5000 }
+        };
+        public static int[][] stock = {
+                        { 99, 99, 99, 99, 99 },
+                        { 99, 99, 99, 99, 99 }
+        };
+        public static int i = 0, DayOfMonth = 0;
 
         public static String langENGLISH() {
                 Scanner inputL = new Scanner(System.in);
@@ -103,113 +103,115 @@ class App {
                                         System.out.print("Masukkan Password: ");
                                         ps = input.nextLine();
 
-                    if ((usr.equals(idA[0][0]) && ps.equals(idA[1][0]))
-                            || (usr.equals(idA[0][1]) && ps.equals(idA[1][1]))
-                            || (usr.equals(idA[0][2]) && ps.equals(idA[1][2]))) {
-                        if (usr.equals(admin) && ps.equals(adminpw)) {
-                            System.out.println("Login sebagai Admin berhasil!");
-                            System.out.println("Selamat datang kembali, administrator");
-                            System.out.println("Apa yang ingin anda lakukan hari ini?");
-                            System.out.println("[1] Setup diskon, [2] Restock [3] pembukuan [4] log out ");
-                            decision = input.nextLine();
-                            switch (decision) {
-                                case "1":
-                                    SetupDiskon();
-                                    break;
-                                case "2":
-                                    Restock();
-                                    break;
-                                case "3":
-                                    pembukuanID();
-                                    System.out.println("log out (y/n): ");
-                                    decision = input.nextLine();
-                                    if (decision.equalsIgnoreCase("y")) {
-                                        isContinue = false;
-                                        break;
-                                    }
-                                    break;
-                                case "4":
-                                    if (decision.equalsIgnoreCase("4") && akun != null) {
-                                        isContinue = false;
-                                        break;
-                                    }
-                                    break;
-                            }
-                            // Lanjutkan Tampilan Admin mulai dari sini...
-                        } else {
-                            System.out.println("Login sebagai kasir berhasil!");
-                            System.out.println("Selamat datang kembali " + usr);
-                            System.out.println("Apa yang ingin anda lakukan hari ini?");
-                            System.out.println("[1] Input diskon, [2] Layani Pelanggan");
-                            // Lanjutkan Tampilan kasir mulai dari sini...
+                                        if ((usr.equals(idA[0][0]) && ps.equals(idA[1][0]))
+                                                        || (usr.equals(idA[0][1]) && ps.equals(idA[1][1]))
+                                                        || (usr.equals(idA[0][2]) && ps.equals(idA[1][2]))) {
+                                                if (usr.equals(admin) && ps.equals(adminpw)) {
+                                                        System.out.println("Login sebagai Admin berhasil!");
+                                                        System.out.println("Selamat datang kembali, administrator");
+                                                        System.out.println("Apa yang ingin anda lakukan hari ini?");
+                                                        System.out.println(
+                                                                        "[1] Setup diskon, [2] Restock [3] pembukuan [4] log out ");
+                                                        decision = input.nextLine();
+                                                        switch (decision) {
+                                                                case "1":
+                                                                        SetupDiskon();
+                                                                        break;
+                                                                case "2":
+                                                                        Restock();
+                                                                        break;
+                                                                case "3":
+                                                                        pembukuanID();
+                                                                        System.out.println("log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
+                                                                        break;
+                                                                case "4":
+                                                                        if (decision.equalsIgnoreCase("4")
+                                                                                        && akun != null) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
+                                                                        break;
+                                                        }
+                                                        // Lanjutkan Tampilan Admin mulai dari sini...
+                                                } else {
+                                                        System.out.println("Login sebagai kasir berhasil!");
+                                                        System.out.println("Selamat datang kembali " + usr);
+                                                        System.out.println("Apa yang ingin anda lakukan hari ini?");
+                                                        System.out.println("[1] Input diskon, [2] Layani Pelanggan");
+                                                        // Lanjutkan Tampilan kasir mulai dari sini...
+                                                }
+                                        } else {
+                                                // Counter dipindah kesini agar counter menambah hanya saat login salah
+                                                counter--;
+                                                System.out.println("[DENIED] USERNAME DAN PASSWORD SALAH!!!");
+                                                System.out.println(
+                                                                "Login gagal! Mohon cek kembali username dan password anda!");
+                                                if (counter > 0) {
+                                                        System.out.println("Sisa kesempatan login : " + counter);
+                                                } else {
+                                                        System.out.println(
+                                                                        "Kesempatan Login Habis! Sistem akan Di-Lockdown!");
+                                                        pelanggan();
+                                                }
+                                        }
+                                } while (akun.equalsIgnoreCase("staff") && counter > 0 && isContinue);
+                        } else if (akun.equalsIgnoreCase("pelanggan")) {
+                                pelanggan();
                         }
-                    } else {
-                        // Counter dipindah kesini agar counter menambah hanya saat login salah
-                        counter--;
-                        System.out.println("[DENIED] USERNAME DAN PASSWORD SALAH!!!");
-                        System.out.println("Login gagal! Mohon cek kembali username dan password anda!");
-                        if (counter > 0) {
-                            System.out.println("Sisa kesempatan login : " + counter);
-                        } else {
-                            System.out.println("Kesempatan Login Habis! Sistem akan Di-Lockdown!");
-                            pelanggan();
-                        }
-                    }
-                } while (akun.equalsIgnoreCase("staff") && counter > 0 && isContinue);
-            } else if (akun.equalsIgnoreCase("pelanggan")) {
-                pelanggan();
-            }
-        }
-        input.close();
-    }
-
-    public static void SetupDiskon() {
-        LocalDate today = LocalDate.now();
-        DayOfMonth= today.getDayOfMonth();
-        Scanner input = new Scanner(System.in);
-
-            System.out.println("Hari ini tanggal ganjil! Masukkan diskon spesial:");
-
-            System.out.print("Masukkan diskon untuk hari ini (misal: 10 untuk 10%): ");
-            int diskon = input.nextInt();
-            System.out.println("===========================================");
-            System.out.println("|           Promo Hari Ini                |");
-            System.out.println("===========================================");
-            System.out.println("|             Diskon Spesial             |");
-            System.out.println("===========================================");
-            System.out.println("|    Diskon " + diskon + "% untuk hari ini!        |");
-            System.out.println("===========================================");
-
-        
-        
-        }
-
-
-    public static void Restock() {
-        Scanner input = new Scanner(System.in);
-        String decision;
-        System.out.println("=========================================================================");
-        for (int i = 0; i < stock.length; i++) {
-            for (int j = 0; j < stock[0].length; j++) {
-                if (stock[i][j] < 99) {
-                    stock[i][j] = 99;
-                    if (stock[i][j] == 99) {
-                        System.out.print("| All is set up |");
-                    }
-
-                } else if (stock[i][j] == 99) {
-                    System.out.print("| doesnt need restock |");
                 }
-            }
-            System.out.println();
+                input.close();
         }
-        System.out.println("===========================================================================");
-        System.out.println("Logout (y/n): ");
-        decision = input.nextLine();
-        if (decision.equalsIgnoreCase("y")) {
-            langINDO();
+
+        public static String SetupDiskon() {
+                LocalDate today = LocalDate.now();
+                DayOfMonth = today.getDayOfMonth();
+                Scanner input = new Scanner(System.in);
+
+                System.out.println("Hari ini tanggal ganjil! Masukkan diskon spesial:");
+
+                System.out.print("Masukkan diskon untuk hari ini (misal: 10 untuk 10%): ");
+                int diskon = input.nextInt();
+                String humble =(
+                                "===========================================\n"+
+                                "|           Promo Hari Ini                |\n"+
+                                "===========================================\n"+
+                                "|             Diskon Spesial             |\n"+
+                                "===========================================\n"+
+                                "|    Diskon " + diskon + "% untuk hari ini!        |\n"+
+                                "===========================================");
+                return humble;
         }
-    }
+
+        public static void Restock() {
+                Scanner input = new Scanner(System.in);
+                String decision;
+                System.out.println("=========================================================================");
+                for (int i = 0; i < stock.length; i++) {
+                        for (int j = 0; j < stock[0].length; j++) {
+                                if (stock[i][j] < 99) {
+                                        stock[i][j] = 99;
+                                        if (stock[i][j] == 99) {
+                                                System.out.print("| All is set up |");
+                                        }
+
+                                } else if (stock[i][j] == 99) {
+                                        System.out.print("| doesnt need restock |");
+                                }
+                        }
+                        System.out.println();
+                }
+                System.out.println("===========================================================================");
+                System.out.println("Logout (y/n): ");
+                decision = input.nextLine();
+                if (decision.equalsIgnoreCase("y")) {
+                        langINDO();
+                }
+        }
 
         public static void pembukuanID() {
 
@@ -227,8 +229,9 @@ class App {
         public static void pelanggan() {
 
                 // Semua berada di satu LOOP yang besar...
-                boolean isbreak = false;
+               boolean isbreak = true;
                 for (int i = 1; i < 10000; i++) {
+                        while(isbreak){
                         do {
                                 // Tampilan Menu Makanan & Minuman
                                 System.out.println("=========<{[ FOOD ]}>=========");
@@ -261,13 +264,17 @@ class App {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[i][j] && jumlahMin > stock[i][j]) {
                                                         System.out.println("[WARNING] MAKANAN TIDAK MEMPUNYAI KAPASITAS SEBANYAK ITU");
-                                                        System.out.println("Masukan jumlah makana lebih kecil!");
-                                                        isbreak = true;
-                                                        break;
+                                                        System.out.println("Masukan jumlah makanan lebih kecil!");
+                                                        System.out.print("kembali ke menu (y/n): ");
+                                                        String decision = inputStr.nextLine();
+                                                                if(decision.equalsIgnoreCase("y")){
+                                                                        isbreak = false;
+                                                                        break;
+                                                                }
                                                 }
                                         }
-                                        break;
                                 }
+                                
 
                                 if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length) {
                                         makanan = menuRes[0][pilihMak];
@@ -275,7 +282,7 @@ class App {
                                         minuman = menuRes[1][pilihMin];
                                         hargaMinuman = price[1][pilihMin];
 
-                                } else if (pilihMak > menuRes[0].length && pilihMin > menuRes[1].length) {
+                                } else {
                                         System.out.println("[WARNING] ID MAKANAN TIDAK VALID!");
                                         System.out.println("Mohon input kembali dengan input yang benar!");
                                         isbreak = false;
@@ -331,44 +338,44 @@ class App {
                         }
                 }
 
-                        System.out.println("====================================");
-                        System.out.println("Restoran sekarang tutup");
-                        System.out.println("==================================");
-                        System.out.print("Log out (y/n): ");
-                        String decision = inputStr.nextLine();
-                        if (decision.equalsIgnoreCase("y")) {
-                                langINDO();
+                System.out.println("====================================");
+                System.out.println("Restoran sekarang tutup");
+                System.out.println("==================================");
+                System.out.print("Log out (y/n): ");
+                String decision = inputStr.nextLine();
+                if (decision.equalsIgnoreCase("y")) {
+                        langINDO();
                         }
-
-                        inputStr.close();
-                        inputInt.close();
                 }
-        
+
+                inputStr.close();
+                inputInt.close();
+
+        }
 
         public static void main(String[] args) {
                 Scanner inputL = new Scanner(System.in);
-                String langSelect;
+                String langSelect, temps = SetupDiskon();
 
-        System.out.println(" \t \t ===================================== \t \t");
-        System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
-        System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
-        System.out.println(" \t \t ===================================== \t \t");
-        System.out.println("\t \t \t \t" + tanggalHariIni);
-        System.out.println();
-        if (DayOfMonth % 2 == 1) {
-            SetupDiskon();
+                System.out.println(" \t \t ===================================== \t \t");
+                System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
+                System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
+                System.out.println(" \t \t ===================================== \t \t");
+                System.out.println("\t \t \t \t" + tanggalHariIni);
+                System.out.println();
+                if (DayOfMonth % 2 == 1) {
+                        
+                }
+                System.out.println();
+                System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
+                langSelect = inputL.nextLine();
+                if (langSelect.equalsIgnoreCase("en")) {
+                        langENGLISH();
+                } else if (langSelect.equalsIgnoreCase("id")) {
+                        langINDO();
+                }
+                inputL.close();
         }
-        System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
-        langSelect = inputL.nextLine();
-        if (langSelect.equalsIgnoreCase("en")) {
-            langENGLISH();
-            clearScreen();
-        } else if (langSelect.equalsIgnoreCase("id")) {
-            langINDO();
-            clearScreen();
-        }
-        inputL.close();
-    }
 
         public static void EnPelanggan(String langSelect) {
                 for (int i = 1; i < 10000; i++) {
@@ -474,8 +481,5 @@ class App {
 
         }
 
-        public static void clearScreen() {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-        }
+        
 }
