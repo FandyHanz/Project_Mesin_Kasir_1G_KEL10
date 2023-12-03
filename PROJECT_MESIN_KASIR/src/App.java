@@ -177,13 +177,12 @@ class App {
 
                 System.out.print("Masukkan diskon untuk hari ini (misal: 10 untuk 10%): ");
                 int diskon = input.nextInt();
-                String humble =(
-                                "===========================================\n"+
-                                "|           Promo Hari Ini                |\n"+
-                                "===========================================\n"+
-                                "|             Diskon Spesial             |\n"+
-                                "===========================================\n"+
-                                "|    Diskon " + diskon + "% untuk hari ini!        |\n"+
+                String humble = ("===========================================\n" +
+                                "|           Promo Hari Ini                |\n" +
+                                "===========================================\n" +
+                                "|             Diskon Spesial             |\n" +
+                                "===========================================\n" +
+                                "|    Diskon " + diskon + "% untuk hari ini!        |\n" +
                                 "===========================================");
                 return humble;
         }
@@ -230,9 +229,8 @@ class App {
         public static void pelanggan() {
 
                 // Semua berada di satu LOOP yang besar...
-               boolean isbreak = true;
+                boolean isbreak = true;
                 for (int i = 1; i < 10000; i++) {
-                        while(isbreak){
                         do {
                                 // Tampilan Menu Makanan & Minuman
                                 System.out.println("=========<{[ FOOD ]}>=========");
@@ -264,19 +262,33 @@ class App {
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[i][j] && jumlahMin > stock[i][j]) {
-                                                        System.out.println("[WARNING] MAKANAN TIDAK MEMPUNYAI KAPASITAS SEBANYAK ITU");
+                                                        System.out.println(
+                                                                        "[WARNING] MAKANAN TIDAK MEMPUNYAI KAPASITAS SEBANYAK ITU");
                                                         System.out.println("Masukan jumlah makanan lebih kecil!");
                                                         System.out.print("kembali ke menu (y/n): ");
                                                         String decision = inputStr.nextLine();
-                                                                if(decision.equalsIgnoreCase("y")){
-                                                                        isbreak = false;
-                                                                        break;
-                                                                }
+                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                pelanggan();
+                                                                break;
+                                                        }
                                                 }
                                         }
                                 }
-                                
-
+                                for (int j = 0; j < stock.length; j++) {
+                                        for (int k = 0; k < stock[0].length; k++) {
+                                                if (stock[i][j] == 0 && (stock[i][j] == jumlahMak
+                                                                || stock[i][j] == jumlahMin)) {
+                                                        System.out.println("[WARNING] MAKANAN JENIS INI SUDAH HABIS");
+                                                        System.out.println("silahkan pilih id makanan lain !");
+                                                        System.out.print("kembali ke menu (y/n): ");
+                                                        String decision = inputStr.nextLine();
+                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                pelanggan();
+                                                                break;
+                                                        }
+                                                }
+                                        }
+                                }
                                 if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length) {
                                         makanan = menuRes[0][pilihMak];
                                         hargaMakanan = price[0][pilihMak];
@@ -292,6 +304,20 @@ class App {
 
                                 if (perubahan.equalsIgnoreCase("y")) {
                                         pesananConfirm = true;
+                                        for (int j = 0; j < stock.length; j++) {
+                                        for (int k = 0; k < stock[0].length; k++) {
+                                                if (stock[i][j] == 0 && perubahan.equalsIgnoreCase("y")) {
+                                                        System.out.println("[WARNING] MAKANAN JENIS INI SUDAH HABIS");
+                                                        System.out.println("silahkan pilih id makanan lain !");
+                                                        System.out.print("kembali ke menu (y/n): ");
+                                                        String decision = inputStr.nextLine();
+                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                pelanggan();
+                                                                break;
+                                                        }
+                                                }
+                                        }
+                                }
                                 } else {
                                         continue;
                                 }
@@ -346,7 +372,6 @@ class App {
                 String decision = inputStr.nextLine();
                 if (decision.equalsIgnoreCase("y")) {
                         langINDO();
-                        }
                 }
 
                 inputStr.close();
@@ -364,7 +389,7 @@ class App {
                 System.out.println(" \t \t ===================================== \t \t");
                 System.out.println("\t \t \t \t" + tanggalHariIni);
                 System.out.println();
-                while (DayOfMonth % 2 == 1){
+                while (DayOfMonth % 2 == 1) {
                         String temps = SetupDiskon();
                         System.out.println(temps);
                         break;
@@ -484,5 +509,4 @@ class App {
 
         }
 
-        
 }
