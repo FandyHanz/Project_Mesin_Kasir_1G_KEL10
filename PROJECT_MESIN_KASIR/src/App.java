@@ -14,7 +14,7 @@ class App {
         public static DateTimeFormatter formatHariIni = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         public static String hariIni = tanggalHariIni.format(formatHariIni);
         // Menambah variabel untuk total penghasilan dan jumlah pelanggan hari ini:
-        public static int totalToday = 0, totalcustomer = 0;
+        public static int totalToday = 0, totalcustomer = 0, dayList;
 
         public static String makanan = "x", minuman = "x", perubahan;
         public static int hargaMakanan = 0, hargaMinuman = 0, jumlahMak, jumlahMin, totalbarang = 0, hargatotal = 0,
@@ -35,7 +35,10 @@ class App {
                         { 99, 99, 99, 99, 99 },
                         { 99, 99, 99, 99, 99 }
         };
+
+        public static int[] discList = new int[7];
         public static int i = 0, DayOfMonth = 0;
+        public static int tampilan = 0;
 
         public static String langENGLISH() {
                 Scanner inputL = new Scanner(System.in);
@@ -116,7 +119,13 @@ class App {
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case "1":
-                                                                        SetupDiskon();
+                                                                        inputDiskon();
+                                                                        System.out.println("Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
                                                                         break;
                                                                 case "2":
                                                                         Restock();
@@ -168,23 +177,19 @@ class App {
                 input.close();
         }
 
-        public static String SetupDiskon() {
-                LocalDate today = LocalDate.now();
-                DayOfMonth = today.getDayOfMonth();
+        public static void inputDiskon() {
+                DayOfMonth = tanggalHariIni.getDayOfMonth();
                 Scanner input = new Scanner(System.in);
+                for (int i = 0; i < discList.length; i++) {
+                        System.out.print("Masukan diskon hari ke " + i + ": ");
+                        discList[i] = input.nextInt();
+                }
+        }
 
-                System.out.println("Hari ini tanggal ganjil! Masukkan diskon spesial:");
-
-                System.out.print("Masukkan diskon untuk hari ini (misal: 10 untuk 10%): ");
-                int diskon = input.nextInt();
-                String humble = ("===========================================\n" +
-                                "|           Promo Hari Ini                |\n" +
-                                "===========================================\n" +
-                                "|             Diskon Spesial             |\n" +
-                                "===========================================\n" +
-                                "|    Diskon " + diskon + "% untuk hari ini!        |\n" +
-                                "===========================================");
-                return humble;
+        public static void DisplayDiscount() {
+                for (int i : discList) {
+                        tampilan = i;
+                }
         }
 
         public static void Restock() {
@@ -274,11 +279,12 @@ class App {
                                                 }
                                         }
                                 }
+                                int max = 0;
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
-                                                if (stock[i][j] == 0 && (stock[i][j] == jumlahMak
-                                                                || stock[i][j] == jumlahMin)) {
-                                                        System.out.println("[WARNING] MAKANAN JENIS INI SUDAH HABIS");
+                                                if (max == stock[j][k]) {
+                                                        System.out.println("[WARNING] MAKANANN " + stock[j][k]
+                                                                        + " INI SUDAH HABIS");
                                                         System.out.println("silahkan pilih id makanan lain !");
                                                         System.out.print("kembali ke menu (y/n): ");
                                                         String decision = inputStr.nextLine();
@@ -304,20 +310,7 @@ class App {
 
                                 if (perubahan.equalsIgnoreCase("y")) {
                                         pesananConfirm = true;
-                                        for (int j = 0; j < stock.length; j++) {
-                                        for (int k = 0; k < stock[0].length; k++) {
-                                                if (stock[i][j] == 0 && perubahan.equalsIgnoreCase("y")) {
-                                                        System.out.println("[WARNING] MAKANAN JENIS INI SUDAH HABIS");
-                                                        System.out.println("silahkan pilih id makanan lain !");
-                                                        System.out.print("kembali ke menu (y/n): ");
-                                                        String decision = inputStr.nextLine();
-                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                pelanggan();
-                                                                break;
-                                                        }
-                                                }
-                                        }
-                                }
+
                                 } else {
                                         continue;
                                 }
@@ -389,11 +382,13 @@ class App {
                 System.out.println(" \t \t ===================================== \t \t");
                 System.out.println("\t \t \t \t" + tanggalHariIni);
                 System.out.println();
-                while (DayOfMonth % 2 == 1) {
-                        String temps = SetupDiskon();
-                        System.out.println(temps);
-                        break;
+                int max = 0;
+                for (int i = 0; i < discList.length; i++) {
+                        if (DayOfMonth % 2 == 1) {
+                                max = discList[i + 1];
+                        }
                 }
+                System.out.print("today discount is: " + max);
                 System.out.println();
                 System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
                 langSelect = inputL.nextLine();
