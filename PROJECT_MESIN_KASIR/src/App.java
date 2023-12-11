@@ -37,6 +37,8 @@ class App {
                         { 9999, 9999, 9999, 9999, 9999 },
                         { 9999, 9999, 9999, 9999, 9999 }
         };
+        public static int row, column;
+        public static int [][] pelanggan = new int [row][column];
 
         public static int[] discList = new int[7];
         public static int i = 0, DayOfMonth = 0;
@@ -54,7 +56,7 @@ class App {
                 if (langSelect.equalsIgnoreCase("y")) {
                         System.out.println("Hello this page is english");
                 } else {
-                        EnPelanggan(langSelect);
+                        EnPelanggan();
                 }
                 inputL.close();
                 return temp;
@@ -274,6 +276,15 @@ class App {
                                 System.out.println("Apakah pelanggan mengkonfirmasi pesanan (y/n)?");
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
+
+                                for (int j = 0; j < stock.length; j++){
+                                        for ( int k = 0; k < stock [0].length; k++){
+                                                if (jumlahMak > stock [i][j] && jumlahMin > stock [i][j]){
+                                                        System.out.println("item yang dipilih tidak memeiliki stock sebanyak itu");
+                                                        System.out.println("Silahkan minta pelanggan untuk memilih diantara " + stock [0][pilihMak] + "&" + stock [1][pilihMin]);
+                                                }
+                                        }
+                                }
 
                                 if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length) {
                                         // Pengecekan kalau stok kurang atau habis.
@@ -541,6 +552,7 @@ class App {
 
         public static void main(String[] args) {
                 Scanner inputL = new Scanner(System.in);
+                Scanner inputB = new Scanner(System.in);
                 String langSelect;
 
                 System.out.println(" \t \t ===================================== \t \t");
@@ -555,7 +567,10 @@ class App {
                                 max = discList[i + 1];
                         }
                 }
-                System.out.print("today discount is: " + max);
+                System.out.print("untuk berapa orang: ");
+                row = inputB.nextInt();
+                System.out.print("masing masing berapa porsi: ");
+                column = inputB.nextInt();
                 System.out.println();
                 System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
                 langSelect = inputL.nextLine();
@@ -567,7 +582,7 @@ class App {
                 inputL.close();
         }
 
-        public static void EnPelanggan(String langSelect) {
+        public static void EnPelanggan() {
                 for (int i = 1; i < 10000; i++) {
                         do {
                                 // Food & Drink Menu Display
@@ -597,6 +612,22 @@ class App {
                                 System.out.println("Does the customer confirm the order (y/n)?");
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
+
+                                for (int j = 0; j < stock.length; j++) {
+                                        for (int k = 0; k < stock[0].length; k++) {
+                                                if (jumlahMak > stock[i][j] && jumlahMin > stock[i][j]) {
+                                                        System.out.println(
+                                                                        "[WARNING] MAKANAN TIDAK MEMPUNYAI KAPASITAS SEBANYAK ITU");
+                                                        System.out.println("Masukan jumlah makanan lebih kecil!");
+                                                        System.out.print("kembali ke menu (y/n): ");
+                                                        String decision = inputStr.nextLine();
+                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                pelanggan();
+                                                                break;
+                                                        }
+                                                }
+                                        }
+                                }
 
                                 if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length) {
                                         makanan = menuRes[0][pilihMak];
@@ -662,10 +693,11 @@ class App {
                 System.out.println("==================================");
                 System.out.println("The restaurant is now closed");
                 System.out.println("==================================");
-                System.out.println("Sales report on " + hariIni);
-                System.out.println("Today's income: " + totalToday);
-                System.out.println("with a total number of customers: " + totalcustomer);
-
+                System.out.println("log out (y/n): ");
+                String decision = inputStr.nextLine();
+                if (decision.equalsIgnoreCase("y")){
+                        langENGLISH();
+                }
                 inputStr.close();
                 inputInt.close();
 
