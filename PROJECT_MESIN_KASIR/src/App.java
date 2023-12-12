@@ -37,12 +37,10 @@ class App {
                         { 9999, 9999, 9999, 9999, 9999 },
                         { 9999, 9999, 9999, 9999, 9999 }
         };
-        public static int row, column;
-        public static int [][] pelanggan = new int [row][column];
 
         public static int[] discList = new int[7];
         public static int i = 0, DayOfMonth = 0;
-        public static int tampilan = 0;
+        public static int tampilan = 0, change = 0;
 
         public static String langENGLISH() {
                 Scanner inputL = new Scanner(System.in);
@@ -518,10 +516,19 @@ class App {
                         switch (Method) {
                                 case 1:
                                         System.out.println("Pelanggan membayar secara cash, membuka tray kasir...");
+                                        System.out.print("Masukan jumlah nominal yang akan dibayar");
+                                        int payment = inputInt.nextInt();
+                                        change = hargatotal - payment;
+                                        StrukCash();
                                         break;
                                 case 2:
-                                        System.out.println(
-                                                        "Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
+                                        System.out.println("Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
+                                        System.out.print("Masukan no rekening pada mesin (12 digit): ");
+                                        String Idcode = inputStr.nextLine();
+                                        System.out.print("MAsukan nominal pembayaran");
+                                        int payment1 = inputInt.nextInt();
+                                        change = hargatotal - payment1;
+                                        StrukBank();
                                         break;
                         }
                         System.out.println("Apakah ada pelanggan yang ingin membeli lagi?");
@@ -550,6 +557,14 @@ class App {
 
         }
 
+        public static void StrukCash(){
+
+        }
+
+        public static void StrukBank(){
+
+        }
+
         public static void main(String[] args) {
                 Scanner inputL = new Scanner(System.in);
                 Scanner inputB = new Scanner(System.in);
@@ -567,10 +582,6 @@ class App {
                                 max = discList[i + 1];
                         }
                 }
-                System.out.print("untuk berapa orang: ");
-                row = inputB.nextInt();
-                System.out.print("masing masing berapa porsi: ");
-                column = inputB.nextInt();
                 System.out.println();
                 System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
                 langSelect = inputL.nextLine();
