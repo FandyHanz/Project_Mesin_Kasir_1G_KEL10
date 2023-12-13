@@ -139,6 +139,26 @@ class TampilanKasir {
                     System.out.println("Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
                     break;
             }
+
+            //Struk belanja
+            System.out.println("==================================");
+            System.out.println("|         STRUK PEMBELIAN        |");
+            System.out.println("----------------------------------");
+            System.out.println("| Tanggal: " + tanggalHariIni);
+            System.out.println("| Pelanggan ke-" + i);
+            System.out.println("----------------------------------");
+            System.out.println("| " + makanan);
+            System.out.println("| " + hargaMakanan + "\t\t\t" + "x" + jumlahMak);
+            System.out.println("| " + minuman);
+            System.out.println("| " + hargaMinuman + "\t\t\t" + "x" + jumlahMin);
+            System.out.println("----------------------------------");
+            System.out.println("| Total Item: " + totalbarang);
+            System.out.println("| Total: " + hargatotal);
+            System.out.println("|                                |");
+            System.out.println("| " + Method);
+            System.out.println("==================================");
+            System.out.println();
+
             System.out.println("==================================");
             System.out.println("Update Sisa Stock Makanan: ");
             System.out.println(makanan = menuRes[0][pilihMak] + " x" + stock[0][pilihMak]);
