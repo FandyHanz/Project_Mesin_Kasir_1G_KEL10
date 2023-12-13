@@ -560,11 +560,11 @@ class App {
                                         System.out.print("MAsukan nominal pembayaran: ");
                                         payment1 = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change < 0) {
+                                        if (change > 0) {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
-                                        StrukBank();
+                                        StrukBank(Idcode);
                                         break;
                         }
                         System.out.println("Apakah ada pelanggan yang ingin membeli lagi?");
@@ -611,41 +611,39 @@ class App {
                 System.out.println("| Uang yang dibayarkan: " + payment);
                 System.out.println("| Uang kembalian: " + change);
                 System.out.println("|                                |");
-                System.out.println("| " + Method);
+                System.out.println("| Metode pembayaran: " + Method);
                 System.out.println("==================================");
                 System.out.println();
         }
 
-        public static void StrukBank() {
-
-        }
-
-        public static void main(String[] args) {
-                Scanner inputL = new Scanner(System.in);
-                Scanner inputB = new Scanner(System.in);
-                String langSelect;
-
-                System.out.println(" \t \t ===================================== \t \t");
-                System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
-                System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
-                System.out.println(" \t \t ===================================== \t \t");
-                System.out.println("\t \t \t \t" + tanggalHariIni);
+        public static void StrukBank(String Idcode) {
+                System.out.println("==================================");
+                System.out.println("|         STRUK PEMBELIAN        |");
+                System.out.println("----------------------------------");
+                System.out.println("| Tanggal: " + tanggalHariIni);
+                System.out.println("| Pelanggan ke-" + i);
+                System.out.println("----------------------------------");
+                System.out.println("| " + makanan);
+                System.out.println("| " + hargaMakanan + "\t\t\t" + "x" + jumlahMak);
+                System.out.println("| " + minuman);
+                System.out.println("| " + hargaMinuman + "\t\t\t" + "x" + jumlahMin);
+                System.out.println("----------------------------------");
+                System.out.println("| Total Item: " + totalbarang);
+                System.out.println("| Total: " + hargatotal);
+                System.out.println("| Uang yang dibayarkan: " + payment);
+                System.out.println("| Rekening pelanggan: " + Idcode);
+                System.out.println("|                                |");
+                System.out.println("|  Metode Pembayaran ke-" + Method);
+                System.out.println("==================================");
                 System.out.println();
-                int max = 0;
-                for (int i = 0; i < discList.length; i++) {
-                        if (DayOfMonth % 2 == 1) {
-                                max = discList[i + 1];
-                        }
+                if (pesananConfirm) {
+                        System.out.println("==================================");
+                        System.out.println("Pembayaran anda telah diterima");
+                        System.out.println("==================================");
+                        System.out.println();
+
                 }
-                System.out.println();
-                System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
-                langSelect = inputL.nextLine();
-                if (langSelect.equalsIgnoreCase("en")) {
-                        langENGLISH();
-                } else if (langSelect.equalsIgnoreCase("id")) {
-                        langINDO();
-                }
-                inputL.close();
+
         }
 
         public static void EnPelanggan() {
@@ -769,4 +767,31 @@ class App {
 
         }
 
+        public static void main(String[] args) {
+                Scanner inputL = new Scanner(System.in);
+                Scanner inputB = new Scanner(System.in);
+                String langSelect;
+
+                System.out.println(" \t \t ===================================== \t \t");
+                System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
+                System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
+                System.out.println(" \t \t ===================================== \t \t");
+                System.out.println("\t \t \t \t" + tanggalHariIni);
+                System.out.println();
+                int max = 0;
+                for (int i = 0; i < discList.length; i++) {
+                        if (DayOfMonth % 2 == 1) {
+                                max = discList[i + 1];
+                        }
+                }
+                System.out.println();
+                System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
+                langSelect = inputL.nextLine();
+                if (langSelect.equalsIgnoreCase("en")) {
+                        langENGLISH();
+                } else if (langSelect.equalsIgnoreCase("id")) {
+                        langINDO();
+                }
+                inputL.close();
+        }
 }
