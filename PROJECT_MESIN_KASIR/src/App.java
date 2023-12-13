@@ -22,6 +22,7 @@ class App {
         public static int pilihMak, pilihMin;
         static double diskon = 0;
         public static boolean pesananConfirm = false;
+        public static String Idcode;
 
         // Diganti ke Array 2D!
         public static String[][] menuRes = {
@@ -550,13 +551,17 @@ class App {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
-                                        StrukCash();
+                                        System.out.print("apakah anda ingin cetak struk(y/n): ");
+                                        String decision = inputStr.nextLine();
+                                        if (decision.equalsIgnoreCase("y")) {
+                                                StrukCash();
+                                        }
                                         break;
                                 case 2:
                                         System.out.println(
                                                         "Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
                                         System.out.print("Masukan no rekening pada mesin (12 digit): ");
-                                        String Idcode = inputStr.nextLine();
+                                        Idcode = inputStr.nextLine();
                                         System.out.print("MAsukan nominal pembayaran: ");
                                         payment1 = inputInt.nextInt();
                                         change = payment - hargatotal;
@@ -564,7 +569,11 @@ class App {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
-                                        StrukBank(Idcode);
+                                        System.out.print("apakah anda ingin cetak struk(y/n): ");
+                                        String decision1 = inputStr.nextLine();
+                                        if (decision1.equalsIgnoreCase("y")) {
+                                                StrukBank();
+                                        }
                                         break;
                         }
                         System.out.println("Apakah ada pelanggan yang ingin membeli lagi?");
@@ -616,7 +625,7 @@ class App {
                 System.out.println();
         }
 
-        public static void StrukBank(String Idcode) {
+        public static void StrukBank() {
                 System.out.println("==================================");
                 System.out.println("|         STRUK PEMBELIAN        |");
                 System.out.println("----------------------------------");
@@ -765,8 +774,8 @@ class App {
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
-                                        
-                                                StrukCash();
+
+                                        StrukCash();
                                         break;
                                 case 2:
                                         System.out.println(
@@ -781,7 +790,7 @@ class App {
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
-                                        StrukBank(accountId);
+                                        StrukBank();
                                         break;
                         }
                         System.out.println("Does any customer want to buy more?");
