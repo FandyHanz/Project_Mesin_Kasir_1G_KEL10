@@ -469,7 +469,7 @@ class App {
                                 perubahan = inputStr.nextLine();
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
-                                                if (jumlahMak > stock[i][j] && jumlahMin > stock[i][j]) {
+                                                if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
                                                         System.out.println(
                                                                         "[WARNING] MAKANAN TIDAK MEMPUNYAI KAPASITAS SEBANYAK ITU");
                                                         System.out.println("Masukan jumlah makanan lebih kecil!");
@@ -681,7 +681,7 @@ class App {
 
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
-                                                if (jumlahMak > stock[i][j] && jumlahMin > stock[i][j]) {
+                                                if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
                                                         System.out.println(
                                                                         "[WARNING] MAKANAN TIDAK MEMPUNYAI KAPASITAS SEBANYAK ITU");
                                                         System.out.println("Masukan jumlah makanan lebih kecil!");
