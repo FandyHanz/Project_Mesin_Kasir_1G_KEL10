@@ -647,23 +647,24 @@ class App {
         }
 
         public static void EnPelanggan() {
+                boolean isBreak = true;
                 for (int i = 1; i < 10000; i++) {
                         do {
-                                // Food & Drink Menu Display
+                                // Food & Drinks Menu Display
                                 System.out.println("=========<{[ FOOD ]}>=========");
-                                System.out.println("Food Menu       | Price      ");
+                                System.out.println("Food Menu         | Price      ");
                                 System.out.println("[0] Fried Chicken | Rp. 12000  ");
-                                System.out.println("[1] Grilled Chicken | Rp. 13500  ");
-                                System.out.println("[2] Crunchy Fried Chicken | Rp. 15000  ");
-                                System.out.println("[3] Fried Rice  | Rp. 11000  ");
-                                System.out.println("[4] Coconut Rice   | Rp. 15000  ");
+                                System.out.println("[1] Grilled Chicken| Rp. 13500 ");
+                                System.out.println("[2] Chicken Kremes| Rp. 15000 ");
+                                System.out.println("[3] Fried Rice    | Rp. 11000 ");
+                                System.out.println("[4] Nasi Lemak    | Rp. 15000 ");
                                 System.out.println("========<{[ DRINKS ]}>========");
-                                System.out.println("Drink Menu     | Price      ");
-                                System.out.println("[0] Hot Tea   | Rp. 3500   ");
-                                System.out.println("[1] Sweet Iced Tea | Rp. 3500   ");
-                                System.out.println("[2] Joshua       | Rp. 7500   ");
-                                System.out.println("[3] Joyful Soda | Rp. 7500   ");
-                                System.out.println("[4] Black Coffee   | Rp. 5000   ");
+                                System.out.println("Drink Menu        | Price      ");
+                                System.out.println("[0] Warm Tea      | Rp. 3500  ");
+                                System.out.println("[1] Iced Sweet Tea| Rp. 3500 ");
+                                System.out.println("[2] Joshua        | Rp. 7500 ");
+                                System.out.println("[3] Joyful Soda   | Rp. 7500 ");
+                                System.out.println("[4] Black Coffee  | Rp. 5000 ");
 
                                 System.out.print("Enter the Food ID ordered (0~4): ");
                                 pilihMak = inputInt.nextInt();
@@ -677,13 +678,31 @@ class App {
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
 
+                                // Checking food and drink availability
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
                                                         System.out.println(
-                                                                        "[WARNING] MAKANAN TIDAK MEMPUNYAI KAPASITAS SEBANYAK ITU");
-                                                        System.out.println("Masukan jumlah makanan lebih kecil!");
-                                                        System.out.print("kembali ke menu (y/n): ");
+                                                                        "[WARNING] FOOD DOES NOT HAVE THAT MUCH CAPACITY");
+                                                        System.out.println("Enter a smaller quantity of food!");
+                                                        System.out.print("Back to the menu (y/n): ");
+                                                        String decision = inputStr.nextLine();
+                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                pelanggan();
+                                                                break;
+                                                        }
+                                                }
+                                        }
+                                }
+
+                                int max = 0;
+                                for (int j = 0; j < stock.length; j++) {
+                                        for (int k = 0; k < stock[0].length; k++) {
+                                                if (max == stock[j][k]) {
+                                                        System.out.println("[WARNING] THIS FOOD " + stock[j][k]
+                                                                        + " IS ALREADY SOLD OUT");
+                                                        System.out.println("Please choose another food ID!");
+                                                        System.out.print("Back to the menu (y/n): ");
                                                         String decision = inputStr.nextLine();
                                                         if (decision.equalsIgnoreCase("y")) {
                                                                 pelanggan();
@@ -698,55 +717,78 @@ class App {
                                         hargaMakanan = price[0][pilihMak];
                                         minuman = menuRes[1][pilihMin];
                                         hargaMinuman = price[1][pilihMin];
+
                                 } else {
                                         System.out.println("[WARNING] INVALID FOOD ID!");
-                                        System.out.println("Please re-enter with correct input!");
-                                        continue;
+                                        System.out.println("Please input with the correct ID!");
+                                        isBreak = false;
+                                        break;
                                 }
 
                                 if (perubahan.equalsIgnoreCase("y")) {
                                         pesananConfirm = true;
+
                                 } else {
                                         continue;
                                 }
 
-                        } while (pesananConfirm == false);
+                        } while (!pesananConfirm);
 
                         // Processing
                         totalbarang = jumlahMak + jumlahMin;
                         hargaMinuman *= jumlahMin;
                         hargaMakanan *= jumlahMak;
                         hargatotal = hargaMakanan + hargaMinuman;
-                        // Today's Total + Total Price of Previous Orders
+                        // Today's total + Total of Previous Orders
                         totalToday += hargatotal;
-                        // Reducing food & drink stock
+                        // Deducting food & drink from stock
                         stock[0][pilihMak] -= jumlahMak;
                         stock[1][pilihMin] -= jumlahMin;
-                        // Accounting for Order and Payment
-                        pembukuanID();
-                        System.out.println("Customer order number " + i + " is " + makanan + " and " + minuman);
+                        // Order Record and Payment
+                        System.out.println("Customer's order number " + i + " is " + makanan + " and " + minuman);
                         System.out.println("With a total quantity of " + totalbarang);
-                        System.out.println("That is " + makanan + " quantity " + jumlahMak);
-                        System.out.println("And " + minuman + " quantity " + jumlahMin);
-                        System.out.println("Total order amount by the customer is " + hargatotal);
-                        System.out.println("What method does the customer use to pay?");
+                        System.out.println("That is " + makanan + " as much as " + jumlahMak);
+                        System.out.println("And " + minuman + " as much as " + jumlahMin);
+                        System.out.println("Total customer order is " + hargatotal);
+                        System.out.println("How does the customer pay?");
                         System.out.println("[1] Cash | [2] Bank");
                         System.out.print(">>");
                         Method = inputInt.nextInt();
                         switch (Method) {
                                 case 1:
-                                        System.out.println("Customer pays by cash, opening the cashier tray...");
+                                        System.out.println("Customer pays in cash, opening the cashier tray...");
+                                        System.out.print("Enter the amount to be paid: ");
+                                        payment = inputInt.nextInt();
+                                        change = payment - hargatotal;
+                                        if (change < 0) {
+                                                System.out.println(
+                                                                "Insufficient funds, please enter the correct amount");
+                                                continue;
+                                        }
+                                        
+                                                StrukCash();
                                         break;
                                 case 2:
                                         System.out.println(
-                                                        "Customer pays by bank. Instruct the customer on the payment method");
+                                                        "Customer pays by bank. Instruct the customer on how to pay");
+                                        System.out.print("Enter the account number on the machine (12 digits): ");
+                                        String accountId = inputStr.nextLine();
+                                        System.out.print("Enter the payment amount: ");
+                                        payment = inputInt.nextInt();
+                                        change = payment - hargatotal;
+                                        if (change > 0) {
+                                                System.out.println(
+                                                                "Insufficient funds, please enter the correct amount");
+                                                continue;
+                                        }
+                                        StrukBank(accountId);
                                         break;
                         }
-                        System.out.println("Is there any customer who wants to buy more?");
-                        System.out.println("Input 'N' if there are no more customers buying.");
+                        System.out.println("Does any customer want to buy more?");
+                        System.out.println("Enter 'N' if no customers want to buy more.");
                         System.out.print(">>");
-                        String moreCost = inputStr.nextLine();
-                        if (moreCost.equalsIgnoreCase("n")) {
+                        String morePurchase = inputStr.nextLine();
+                        if (morePurchase.equalsIgnoreCase("n")) {
                                 totalcustomer = i;
                                 break;
                         } else {
@@ -754,14 +796,16 @@ class App {
                         }
                 }
 
-                System.out.println("==================================");
+                System.out.println("====================================");
                 System.out.println("The restaurant is now closed");
                 System.out.println("==================================");
-                System.out.println("log out (y/n): ");
+                System.out.print("Log out (y/n): ");
                 String decision = inputStr.nextLine();
                 if (decision.equalsIgnoreCase("y")) {
-                        langENGLISH();
+                        main(namaList);
+                        ;
                 }
+
                 inputStr.close();
                 inputInt.close();
 
