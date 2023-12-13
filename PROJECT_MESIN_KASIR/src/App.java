@@ -17,7 +17,8 @@ class App {
         public static int totalToday = 0, totalcustomer = 0, dayList;
 
         public static String makanan = "x", minuman = "x", perubahan;
-        public static int hargaMakanan = 0, hargaMinuman = 0, jumlahMak, jumlahMin, totalbarang = 0, hargatotal = 0, Method,  diskonIn = 0;
+        public static int hargaMakanan = 0, hargaMinuman = 0, jumlahMak, jumlahMin, totalbarang = 0, hargatotal = 0,
+                        Method, diskonIn = 0;
         public static int pilihMak, pilihMin;
         static double diskon = 0;
         public static boolean pesananConfirm = false;
@@ -154,7 +155,8 @@ class App {
                                                         System.out.println("Login sebagai kasir berhasil!");
                                                         System.out.println("Selamat datang kembali " + usr);
                                                         System.out.println("Apa yang ingin anda lakukan hari ini?");
-                                                        System.out.println("[1] Input diskon | [2] Layani Pelanggan | [3] Log out");
+                                                        System.out.println(
+                                                                        "[1] Input diskon | [2] Layani Pelanggan | [3] Log out");
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case ("1"):
@@ -164,13 +166,14 @@ class App {
                                                                         layaniPelanggan();
                                                                         break;
                                                                 case ("3"):
-                                                                if (decision.equalsIgnoreCase("4") && akun != null){
-                                                                        isContinue = false;
-                                                                        break;
-                                                                }
-                                                        // Lanjutkan Tampilan kasir mulai dari sini...
+                                                                        if (decision.equalsIgnoreCase("4")
+                                                                                        && akun != null) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
+                                                                        // Lanjutkan Tampilan kasir mulai dari sini...
+                                                        }
                                                 }
-                                        }
                                         } else {
                                                 // Counter dipindah kesini agar counter menambah hanya saat login salah
                                                 counter--;
@@ -275,11 +278,16 @@ class App {
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
 
-                                for (int j = 0; j < stock.length; j++){
-                                        for ( int k = 0; k < stock [0].length; k++){
-                                                if (jumlahMak > stock [i][j] && jumlahMin > stock [i][j]){
-                                                        System.out.println("item yang dipilih tidak memeiliki stock sebanyak itu");
-                                                        System.out.println("Silahkan minta pelanggan untuk memilih diantara " + stock [0][pilihMak] + "&" + stock [1][pilihMin]);
+                                // Catatan, stok masih bisa NEGATIF
+                                for (int j = 0; j < stock.length; j++) {
+                                        for (int k = 0; k < stock[0].length; k++) {
+                                                if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
+                                                        System.out.println(
+                                                                        "item yang dipilih tidak memeiliki stock sebanyak itu");
+                                                        System.out.println(
+                                                                        "Silahkan minta pelanggan untuk memilih diantara "
+                                                                                        + stock[0][pilihMak] + "&"
+                                                                                        + stock[1][pilihMin]);
                                                 }
                                         }
                                 }
@@ -363,6 +371,25 @@ class App {
                                                         "Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
                                         break;
                         }
+
+                        System.out.println("==================================");
+                        System.out.println("|         STRUK PEMBELIAN        |");
+                        System.out.println("----------------------------------");
+                        System.out.println("| Tanggal: " + tanggalHariIni);
+                        System.out.println("| Pelanggan ke-" + i);
+                        System.out.println("----------------------------------");
+                        System.out.println("| " + makanan);
+                        System.out.println("| " + hargaMakanan + "\t\t\t" + "x" + jumlahMak);
+                        System.out.println("| " + minuman);
+                        System.out.println("| " + hargaMinuman + "\t\t\t" + "x" + jumlahMin);
+                        System.out.println("----------------------------------");
+                        System.out.println("| Total Item: " + totalbarang);
+                        System.out.println("| Total: " + hargatotal);
+                        System.out.println("|                                |");
+                        System.out.println("| " + Method);
+                        System.out.println("==================================");
+                        System.out.println();
+
                         System.out.println("==================================");
                         System.out.println("Update Sisa Stock Makanan: ");
                         System.out.println(makanan = menuRes[0][pilihMak] + " x" + stock[0][pilihMak]);
@@ -389,22 +416,22 @@ class App {
                 System.out.println("dengan jumlah pelanggan: " + totalcustomer);
         }
 
-        public static void setDiskon () {
+        public static void setDiskon() {
                 do {
                         System.out.println("Masukkan diskon untuk hari ini");
                         System.out.print(">>");
                         diskonIn = inputInt.nextInt();
                         if (diskonIn > 0 && diskonIn < 101) {
-                            System.out.println("Diskon hari ini sudah di-set!");
-                            diskon = ((double) diskonIn / 100);
-                            System.out.println("Diskon hari ini sebesar " + diskonIn + "%");
-                            System.out.println("Multiplier Diskon: " + diskon +"x");
-                            break;
+                                System.out.println("Diskon hari ini sudah di-set!");
+                                diskon = ((double) diskonIn / 100);
+                                System.out.println("Diskon hari ini sebesar " + diskonIn + "%");
+                                System.out.println("Multiplier Diskon: " + diskon + "x");
+                                break;
                         } else {
-                            System.out.println("Besar diskon invalid!");
+                                System.out.println("Besar diskon invalid!");
                         }
-                    } while (true);
-        
+                } while (true);
+
         }
 
         public static void pelanggan() {
@@ -519,20 +546,21 @@ class App {
                                         System.out.print("Masukan jumlah nominal yang akan dibayar: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change < 0){
+                                        if (change < 0) {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
                                         StrukCash();
                                         break;
                                 case 2:
-                                        System.out.println("Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
+                                        System.out.println(
+                                                        "Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
                                         System.out.print("Masukan no rekening pada mesin (12 digit): ");
                                         String Idcode = inputStr.nextLine();
                                         System.out.print("MAsukan nominal pembayaran: ");
                                         payment1 = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                         if (change < 0){
+                                        if (change < 0) {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
@@ -557,7 +585,8 @@ class App {
                 System.out.print("Log out (y/n): ");
                 String decision = inputStr.nextLine();
                 if (decision.equalsIgnoreCase("y")) {
-                        main(namaList);;
+                        main(namaList);
+                        ;
                 }
 
                 inputStr.close();
@@ -565,7 +594,7 @@ class App {
 
         }
 
-        public static void StrukCash(){
+        public static void StrukCash() {
                 System.out.println("==================================");
                 System.out.println("|         STRUK PEMBELIAN        |");
                 System.out.println("----------------------------------");
@@ -587,7 +616,7 @@ class App {
                 System.out.println();
         }
 
-        public static void StrukBank(){
+        public static void StrukBank() {
 
         }
 
@@ -732,7 +761,7 @@ class App {
                 System.out.println("==================================");
                 System.out.println("log out (y/n): ");
                 String decision = inputStr.nextLine();
-                if (decision.equalsIgnoreCase("y")){
+                if (decision.equalsIgnoreCase("y")) {
                         langENGLISH();
                 }
                 inputStr.close();
