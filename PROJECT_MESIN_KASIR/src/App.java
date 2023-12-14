@@ -637,6 +637,10 @@ class App {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
+                                        if (hargatotal > 50000){
+                                                System.out.println("selamat anda mendapat diskon maka dipotong menjadi ");
+                                                 change = (int) (change - (change * diskon));
+                                        }
                                         System.out.print("apakah anda ingin cetak struk(y/n): ");
                                         String decision = inputStr.nextLine();
                                         if (decision.equalsIgnoreCase("y")) {
@@ -655,10 +659,9 @@ class App {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
-                                        System.out.print("apakah anda ingin cetak struk(y/n): ");
-                                        String decision1 = inputStr.nextLine();
-                                        if (decision1.equalsIgnoreCase("y")) {
-                                                StrukBank();
+                                        if (hargatotal > 50000){
+                                                System.out.println("selamat anda mendapat diskon maka dipotong menjadi ");
+                                                 change = (int) (change - (change * diskon));
                                         }
                                         break;
                         }
@@ -681,7 +684,6 @@ class App {
                 String decision = inputStr.nextLine();
                 if (decision.equalsIgnoreCase("y")) {
                         main(namaList);
-                        ;
                 }
 
                 inputStr.close();
@@ -757,6 +759,7 @@ class App {
                 System.out.println("| Rekening pelanggan: " + Idcode);
                 System.out.println("|                                |");
                 System.out.println("|  Metode Pembayaran ke-" + Method);
+                System.out.println("| \t\t thank you \t\t |");
                 System.out.println("==================================");
                 System.out.println();
                 if (pesananConfirm) {
@@ -789,6 +792,7 @@ class App {
                 System.out.println("| Customer's account: " + Idcode);
                 System.out.println("|                                |");
                 System.out.println("|  Payment Method: " + Method);
+                System.out.println("| \t\t thank you \t\t |");
                 System.out.println("==================================");
                 System.out.println();
                 if (pesananConfirm) {
@@ -804,20 +808,17 @@ class App {
                 for (int i = 1; i < 10000; i++) {
                         do {
                                 // Food & Drinks Menu Display
-                                System.out.println("=========<{[ FOOD ]}>=========");
-                                System.out.println("Food Menu         | Price      ");
-                                System.out.println("[0] Fried Chicken | Rp. 12000  ");
-                                System.out.println("[1] Grilled Chicken| Rp. 13500 ");
-                                System.out.println("[2] Chicken Kremes| Rp. 15000 ");
-                                System.out.println("[3] Fried Rice    | Rp. 11000 ");
-                                System.out.println("[4] Nasi Lemak    | Rp. 15000 ");
-                                System.out.println("========<{[ DRINKS ]}>========");
-                                System.out.println("Drink Menu        | Price      ");
-                                System.out.println("[0] Warm Tea      | Rp. 3500  ");
-                                System.out.println("[1] Iced Sweet Tea| Rp. 3500 ");
-                                System.out.println("[2] Joshua        | Rp. 7500 ");
-                                System.out.println("[3] Joyful Soda   | Rp. 7500 ");
-                                System.out.println("[4] Black Coffee  | Rp. 5000 ");
+                                for (int j = 0; j < namaList.length; j++) {
+                                        if (j == 0) {
+                                                System.out.println("=========<{[ FOOD ]}>=========");
+                                        } else if (j == 1) {
+                                                System.out.println("========<{[ DRINKS ]}>========");
+                                        }
+                                        for (int j2 = 0; j2 < menuRes[j].length; j2++) {
+                                                System.out.println("[ ID:" + j2 + " ] " + menuRes[j][j2]);
+                                                System.out.println("Harga : " + price[j][j2]);
+                                        }
+                                }
 
                                 System.out.print("Enter the Food ID ordered (0~4): ");
                                 pilihMak = inputInt.nextInt();
@@ -837,7 +838,8 @@ class App {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
                                                         System.out.println(
                                                                         "[WARNING] FOOD DOES NOT HAVE THAT MUCH CAPACITY");
-                                                        System.out.println("Enter a smaller quantity of food!");
+                                                        System.out.println(
+                                                                        "Enter a smaller quantity of food! / sold out");
                                                         System.out.print("Back to the menu (y/n): ");
                                                         String decision = inputStr.nextLine();
                                                         if (decision.equalsIgnoreCase("y")) {
@@ -918,8 +920,11 @@ class App {
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
-
-                                        StrukCash();
+                                        System.out.print("apakah anda ingin cetak struk(y/n): ");
+                                        String decision = inputStr.nextLine();
+                                        if (decision.equalsIgnoreCase("y")) {
+                                                EnStrukCash();
+                                        }
                                         break;
                                 case 2:
                                         System.out.println(
@@ -934,7 +939,11 @@ class App {
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
-                                        StrukBank();
+                                        System.out.print("apakah anda ingin cetak struk(y/n): ");
+                                        String decision1 = inputStr.nextLine();
+                                        if (decision1.equalsIgnoreCase("y")) {
+                                                EnStrukBank();
+                                        }
                                         break;
                         }
                         System.out.println("Does any customer want to buy more?");
@@ -977,7 +986,7 @@ class App {
                 System.out.println();
                 int max = 0;
                 for (int i = 0; i < discList.length; i++) {
-                        if (DayOfMonth % 2 == 1) {
+                        if (DayOfMonth / 2 != 0) {
                                 max = discList[i + 1];
                         }
                 }
