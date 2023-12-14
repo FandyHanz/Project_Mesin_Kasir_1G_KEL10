@@ -602,10 +602,10 @@ class App {
                         hargatotal = hargaMakanan + hargaMinuman;
                         // Total hari ini + Harga Total Pesanan Sebelumnya
                         totalToday += hargatotal;
-                        // Mengurangi makanan & minuman
+
                         stock[0][pilihMak] -= jumlahMak;
                         stock[1][pilihMin] -= jumlahMin;
-                        // Catatan Order dan Pembayaran
+
                         System.out.println("Pesanan pelanggan ke-" + i + " adalah " + makanan + " dan " + minuman);
                         System.out.println("Dengan jumlah barang sebanyak " + totalbarang);
                         System.out.println("Yaitu " + makanan + " sebanyak " + jumlahMak);
