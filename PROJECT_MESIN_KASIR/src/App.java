@@ -301,10 +301,10 @@ class App {
                                         System.out.println("Log out (y/n): ");
                                         decision = inputStr.nextLine();
                                         if (decision.equalsIgnoreCase("y")) {
-                                        langINDO();
-                                        break;
-                                }
-                                        
+                                                langINDO();
+                                                break;
+                                        }
+
                                 }
                                 if (decision.equalsIgnoreCase("minuman")) {
                                         System.out.print("masukan minuman tambahan: ");
@@ -313,10 +313,10 @@ class App {
                                         iscont = false;
                                         price[1][j + jumlah] = inputInt.nextInt();
                                         if (decision.equalsIgnoreCase("y")) {
-                                        langINDO();
-                                        break;
-                                }
-                        
+                                                langINDO();
+                                                break;
+                                        }
+
                                 }
                         }
                 }
@@ -678,6 +678,8 @@ class App {
         public static void StrukCash() {
                 System.out.println("==================================");
                 System.out.println("|         STRUK PEMBELIAN        |");
+                System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
+                System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
                 System.out.println("----------------------------------");
                 System.out.println("| Tanggal: " + tanggalHariIni);
                 System.out.println("| Pelanggan ke-" + i);
@@ -697,9 +699,35 @@ class App {
                 System.out.println();
         }
 
+        public static void EnStrukCash() {
+                System.out.println("==================================");
+                System.out.println("|         PURCHASE RECEIPT        |");
+                System.out.println("\t \t \t Datuk Melayu Restaurant \t \t \t ");
+                System.out.println("\t \t Five-star restaurant, five-star prices \t \t");
+                System.out.println("----------------------------------");
+                System.out.println("| Date: " + tanggalHariIni);
+                System.out.println("| Customer No: " + i);
+                System.out.println("----------------------------------");
+                System.out.println("| " + makanan);
+                System.out.println("| " + hargaMakanan + "\t\t\t" + "x" + jumlahMak);
+                System.out.println("| " + minuman);
+                System.out.println("| " + hargaMinuman + "\t\t\t" + "x" + jumlahMin);
+                System.out.println("----------------------------------");
+                System.out.println("| Total Items: " + totalbarang);
+                System.out.println("| Total: " + hargatotal);
+                System.out.println("| Amount Paid: " + payment);
+                System.out.println("| Change: " + change);
+                System.out.println("|                                |");
+                System.out.println("| Payment Method: " + Method);
+                System.out.println("==================================");
+                System.out.println();
+        }
+
         public static void StrukBank() {
                 System.out.println("==================================");
                 System.out.println("|         STRUK PEMBELIAN        |");
+                System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
+                System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
                 System.out.println("----------------------------------");
                 System.out.println("| Tanggal: " + tanggalHariIni);
                 System.out.println("| Pelanggan ke-" + i);
@@ -725,6 +753,36 @@ class App {
 
                 }
 
+        }
+
+        public static void EnStrukBank() {
+                System.out.println("==================================");
+                System.out.println("|          PURCHASE RECEIPT       |");
+                System.out.println("\t \t \t Datuk Melayu Restaurant \t \t \t ");
+                System.out.println("\t \t Five-star restaurant, five-star prices \t \t");
+                System.out.println("----------------------------------");
+                System.out.println("| Date: " + tanggalHariIni);
+                System.out.println("| Customer number: " + i);
+                System.out.println("----------------------------------");
+                System.out.println("| " + makanan);
+                System.out.println("| " + hargaMakanan + "\t\t\t" + "x" + jumlahMak);
+                System.out.println("| " + minuman);
+                System.out.println("| " + hargaMinuman + "\t\t\t" + "x" + jumlahMin);
+                System.out.println("----------------------------------");
+                System.out.println("| Total Items: " + totalbarang);
+                System.out.println("| Total: " + hargatotal);
+                System.out.println("| Amount paid: " + payment);
+                System.out.println("| Customer's account: " + Idcode);
+                System.out.println("|                                |");
+                System.out.println("|  Payment Method: " + Method);
+                System.out.println("==================================");
+                System.out.println();
+                if (pesananConfirm) {
+                        System.out.println("==================================");
+                        System.out.println("Your payment has been received");
+                        System.out.println("==================================");
+                        System.out.println();
+                }
         }
 
         public static void EnPelanggan() {
