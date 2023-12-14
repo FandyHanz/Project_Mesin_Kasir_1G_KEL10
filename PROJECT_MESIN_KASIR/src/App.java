@@ -234,6 +234,9 @@ class App {
         public static void Restock() {
                 Scanner input = new Scanner(System.in);
                 String decision;
+                System.out.println("ket: ");
+                System.out.println("+++ adalah butuh restock");
+                System.out.println("*** adalah tidak memerlukan restock");
                 System.out.println("=========================================================================");
                 for (int i = 0; i < stock.length; i++) {
                         for (int j = 0; j < stock[0].length; j++) {
@@ -293,10 +296,14 @@ class App {
                                 String decision = inputStr.nextLine();
 
                                 if (decision.equalsIgnoreCase("makanan")) {
-                                        System.out.print("masukan makanan tambahan: ");
-                                        menuRes[0][j + jumlah] = inputStr.nextLine();
-                                        System.out.print("masukan harga: ");
-                                        price[0][j + jumlah] = inputInt.nextInt();
+                                        for (int k = 0; k < jumlah; k++) {
+                                                System.out.print("masukan makanan tambahan: ");
+                                                menuRes[0][k] = inputStr.nextLine();
+                                                System.out.print("masukan harga: ");
+                                                price[0][k] = inputInt.nextInt();
+                                                System.out.print("masukan stok nya: ");
+                                                stock[0][k] = inputInt.nextInt();
+                                        }
                                         iscont = false;
                                         System.out.println("Log out (y/n): ");
                                         decision = inputStr.nextLine();
@@ -307,23 +314,28 @@ class App {
 
                                 }
                                 if (decision.equalsIgnoreCase("minuman")) {
-                                        System.out.print("masukan minuman tambahan: ");
-                                        menuRes[1][j + jumlah] = inputStr.nextLine();
-                                        System.out.print("masukan harga: ");
+                                        for (int z = 0; z < jumlah; z++) {
+                                                System.out.print("masukan minuman tambahan: ");
+                                                menuRes[1][z] = inputStr.nextLine();
+                                                System.out.print("masukan harga: ");
+                                                price[1][z] = inputInt.nextInt();
+                                                System.out.print("masukan stok nya: ");
+                                                stock[0][z] = inputInt.nextInt();
+                                        }
                                         iscont = false;
-                                        price[1][j + jumlah] = inputInt.nextInt();
+                                        System.out.println("Log out (y/n): ");
+                                        decision = inputStr.nextLine();
                                         if (decision.equalsIgnoreCase("y")) {
                                                 langINDO();
                                                 break;
                                         }
-
                                 }
                         }
                 }
         }
 
         public static void layaniPelanggan() {
-                boolean isbreak = true; //???
+                boolean isbreak = true; // ???
                 for (int i = 1; i < 10000; i++) {
                         do {
                                 // Tampilan Menu Makanan & Minuman
@@ -540,7 +552,7 @@ class App {
                                 System.out.println("Apakah pelanggan mengkonfirmasi pesanan (y/n)?");
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
-                                
+
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
@@ -639,7 +651,7 @@ class App {
                                         System.out.print("MAsukan nominal pembayaran: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change > 0) {
+                                        if (change < 0) {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
