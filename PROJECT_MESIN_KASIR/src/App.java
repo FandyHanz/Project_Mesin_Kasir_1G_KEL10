@@ -323,6 +323,7 @@ class App {
         }
 
         public static void layaniPelanggan() {
+                boolean isbreak = true;
                 for (int i = 1; i < 10000; i++) {
                         do {
                                 // Tampilan Menu Makanan & Minuman
@@ -350,53 +351,49 @@ class App {
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
 
-                                // Catatan, stok masih bisa NEGATIF
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
                                                         System.out.println(
-                                                                        "item yang dipilih tidak memeiliki stock sebanyak itu");
+                                                                        "[WARNING] MAKANAN TIDAK MEMPUNYAI KAPASITAS SEBANYAK ITU");
                                                         System.out.println(
-                                                                        "Silahkan minta pelanggan untuk memilih diantara "
-                                                                                        + stock[0][pilihMak] + "&"
-                                                                                        + stock[1][pilihMin]);
+                                                                        "Masukan jumlah makanan lebih kecil! / bisa jadi habis");
+                                                        System.out.print("kembali ke menu (y/n): ");
+                                                        String decision = inputStr.nextLine();
+                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                pelanggan();
+                                                                break;
+                                                        }
                                                 }
                                         }
                                 }
-
-                                if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length) {
-                                        // Pengecekan kalau stok kurang atau habis.
-                                        if (jumlahMak > stock[0][pilihMak] || jumlahMin > stock[1][pilihMin]) {
-                                                // FAILSAFE UNTUK PENCEGAHAN STOCK MINUS. MASIH ADA BUG. PLS FIX.
-                                                System.out.println(
-                                                                "Pesanan pelanggan melebihi kapasitas stock yang ada!");
-                                                System.out.println("Makanan yang dipesan: " + menuRes[0][pilihMak]
-                                                                + " sejumlah " + jumlahMak);
-                                                System.out.println("Stock yang tersedia: " + stock[0][pilihMak]);
-                                                int makOverload = jumlahMak - stock[0][pilihMak];
-                                                System.out.println("Diperlukan " + makOverload + " "
-                                                                + menuRes[0][pilihMak]
-                                                                + " lagi untuk memenuhi pesanan tersebut!");
-
-                                                System.out.println("Minuman yang dipesan: " + menuRes[1][pilihMin]);
-                                                System.out.println("Makanan yang dipesan: " + menuRes[1][pilihMin]
-                                                                + " sejumlah " + jumlahMin);
-                                                System.out.println("Stock yang tersedia: " + stock[1][pilihMak]);
-                                                int minOverload = jumlahMak - stock[1][pilihMin];
-                                                System.out.println("Diperlukan " + minOverload + " "
-                                                                + menuRes[1][pilihMin]
-                                                                + " lagi untuk memenuhi pesanan tersebut!");
-                                                continue;
-                                        } else {
-                                                makanan = menuRes[0][pilihMak];
-                                                hargaMakanan = price[0][pilihMak];
-                                                minuman = menuRes[1][pilihMin];
-                                                hargaMinuman = price[1][pilihMin];
+                                int max = 0;
+                                for (int j = 0; j < stock.length; j++) {
+                                        for (int k = 0; k < stock[0].length; k++) {
+                                                if (max == stock[j][k]) {
+                                                        System.out.println("[WARNING] MAKANANN " + stock[j][k]
+                                                                        + " INI SUDAH HABIS");
+                                                        System.out.println("silahkan pilih id makanan lain !");
+                                                        System.out.print("kembali ke menu (y/n): ");
+                                                        String decision = inputStr.nextLine();
+                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                pelanggan();
+                                                                break;
+                                                        }
+                                                }
                                         }
+                                }
+                                if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length) {
+                                        makanan = menuRes[0][pilihMak];
+                                        hargaMakanan = price[0][pilihMak];
+                                        minuman = menuRes[1][pilihMin];
+                                        hargaMinuman = price[1][pilihMin];
+
                                 } else {
                                         System.out.println("[WARNING] ID MAKANAN TIDAK VALID!");
                                         System.out.println("Mohon input kembali dengan input yang benar!");
-                                        continue;
+                                        isbreak = false;
+                                        break;
                                 }
 
                                 if (perubahan.equalsIgnoreCase("y")) {
@@ -437,30 +434,38 @@ class App {
                         switch (Method) {
                                 case 1:
                                         System.out.println("Pelanggan membayar secara cash, membuka tray kasir...");
+                                        System.out.print("Masukan jumlah nominal yang akan dibayar: ");
+                                        payment = inputInt.nextInt();
+                                        change = payment - hargatotal;
+                                        if (change < 0) {
+                                                System.out.println("Biaya tidak cukup! Masukkan nominal yang sesuai");
+                                                continue;
+                                        }
+                                        System.out.print("Apakah anda ingin mencetak struk(y/n): ");
+                                        String decision = inputStr.nextLine();
+                                        if (decision.equalsIgnoreCase("y")) {
+                                                StrukCash();
+                                        }
                                         break;
                                 case 2:
                                         System.out.println(
                                                         "Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
+                                        System.out.print("Masukan no rekening pada mesin (12 digit): ");
+                                        Idcode = inputStr.nextLine();
+                                        System.out.print("Masukan nominal pembayaran: ");
+                                        payment = inputInt.nextInt();
+                                        change = payment - hargatotal;
+                                        if (change > 0) {
+                                                System.out.println("Biaya tidak cukup! Masukkan nominal yang sesuai");
+                                                continue;
+                                        }
+                                        System.out.print("Apakah anda ingin cetak struk(y/n): ");
+                                        String decision1 = inputStr.nextLine();
+                                        if (decision1.equalsIgnoreCase("y")) {
+                                                StrukBank();
+                                        }
                                         break;
                         }
-
-                        System.out.println("==================================");
-                        System.out.println("|         STRUK PEMBELIAN        |");
-                        System.out.println("----------------------------------");
-                        System.out.println("| Tanggal: " + tanggalHariIni);
-                        System.out.println("| Pelanggan ke-" + i);
-                        System.out.println("----------------------------------");
-                        System.out.println("| " + makanan);
-                        System.out.println("| " + hargaMakanan + "\t\t\t" + "x" + jumlahMak);
-                        System.out.println("| " + minuman);
-                        System.out.println("| " + hargaMinuman + "\t\t\t" + "x" + jumlahMin);
-                        System.out.println("----------------------------------");
-                        System.out.println("| Total Item: " + totalbarang);
-                        System.out.println("| Total: " + hargatotal);
-                        System.out.println("|                                |");
-                        System.out.println("| " + Method);
-                        System.out.println("==================================");
-                        System.out.println();
 
                         System.out.println("==================================");
                         System.out.println("Update Sisa Stock Makanan: ");
@@ -507,26 +512,22 @@ class App {
         }
 
         public static void pelanggan() {
-
                 // Semua berada di satu LOOP yang besar...
                 boolean isbreak = true;
                 for (int i = 1; i < 10000; i++) {
                         do {
                                 // Tampilan Menu Makanan & Minuman
-                                System.out.println("=========<{[ FOOD ]}>=========");
-                                System.out.println("Menu makananan   | Harga      ");
-                                System.out.println("[0] Ayam Goreng  | Rp. 12000  ");
-                                System.out.println("[1] Ayam Bakar   | Rp. 13500  ");
-                                System.out.println("[2] Ayam Kremes  | Rp. 15000  ");
-                                System.out.println("[3] Nasi Goreng  | Rp. 11000  ");
-                                System.out.println("[4] Nasi Lemak   | Rp. 15000  ");
-                                System.out.println("========<{[ DRINKS ]}>========");
-                                System.out.println("Menu Minuman     | Harga      ");
-                                System.out.println("[0] Teh Hangat   | Rp. 3500   ");
-                                System.out.println("[1] Es Teh Manis | Rp. 3500   ");
-                                System.out.println("[2] Joshua       | Rp. 7500   ");
-                                System.out.println("[3] Soda Gembira | Rp. 7500   ");
-                                System.out.println("[4] Kopi Hitam   | Rp. 5000   ");
+                                for (int j = 0; j < namaList.length; j++) {
+                                        if (j == 0) {
+                                                System.out.println("=========<{[ FOOD ]}>=========");
+                                        } else if (j == 1) {
+                                                System.out.println("========<{[ DRINKS ]}>========");
+                                        }
+                                        for (int j2 = 0; j2 < menuRes[j].length; j2++) {
+                                                System.out.println("[ ID:" + j2 + " ] " + menuRes[j][j2]);
+                                                System.out.println("Harga : " + price[j][j2]);
+                                        }
+                                }
 
                                 System.out.print("Masukan ID Makanan yang dipesan (0~4): ");
                                 pilihMak = inputInt.nextInt();
@@ -539,6 +540,7 @@ class App {
                                 System.out.println("Apakah pelanggan mengkonfirmasi pesanan (y/n)?");
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
+                                
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
@@ -635,7 +637,7 @@ class App {
                                         System.out.print("Masukan no rekening pada mesin (12 digit): ");
                                         Idcode = inputStr.nextLine();
                                         System.out.print("MAsukan nominal pembayaran: ");
-                                        payment1 = inputInt.nextInt();
+                                        payment = inputInt.nextInt();
                                         change = payment - hargatotal;
                                         if (change > 0) {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
@@ -678,8 +680,8 @@ class App {
         public static void StrukCash() {
                 System.out.println("==================================");
                 System.out.println("|         STRUK PEMBELIAN        |");
-                System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
-                System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
+                System.out.println("|        Resto Datuk Melayu      |");
+                System.out.println("|Resto bintang lima, harga kaki lima|");
                 System.out.println("----------------------------------");
                 System.out.println("| Tanggal: " + tanggalHariIni);
                 System.out.println("| Pelanggan ke-" + i);
@@ -702,8 +704,8 @@ class App {
         public static void EnStrukCash() {
                 System.out.println("==================================");
                 System.out.println("|         PURCHASE RECEIPT        |");
-                System.out.println("\t \t \t Datuk Melayu Restaurant \t \t \t ");
-                System.out.println("\t \t Five-star restaurant, five-star prices \t \t");
+                System.out.println("|       Datuk Melayu Restaurant   |");
+                System.out.println("|Five-star restaurant, five-star price|");
                 System.out.println("----------------------------------");
                 System.out.println("| Date: " + tanggalHariIni);
                 System.out.println("| Customer No: " + i);
@@ -726,8 +728,8 @@ class App {
         public static void StrukBank() {
                 System.out.println("==================================");
                 System.out.println("|         STRUK PEMBELIAN        |");
-                System.out.println("\t \t \t Resto Datuk Melayu \t \t \t ");
-                System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
+                System.out.println("|        Resto Datuk Melayu      |");
+                System.out.println("|Resto bintang lima, harga kaki lima|");
                 System.out.println("----------------------------------");
                 System.out.println("| Tanggal: " + tanggalHariIni);
                 System.out.println("| Pelanggan ke-" + i);
@@ -758,8 +760,8 @@ class App {
         public static void EnStrukBank() {
                 System.out.println("==================================");
                 System.out.println("|          PURCHASE RECEIPT       |");
-                System.out.println("\t \t \t Datuk Melayu Restaurant \t \t \t ");
-                System.out.println("\t \t Five-star restaurant, five-star prices \t \t");
+                System.out.println("|       Datuk Melayu Restaurant   |");
+                System.out.println("|Five-star restaurant, five-star price|");
                 System.out.println("----------------------------------");
                 System.out.println("| Date: " + tanggalHariIni);
                 System.out.println("| Customer number: " + i);
