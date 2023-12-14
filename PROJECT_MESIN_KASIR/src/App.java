@@ -118,8 +118,9 @@ class App {
                                                         System.out.println("Login sebagai Admin berhasil!");
                                                         System.out.println("Selamat datang kembali, administrator");
                                                         System.out.println("Apa yang ingin anda lakukan hari ini?");
+                                                        System.out.println();
                                                         System.out.println(
-                                                                        "[1] Setup diskon, [2] Restock [3] pembukuan [4] log out ");
+                                                                        "[1] Setup diskon, [2] Restock [3] pembukuan [4] log out, [5] cek stock, [6] tambah menu");
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case "1":
@@ -150,12 +151,30 @@ class App {
                                                                                 break;
                                                                         }
                                                                         break;
+                                                                case "5":
+                                                                        Tampiljumbar();
+                                                                        System.out.println("Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                        }
+                                                                        break;
+                                                                case "6":
+                                                                        inputTambahan();
+                                                                        System.out.println("Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                        }
+                                                                        break;
+
                                                         }
                                                         // Lanjutkan Tampilan Admin mulai dari sini...
                                                 } else {
                                                         System.out.println("Login sebagai kasir berhasil!");
                                                         System.out.println("Selamat datang kembali " + usr);
                                                         System.out.println("Apa yang ingin anda lakukan hari ini?");
+                                                        System.out.println();
                                                         System.out.println(
                                                                         "[1] Input diskon | [2] Layani Pelanggan | [3] Log out");
                                                         decision = input.nextLine();
@@ -249,6 +268,58 @@ class App {
                 System.out.println("Laporan penjualan pada " + hariIni);
                 System.out.println("Pemasukan Hari ini: " + totalToday);
                 System.out.println("dengan jumlah pelanggan: " + totalcustomer);
+        }
+
+        public static void Tampiljumbar() {
+                for (int i = 0; i < stock.length; i++) {
+                        for (int j = 0; j < stock[0].length; j++) {
+                                System.out.println(namaList[0]);
+                                System.out.print(menuRes[0][j] + ": ");
+                                System.out.print(stock[0][j] + "\n");
+                                System.out.println(namaList[1]);
+                                System.out.print(menuRes[1][j] + ": ");
+                                System.out.print(stock[1][j] + "\n");
+                        }
+                }
+        }
+
+        public static void inputTambahan() {
+                for (int i = 0; i < menuRes.length; i++) {
+                        for (int j = 0; j < menuRes[0].length; j++) {
+                                boolean iscont = true;
+                                System.out.print("berapa jumlah yang mau dimasukan: ");
+                                int jumlah = inputInt.nextInt();
+                                System.out.print("mau ditambah yg makanan / minuman: ");
+                                String decision = inputStr.nextLine();
+
+                                if (decision.equalsIgnoreCase("makanan")) {
+                                        System.out.print("masukan makanan tambahan: ");
+                                        menuRes[0][j + jumlah] = inputStr.nextLine();
+                                        System.out.print("masukan harga: ");
+                                        price[0][j + jumlah] = inputInt.nextInt();
+                                        iscont = false;
+                                        System.out.println("Log out (y/n): ");
+                                        decision = inputStr.nextLine();
+                                        if (decision.equalsIgnoreCase("y")) {
+                                        langINDO();
+                                        break;
+                                }
+                                        
+                                }
+                                if (decision.equalsIgnoreCase("minuman")) {
+                                        System.out.print("masukan minuman tambahan: ");
+                                        menuRes[1][j + jumlah] = inputStr.nextLine();
+                                        System.out.print("masukan harga: ");
+                                        iscont = false;
+                                        price[1][j + jumlah] = inputInt.nextInt();
+                                        if (decision.equalsIgnoreCase("y")) {
+                                        langINDO();
+                                        break;
+                                }
+                        
+                                }
+                        }
+                }
         }
 
         public static void layaniPelanggan() {
@@ -473,7 +544,8 @@ class App {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
                                                         System.out.println(
                                                                         "[WARNING] MAKANAN TIDAK MEMPUNYAI KAPASITAS SEBANYAK ITU");
-                                                        System.out.println("Masukan jumlah makanan lebih kecil!");
+                                                        System.out.println(
+                                                                        "Masukan jumlah makanan lebih kecil! / bisa jadi habis");
                                                         System.out.print("kembali ke menu (y/n): ");
                                                         String decision = inputStr.nextLine();
                                                         if (decision.equalsIgnoreCase("y")) {
