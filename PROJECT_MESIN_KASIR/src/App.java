@@ -54,7 +54,7 @@ class App {
                 System.out.print("Are you the cashier? (y/n): ");
                 langSelect = inputL.nextLine();
                 if (langSelect.equalsIgnoreCase("y")) {
-                        System.out.println("Hello this page is english");
+                        kasirID();
                 } else {
                         EnPelanggan();
                 }
@@ -637,9 +637,10 @@ class App {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
-                                        if (hargatotal > 50000){
-                                                System.out.println("selamat anda mendapat diskon maka dipotong menjadi ");
-                                                 change = (int) (change - (change * diskon));
+                                        if (hargatotal > 50000) {
+                                                System.out.println(
+                                                                "selamat anda mendapat diskon maka dipotong menjadi ");
+                                                change = (int) (change - (change * diskon));
                                         }
                                         System.out.print("apakah anda ingin cetak struk(y/n): ");
                                         String decision = inputStr.nextLine();
@@ -659,9 +660,15 @@ class App {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
-                                        if (hargatotal > 50000){
-                                                System.out.println("selamat anda mendapat diskon maka dipotong menjadi ");
-                                                 change = (int) (change - (change * diskon));
+                                        if (hargatotal > 50000) {
+                                                System.out.println(
+                                                                "selamat anda mendapat diskon maka dipotong menjadi ");
+                                                change = (int) (change - (change * diskon));
+                                        }
+                                        System.out.print("apakah anda ingin cetak struk(y/n): ");
+                                        decision = inputStr.nextLine();
+                                        if (decision.equalsIgnoreCase("y")) {
+                                                StrukBank();
                                         }
                                         break;
                         }
