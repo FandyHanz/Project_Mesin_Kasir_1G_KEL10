@@ -131,7 +131,7 @@ class App {
                                                         System.out.println(
                                                                         "[4] Logout       | [5] Cek Stock | [6] Tambah Menu");
                                                         System.out.println(
-                                                                        "[7]tambah orang baru      | [8] Merubah Password |");
+                                                                        "[7]tambah orang baru    | [8] Merubah Password |");
                                                         System.out.println();
                                                         System.out.print("Pilih Menu: ");
                                                         decision = input.nextLine();
@@ -207,7 +207,7 @@ class App {
                                                         System.out.println(
                                                                         "=============================================");
                                                         System.out.println(
-                                                                        "[1] Input diskon | [2] Layani Pelanggan | [3] Log out");
+                                                                        "[1] Input diskon | [2] Layani Pelanggan | [3] Log out | [4] ganti password");
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case ("1"):
@@ -217,12 +217,23 @@ class App {
                                                                         layaniPelanggan();
                                                                         break;
                                                                 case ("3"):
-                                                                        if (decision.equalsIgnoreCase("4")
+                                                                        if (decision.equalsIgnoreCase("3")
                                                                                         && akun != null) {
                                                                                 isContinue = false;
                                                                                 break;
                                                                         }
-                                                                        // Lanjutkan Tampilan kasir mulai dari sini...
+                                                                        break;
+                                                                case ("4"):
+                                                                        changePass();
+                                                                        System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
+                                                                        break;
+                                                                // Lanjutkan Tampilan kasir mulai dari sini...
                                                         }
                                                 }
                                         } else {
@@ -246,6 +257,26 @@ class App {
                         }
                 }
                 input.close();
+        }
+
+        public static void changePass() {
+                int row = 0, column = 0;
+                boolean iscont = true;
+                System.out.print("Masukan password lama: ");
+                String input = inputStr.nextLine();
+                for (int i = 0; i < idA.length; i++) {
+                        for (int j = 0; j < idA[0].length; j++) {
+                                if (input.equals(idA[i][j])) {
+                                        row = i;
+                                        column = j;
+
+                                        System.out.print("Masukan password baru: ");
+                                        idA[row][column] = inputStr.nextLine();
+                                }
+                                iscont = false;
+                                continue;
+                        }
+                }
         }
 
         public static void addcashier() {
@@ -275,7 +306,7 @@ class App {
         public static void changeAdminPassword() {
                 System.out.print("masukan password lama: ");
                 String input = inputStr.nextLine();
-                if (input.equals(idA[1][0])){
+                if (input.equals(idA[1][0])) {
                         System.out.print("masukan password baru: ");
                         idA[1][0] = inputStr.nextLine();
                 }
@@ -284,7 +315,7 @@ class App {
         public static void inputDiskon() {
                 boolean iscont = true;
                 for (int i = 0; i < discList.length; i++) {
-                        System.out.print("mau masukan untuk minggu " + i + ": ");
+                        System.out.print("masukan untuk minggu " + i + ": ");
                         discList[i] = inputInt.nextInt();
                 }
         }
