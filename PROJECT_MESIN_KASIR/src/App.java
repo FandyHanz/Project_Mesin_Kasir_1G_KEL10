@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.util.Set;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 
 class App {
@@ -10,9 +12,11 @@ class App {
         public static Scanner inputStr = new Scanner(System.in);
         public static Scanner inputInt = new Scanner(System.in);
         // Tanggal hari ini di import untuk laporan penjualan setelah restoran tutup
+        public static MonthDay month = MonthDay.now();
         public static LocalDate tanggalHariIni = LocalDate.now();
         public static DateTimeFormatter formatHariIni = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         public static String hariIni = tanggalHariIni.format(formatHariIni);
+        public static int hari = tanggalHariIni.getDayOfMonth();
         // Menambah variabel untuk total penghasilan dan jumlah pelanggan hari ini:
         public static int totalToday = 0, totalcustomer = 0, dayList;
 
@@ -41,7 +45,8 @@ class App {
         };
 
         public static int[] discList = new int[7];
-        public static int i = 0, DayOfMonth = 0;
+
+        public static int i = 0;
         public static int tampilan = 0, change = 0, payment = 0, payment1 = 0;
 
         public static String langENGLISH() {
@@ -125,12 +130,6 @@ class App {
                                                         switch (decision) {
                                                                 case "1":
                                                                         inputDiskon();
-                                                                        System.out.println("Log out (y/n): ");
-                                                                        decision = input.nextLine();
-                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                isContinue = false;
-                                                                                break;
-                                                                        }
                                                                         break;
                                                                 case "2":
                                                                         Restock();
@@ -217,11 +216,17 @@ class App {
         }
 
         public static void inputDiskon() {
-                DayOfMonth = tanggalHariIni.getDayOfMonth();
-                Scanner input = new Scanner(System.in);
+                boolean iscont = true;
                 for (int i = 0; i < discList.length; i++) {
-                        System.out.print("Masukan diskon hari ke " + i + ": ");
-                        discList[i] = input.nextInt();
+                        System.out.print("diskon hari ke - " + (i + 1) + ": ");
+                        discList[i] = inputInt.nextInt();
+
+                }
+                iscont = false;
+                System.out.println("log out (y/n): ");
+                String decision = inputStr.nextLine();
+                if (decision.equalsIgnoreCase("y")) {
+                        langINDO();
                 }
         }
 
@@ -991,11 +996,10 @@ class App {
                 System.out.println(" \t \t ===================================== \t \t");
                 System.out.println("\t \t \t \t" + tanggalHariIni);
                 System.out.println();
-                int max = 0;
-                for (int i = 0; i < discList.length; i++) {
-                        if (DayOfMonth / 2 != 0) {
-                                max = discList[i + 1];
-                        }
+                while (hari % 2 == 1) {
+                        for (int i = 0; i < discList.length; i++);
+                        System.out.println("list diskon minggu ini ");
+                        System.out.println(discList[i]);
                 }
                 System.out.println();
                 System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
