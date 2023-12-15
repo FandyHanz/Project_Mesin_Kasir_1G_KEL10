@@ -53,8 +53,6 @@ class App {
                         { "Admin", "Fadlih", "Afrizal" },
                         { "bestAdmin", "Donat", "Udahkuduga" } };
 
-                        
-
         public static String langENGLISH() {
                 Scanner inputL = new Scanner(System.in);
                 String temp = null;
@@ -122,7 +120,7 @@ class App {
                                         if ((usr.equals(idA[0][0]) && ps.equals(idA[1][0]))
                                                         || (usr.equals(idA[0][1]) && ps.equals(idA[1][1]))
                                                         || (usr.equals(idA[0][2]) && ps.equals(idA[1][2]))) {
-                                                if (usr.equals(admin) && ps.equals(adminpw)) {
+                                                if (usr.equals(idA[0][0]) && ps.equals(idA[1][0])) {
                                                         System.out.println("Login sebagai Admin berhasil!");
                                                         System.out.println("Selamat datang kembali, administrator");
                                                         System.out.println("Apa yang ingin anda lakukan hari ini?");
@@ -133,7 +131,8 @@ class App {
                                                         System.out.println(
                                                                         "[4] Logout       | [5] Cek Stock | [6] Tambah Menu");
                                                         System.out.println(
-                                                                        "[7]Add user      | [8] Merubah Password |");
+                                                                        "[7]tambah orang baru      | [8] Merubah Password |");
+                                                        System.out.println();
                                                         System.out.print("Pilih Menu: ");
                                                         decision = input.nextLine();
                                                         switch (decision) {
@@ -186,14 +185,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "7":
-                                                                        addNewAdmin();
-                                                                        System.out.println(
-                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                        decision = input.nextLine();
-                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                isContinue = false;
-                                                                                break;
-                                                                        }
+                                                                        addcashier();
                                                                         break;
                                                                 case "8":
                                                                         changeAdminPassword();
@@ -256,42 +248,37 @@ class App {
                 input.close();
         }
 
-        public static void addNewAdmin() {
-                Scanner input = new Scanner(System.in);
-                System.out.print("Masukkan nama pengguna baru untuk admin: ");
-                String newAdminUser = input.nextLine();
-                System.out.print("Masukkan password baru untuk admin: ");
-                String newAdminPass = input.nextLine();
-                // Tambahkan ke array idA
-                String[][] tempArray = new String[idA.length + 1][idA[0].length];
+        public static void addcashier() {
+                boolean iscont = true;
                 for (int i = 0; i < idA.length; i++) {
-                        tempArray[i] = idA[i];
+                        for (int j = 0; j < idA[0].length; j++) {
+                                System.out.print("butuh berapa orang untuk dimasukan: ");
+                                int jumlah = inputInt.nextInt();
+                                for (int k = 0; k < jumlah; k++) {
+                                        System.out.print("masukan nama kasir baru: ");
+                                        idA[0][k + 1] = inputStr.nextLine();
+                                        System.out.print("masukan password: ");
+                                        idA[1][k + 1] = inputStr.nextLine();
+                                }
+                                iscont = false;
+                                System.out.println("berhasil ditambahkan");
+                                System.out.println("Apakah anda ingin Log out (y/n): ");
+                                String decision = inputStr.nextLine();
+                                if (decision.equalsIgnoreCase("y")) {
+                                        langINDO();
+                                }
+                        }
                 }
-                tempArray[idA.length] = new String[] { newAdminUser, newAdminPass };
-                idA = tempArray;
-                System.out.println("Ditambahkan ");
 
         }
 
-        // Metode untuk mengganti password
         public static void changeAdminPassword() {
-                Scanner input = new Scanner(System.in);
-                System.out.print("Masukkan nama pengguna admin: ");
-                String username = input.nextLine();
-                System.out.print("Masukkan password lama: ");
-                String oldPass = input.nextLine();
-                System.out.print("Masukkan password baru: ");
-                String newPass = input.nextLine();
-
-                // Cari dan perbarui password
-                for (int i = 0; i < idA[0].length; i++) {
-                        if (idA[0][i].equals(username) && idA[1][i].equals(oldPass)) {
-                                idA[1][i] = newPass;
-                                System.out.println("Password berhasil diperbarui.");
-                                return;
-                        }
+                System.out.print("masukan password lama: ");
+                String input = inputStr.nextLine();
+                if (input.equals(idA[1][0])){
+                        System.out.print("masukan password baru: ");
+                        idA[1][0] = inputStr.nextLine();
                 }
-                System.out.println("Nama pengguna atau password salah.");
         }
 
         public static void inputDiskon() {
