@@ -12,11 +12,11 @@ class App {
         public static Scanner inputStr = new Scanner(System.in);
         public static Scanner inputInt = new Scanner(System.in);
         // Tanggal hari ini di import untuk laporan penjualan setelah restoran tutup
-public static MonthDay month = MonthDay.now();
+        public static MonthDay month = MonthDay.now();
         public static LocalDate tanggalHariIni = LocalDate.now();
         public static DateTimeFormatter formatHariIni = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         public static String hariIni = tanggalHariIni.format(formatHariIni);
-public static int hari = tanggalHariIni.getDayOfMonth();
+        public static int hari = tanggalHariIni.getDayOfMonth();
         // Menambah variabel untuk total penghasilan dan jumlah pelanggan hari ini:
         public static int totalToday = 0, totalcustomer = 0, dayList;
 
@@ -44,7 +44,7 @@ public static int hari = tanggalHariIni.getDayOfMonth();
                         { 9999, 9999, 9999, 9999, 9999 }
         };
 
-        public static int[] discList = inputDiskon();
+        public static int[] discList = new int[7];
 
         public static int i = 0;
         public static int tampilan = 0, change = 0, payment = 0, payment1 = 0;
@@ -124,14 +124,18 @@ public static int hari = tanggalHariIni.getDayOfMonth();
                                                         System.out.println("Login sebagai Admin berhasil!");
                                                         System.out.println("Selamat datang kembali, administrator");
                                                         System.out.println("Apa yang ingin anda lakukan hari ini?");
-                                                        System.out.println("=============================================");
-                                                        System.out.println("[1] Setup diskon | [2] Restock   | [3] Pembukuan");
-                                                        System.out.println("[4] Logout       | [5] Cek Stock | [6] Tambah Menu");
+                                                        System.out.println(
+                                                                        "=============================================");
+                                                        System.out.println(
+                                                                        "[1] Setup diskon | [2] Restock   | [3] Pembukuan");
+                                                        System.out.println(
+                                                                        "[4] Logout       | [5] Cek Stock | [6] Tambah Menu");
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case "1":
                                                                         inputDiskon();
-                                                                        System.out.println("Apakah anda ingin Log out (y/n): ");
+                                                                        System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
                                                                         decision = input.nextLine();
                                                                         if (decision.equalsIgnoreCase("y")) {
                                                                                 isContinue = false;
@@ -143,7 +147,8 @@ public static int hari = tanggalHariIni.getDayOfMonth();
                                                                         break;
                                                                 case "3":
                                                                         pembukuanID();
-                                                                        System.out.println("Apakah anda ingin Log out (y/n): ");
+                                                                        System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
                                                                         decision = input.nextLine();
                                                                         if (decision.equalsIgnoreCase("y")) {
                                                                                 isContinue = false;
@@ -159,7 +164,8 @@ public static int hari = tanggalHariIni.getDayOfMonth();
                                                                         break;
                                                                 case "5":
                                                                         Tampiljumbar();
-                                                                        System.out.println("Apakah anda ingin Log out (y/n): ");
+                                                                        System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
                                                                         decision = input.nextLine();
                                                                         if (decision.equalsIgnoreCase("y")) {
                                                                                 isContinue = false;
@@ -167,7 +173,8 @@ public static int hari = tanggalHariIni.getDayOfMonth();
                                                                         break;
                                                                 case "6":
                                                                         inputTambahan();
-                                                                        System.out.println("Apakah anda ingin Log out (y/n): ");
+                                                                        System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
                                                                         decision = input.nextLine();
                                                                         if (decision.equalsIgnoreCase("y")) {
                                                                                 isContinue = false;
@@ -180,8 +187,10 @@ public static int hari = tanggalHariIni.getDayOfMonth();
                                                         System.out.println("Login sebagai kasir berhasil!");
                                                         System.out.println("Selamat datang kembali " + usr);
                                                         System.out.println("Apa yang ingin anda lakukan hari ini?");
-                                                        System.out.println("=============================================");
-                                                        System.out.println("[1] Input diskon | [2] Layani Pelanggan | [3] Log out");
+                                                        System.out.println(
+                                                                        "=============================================");
+                                                        System.out.println(
+                                                                        "[1] Input diskon | [2] Layani Pelanggan | [3] Log out");
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case ("1"):
@@ -222,16 +231,12 @@ public static int hari = tanggalHariIni.getDayOfMonth();
                 input.close();
         }
 
-        public static int[] inputDiskon() {
+        public static void inputDiskon() {
                 boolean iscont = true;
-                System.out.println("mau masukan beberapa minggu: ");
-                inputan = inputInt.nextInt(); 
-                int [] temps = new int [inputan];
-                for (int i = 0; i < inputan; i++) {
-                        System.out.print("diskon hari ke - " + (i + 1) + ": ");
-                        temps[i] = inputInt.nextInt();
+                for (int i = 0; i < discList.length; i++) {
+                        System.out.print("mau masukan untuk minggu " + i + ": ");
+                        discList[i] = inputInt.nextInt();
                 }
-return temps; 
         }
 
         public static void DisplayDiscount() {
@@ -644,7 +649,7 @@ return temps;
                         Method = inputInt.nextInt();
                         switch (Method) {
                                 case 1:
-                                System.out.println("=============================================");
+                                        System.out.println("=============================================");
                                         System.out.println("Pelanggan membayar secara cash, membuka tray kasir...");
                                         System.out.print("Masukan jumlah nominal yang akan dibayar: ");
                                         payment = inputInt.nextInt();
@@ -679,7 +684,19 @@ return temps;
                                         }
                                         if (hargatotal > 50000) {
                                                 System.out.print(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: ");
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "+ discList[0]);
+                                                change = (int) (change - (change * diskon));
+                                                System.out.println(change);
+                                        }
+                                        else if (hargatotal > 50000 && hargatotal <= 75000) {
+                                                System.out.print(
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "+ discList[1]);
+                                                change = (int) (change - (change * diskon));
+                                                System.out.println(change);
+                                        }
+                                        if (hargatotal > 75000 && hargatotal <= 100000) {
+                                                System.out.print(
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "+ discList[2]);
                                                 change = (int) (change - (change * diskon));
                                                 System.out.println(change);
                                         }
@@ -937,7 +954,7 @@ return temps;
                         Method = inputInt.nextInt();
                         switch (Method) {
                                 case 1:
-                                System.out.println("=============================================");
+                                        System.out.println("=============================================");
                                         System.out.println("Customer pays in cash, opening the cashier tray...");
                                         System.out.print("Enter the amount to be paid: ");
                                         payment = inputInt.nextInt();
@@ -954,7 +971,7 @@ return temps;
                                         }
                                         break;
                                 case 2:
-                                System.out.println("=============================================");
+                                        System.out.println("=============================================");
                                         System.out.println(
                                                         "Customer pays by bank. Please insert the account numbers.");
                                         System.out.print("Enter the account number on the machine (12 digits): ");
@@ -1012,13 +1029,6 @@ return temps;
                 System.out.println("\t \t Resto bintang lima, harga kaki lima \t \t");
                 System.out.println(" \t \t ===================================== \t \t");
                 System.out.println("\t \t \t \t" + tanggalHariIni);
-                System.out.println();
-                while (hari % 2 == 1) {
-                for (int i = 0; i < discList.length; i++);
-                        System.out.println("list diskon minggu ini ");
-                        System.out.println(discList[i]);
-                        break;
-                }
                 System.out.println();
                 System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
                 langSelect = inputL.nextLine();
