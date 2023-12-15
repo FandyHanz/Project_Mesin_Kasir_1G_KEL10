@@ -49,6 +49,12 @@ class App {
         public static int i = 0;
         public static int tampilan = 0, change = 0, payment = 0, payment1 = 0;
 
+        public static String idA[][] = {
+                        { "Admin", "Fadlih", "Afrizal" },
+                        { "bestAdmin", "Donat", "Udahkuduga" } };
+
+                        
+
         public static String langENGLISH() {
                 Scanner inputL = new Scanner(System.in);
                 String temp = null;
@@ -93,10 +99,6 @@ class App {
                 boolean dont = true;
 
                 // Array 2D!!!
-                String idA[][] = {
-                                { "Admin", "Fadlih", "Afrizal" },
-                                { "bestAdmin", "Donat", "Udahkuduga" }
-                };
 
                 // Akun admin akan ada di indeks 0
                 admin = idA[0][0];
@@ -130,6 +132,9 @@ class App {
                                                                         "[1] Setup diskon | [2] Restock   | [3] Pembukuan");
                                                         System.out.println(
                                                                         "[4] Logout       | [5] Cek Stock | [6] Tambah Menu");
+                                                        System.out.println(
+                                                                        "[7]Add user      | [8] Merubah Password |");
+                                                        System.out.print("Pilih Menu: ");
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case "1":
@@ -178,6 +183,26 @@ class App {
                                                                         decision = input.nextLine();
                                                                         if (decision.equalsIgnoreCase("y")) {
                                                                                 isContinue = false;
+                                                                        }
+                                                                        break;
+                                                                case "7":
+                                                                        addNewAdmin();
+                                                                        System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
+                                                                        break;
+                                                                case "8":
+                                                                        changeAdminPassword();
+                                                                        System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                                break;
                                                                         }
                                                                         break;
 
@@ -229,6 +254,44 @@ class App {
                         }
                 }
                 input.close();
+        }
+
+        public static void addNewAdmin() {
+                Scanner input = new Scanner(System.in);
+                System.out.print("Masukkan nama pengguna baru untuk admin: ");
+                String newAdminUser = input.nextLine();
+                System.out.print("Masukkan password baru untuk admin: ");
+                String newAdminPass = input.nextLine();
+                // Tambahkan ke array idA
+                String[][] tempArray = new String[idA.length + 1][idA[0].length];
+                for (int i = 0; i < idA.length; i++) {
+                        tempArray[i] = idA[i];
+                }
+                tempArray[idA.length] = new String[] { newAdminUser, newAdminPass };
+                idA = tempArray;
+                System.out.println("Ditambahkan ");
+
+        }
+
+        // Metode untuk mengganti password
+        public static void changeAdminPassword() {
+                Scanner input = new Scanner(System.in);
+                System.out.print("Masukkan nama pengguna admin: ");
+                String username = input.nextLine();
+                System.out.print("Masukkan password lama: ");
+                String oldPass = input.nextLine();
+                System.out.print("Masukkan password baru: ");
+                String newPass = input.nextLine();
+
+                // Cari dan perbarui password
+                for (int i = 0; i < idA[0].length; i++) {
+                        if (idA[0][i].equals(username) && idA[1][i].equals(oldPass)) {
+                                idA[1][i] = newPass;
+                                System.out.println("Password berhasil diperbarui.");
+                                return;
+                        }
+                }
+                System.out.println("Nama pengguna atau password salah.");
         }
 
         public static void inputDiskon() {
@@ -684,19 +747,21 @@ class App {
                                         }
                                         if (hargatotal > 50000) {
                                                 System.out.print(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "+ discList[0]);
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "
+                                                                                + discList[0]);
                                                 change = (int) (change - (change * diskon));
                                                 System.out.println(change);
-                                        }
-                                        else if (hargatotal > 50000 && hargatotal <= 75000) {
+                                        } else if (hargatotal > 50000 && hargatotal <= 75000) {
                                                 System.out.print(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "+ discList[1]);
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "
+                                                                                + discList[1]);
                                                 change = (int) (change - (change * diskon));
                                                 System.out.println(change);
                                         }
                                         if (hargatotal > 75000 && hargatotal <= 100000) {
                                                 System.out.print(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "+ discList[2]);
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "
+                                                                                + discList[2]);
                                                 change = (int) (change - (change * diskon));
                                                 System.out.println(change);
                                         }
