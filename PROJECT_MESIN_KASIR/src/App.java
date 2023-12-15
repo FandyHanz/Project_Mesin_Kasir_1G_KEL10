@@ -22,7 +22,7 @@ class App {
 
         public static String makanan = "x", minuman = "x", perubahan;
         public static int hargaMakanan = 0, hargaMinuman = 0, jumlahMak, jumlahMin, totalbarang = 0, hargatotal = 0,
-                        Method, diskonIn = 0;
+                        Method, diskonIn = 0, inputan;
         public static int pilihMak, pilihMin;
         static double diskon = 0;
         public static boolean pesananConfirm = false;
@@ -44,7 +44,7 @@ class App {
                         { 9999, 9999, 9999, 9999, 9999 }
         };
 
-        public static int[] discList = new int[7];
+        public static int[] discList = inputDiskon();
 
         public static int i = 0;
         public static int tampilan = 0, change = 0, payment = 0, payment1 = 0;
@@ -215,19 +215,16 @@ class App {
                 input.close();
         }
 
-        public static void inputDiskon() {
+        public static int[] inputDiskon() {
                 boolean iscont = true;
-                for (int i = 0; i < discList.length; i++) {
+                System.out.println("mau masukan beberapa minggu: ");
+                inputan = inputInt.nextInt(); 
+                int [] temps = new int [inputan];
+                for (int i = 0; i < inputan; i++) {
                         System.out.print("diskon hari ke - " + (i + 1) + ": ");
-                        discList[i] = inputInt.nextInt();
-
+                        temps[i] = inputInt.nextInt();
                 }
-                iscont = false;
-                System.out.println("log out (y/n): ");
-                String decision = inputStr.nextLine();
-                if (decision.equalsIgnoreCase("y")) {
-                        langINDO();
-                }
+               return temps; 
         }
 
         public static void DisplayDiscount() {
@@ -1000,6 +997,7 @@ class App {
                         for (int i = 0; i < discList.length; i++);
                         System.out.println("list diskon minggu ini ");
                         System.out.println(discList[i]);
+                        break;
                 }
                 System.out.println();
                 System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
