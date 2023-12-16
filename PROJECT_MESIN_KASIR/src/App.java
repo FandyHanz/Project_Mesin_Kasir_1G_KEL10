@@ -108,6 +108,7 @@ class App {
                         System.out.print("Siapakah anda? (Staff/Pelanggan) : ");
                         akun = input.nextLine();
                         if (akun.equalsIgnoreCase("Staff")) {
+
                                 boolean isContinue = true;
                                 do {
                                         // Dipindah kedalam agar bisa ada kesempatan login
@@ -117,138 +118,173 @@ class App {
                                         ps = input.nextLine();
                                         System.out.println("=============================================");
 
-                                        if ((usr.equals(idA[0][0]) && ps.equals(idA[1][0]))
-                                                        || (usr.equals(idA[0][1]) && ps.equals(idA[1][1]))
-                                                        || (usr.equals(idA[0][2]) && ps.equals(idA[1][2]))) {
-                                                if (usr.equals(idA[0][0]) && ps.equals(idA[1][0])) {
-                                                        System.out.println("Login sebagai Admin berhasil!");
-                                                        System.out.println("Selamat datang kembali, administrator");
-                                                        System.out.println("Apa yang ingin anda lakukan hari ini?");
-                                                        System.out.println(
-                                                                        "=============================================");
-                                                        System.out.println(
-                                                                        "[1] Setup diskon | [2] Restock   | [3] Pembukuan");
-                                                        System.out.println(
-                                                                        "[4] Logout       | [5] Cek Stock | [6] Tambah Menu");
-                                                        System.out.println(
-                                                                        "[7]tambah orang baru    | [8] Merubah Password |");
-                                                        System.out.println();
-                                                        System.out.print("Pilih Menu: ");
-                                                        decision = input.nextLine();
-                                                        switch (decision) {
-                                                                case "1":
-                                                                        inputDiskon();
-                                                                        System.out.println(
-                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                        decision = input.nextLine();
-                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                isContinue = false;
-                                                                                break;
-                                                                        }
-                                                                        break;
-                                                                case "2":
-                                                                        Restock();
-                                                                        break;
-                                                                case "3":
-                                                                        pembukuanID();
-                                                                        System.out.println(
-                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                        decision = input.nextLine();
-                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                isContinue = false;
-                                                                                break;
-                                                                        }
-                                                                        break;
-                                                                case "4":
-                                                                        if (decision.equalsIgnoreCase("4")
-                                                                                        && akun != null) {
-                                                                                isContinue = false;
-                                                                                break;
-                                                                        }
-                                                                        break;
-                                                                case "5":
-                                                                        Tampiljumbar();
-                                                                        System.out.println(
-                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                        decision = input.nextLine();
-                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                isContinue = false;
-                                                                        }
-                                                                        break;
-                                                                case "6":
-                                                                        inputTambahan();
-                                                                        System.out.println(
-                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                        decision = input.nextLine();
-                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                isContinue = false;
-                                                                        }
-                                                                        break;
-                                                                case "7":
-                                                                        addcashier();
-                                                                        break;
-                                                                case "8":
-                                                                        changeAdminPassword();
-                                                                        System.out.println(
-                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                        decision = input.nextLine();
-                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                isContinue = false;
-                                                                                break;
-                                                                        }
-                                                                        break;
+                                        boolean isbreak = true;
 
-                                                        }
-                                                        // Lanjutkan Tampilan Admin mulai dari sini...
-                                                } else {
-                                                        System.out.println("Login sebagai kasir berhasil!");
-                                                        System.out.println("Selamat datang kembali " + usr);
-                                                        System.out.println("Apa yang ingin anda lakukan hari ini?");
-                                                        System.out.println(
-                                                                        "=============================================");
-                                                        System.out.println(
-                                                                        "[1] Input diskon | [2] Layani Pelanggan | [3] Log out | [4] ganti password");
-                                                        decision = input.nextLine();
-                                                        switch (decision) {
-                                                                case ("1"):
-                                                                        setDiskon();
-                                                                        break;
-                                                                case ("2"):
-                                                                        layaniPelanggan();
-                                                                        break;
-                                                                case ("3"):
-                                                                        if (decision.equalsIgnoreCase("3")
-                                                                                        && akun != null) {
-                                                                                isContinue = false;
-                                                                                break;
-                                                                        }
-                                                                        break;
-                                                                case ("4"):
-                                                                        changePass();
+                                        for (int i = 0; i < idA.length; i++) {
+                                                for (int j = 0; j < idA[0].length; j++) {
+                                                        if (usr.equals(idA[0][j]) && ps.equals(idA[1][j])) {
+                                                                if (usr.equals(idA[0][0]) && ps.equals(idA[1][0])) {
                                                                         System.out.println(
-                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                                        "Login sebagai Admin berhasil!");
+                                                                        System.out.println(
+                                                                                        "Selamat datang kembali, administrator");
+                                                                        System.out.println(
+                                                                                        "Apa yang ingin anda lakukan hari ini?");
+                                                                        System.out.println(
+                                                                                        "=============================================");
+                                                                        System.out.println(
+                                                                                        "[1] Setup diskon | [2] Restock   | [3] Pembukuan");
+                                                                        System.out.println(
+                                                                                        "[4] Logout       | [5] Cek Stock | [6] Tambah Menu");
+                                                                        System.out.println(
+                                                                                        "[7]tambah orang baru    | [8] Merubah Password |");
+                                                                        System.out.println();
+                                                                        System.out.print("Pilih Menu: ");
                                                                         decision = input.nextLine();
-                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                isContinue = false;
-                                                                                break;
+                                                                        switch (decision) {
+                                                                                case "1":
+                                                                                        inputDiskon();
+                                                                                        System.out.println(
+                                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                                        decision = input.nextLine();
+                                                                                        if (decision.equalsIgnoreCase(
+                                                                                                        "y")) {
+                                                                                                isbreak = false;
+                                                                                                isContinue = false;
+                                                                                                break;
+                                                                                        }
+                                                                                        break;
+                                                                                case "2":
+                                                                                        Restock();
+                                                                                        break;
+                                                                                case "3":
+                                                                                        pembukuanID();
+                                                                                        System.out.println(
+                                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                                        decision = input.nextLine();
+                                                                                        if (decision.equalsIgnoreCase(
+                                                                                                        "y")) {
+                                                                                                isbreak = false;
+                                                                                                isContinue = false;
+                                                                                                break;
+                                                                                        }
+                                                                                        break;
+                                                                                case "4":
+                                                                                         System.out.println(
+                                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                                        decision = input.nextLine();
+                                                                                        if (decision.equalsIgnoreCase(
+                                                                                                        "y")) {
+                                                                                                isbreak = false;
+                                                                                                isContinue = false;
+                                                                                        }
+                                                                                        break;
+                                                                                case "5":
+                                                                                        Tampiljumbar();
+                                                                                        System.out.println(
+                                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                                        decision = input.nextLine();
+                                                                                        if (decision.equalsIgnoreCase(
+                                                                                                        "y")) {
+                                                                                                isbreak = false;
+                                                                                                isContinue = false;
+                                                                                        }
+                                                                                        break;
+                                                                                case "6":
+                                                                                        inputTambahan();
+                                                                                        System.out.println(
+                                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                                        decision = input.nextLine();
+                                                                                        if (decision.equalsIgnoreCase(
+                                                                                                        "y")) {
+                                                                                                isbreak = false;
+                                                                                                isContinue = false;
+                                                                                        }
+                                                                                        break;
+                                                                                case "7":
+                                                                                        addcashier();
+                                                                                        break;
+                                                                                case "8":
+                                                                                        changeAdminPassword();
+                                                                                        System.out.println(
+                                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                                        decision = input.nextLine();
+                                                                                        if (decision.equalsIgnoreCase(
+                                                                                                        "y")) {
+                                                                                                isbreak = false;
+                                                                                                isContinue = false;
+                                                                                                break;
+                                                                                        }
+                                                                                        break;
+
                                                                         }
-                                                                        break;
-                                                                // Lanjutkan Tampilan kasir mulai dari sini...
+                                                                        // Lanjutkan Tampilan Admin mulai dari sini...
+                                                                } else {
+                                                                        System.out.println(
+                                                                                        "Login sebagai kasir berhasil!");
+                                                                        System.out.println("Selamat datang kembali "
+                                                                                        + usr);
+                                                                        System.out.println(
+                                                                                        "Apa yang ingin anda lakukan hari ini?");
+                                                                        System.out.println(
+                                                                                        "=============================================");
+                                                                        System.out.println(
+                                                                                        "[1] Input diskon | [2] Layani Pelanggan | [3] Log out | [4] ganti password");
+                                                                        decision = input.nextLine();
+                                                                        switch (decision) {
+                                                                                case ("1"):
+                                                                                        setDiskon();
+                                                                                        break;
+                                                                                case ("2"):
+                                                                                        layaniPelanggan();
+                                                                                        break;
+                                                                                case ("3"):
+                                                                                        if (decision.equalsIgnoreCase(
+                                                                                                        "3")
+                                                                                                        && akun != null) {
+                                                                                                isbreak = false;
+                                                                                                isContinue = false;
+                                                                                                break;
+                                                                                        }
+                                                                                        break;
+                                                                                case ("4"):
+                                                                                        changePass();
+                                                                                        System.out.println(
+                                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                                        decision = input.nextLine();
+                                                                                        if (decision.equalsIgnoreCase(
+                                                                                                        "y")) {
+                                                                                                isbreak = false;
+                                                                                                isContinue = false;
+                                                                                                break;
+                                                                                        }
+                                                                                        break;
+                                                                                // Lanjutkan Tampilan kasir mulai dari
+                                                                                // sini...
+                                                                        }
+                                                                }
+                                                        } else {
+                                                                while (isbreak) {
+                                                                // Counter dipindah kesini agar counter menambah hanya
+                                                                // saat login salah
+                                                                     counter--;
+                                                                System.out.println(
+                                                                                "=============================================");
+                                                                System.out.println(
+                                                                                "[DENIED] USERNAME DAN PASSWORD SALAH!!!");
+                                                                System.out.println(
+                                                                                "Login gagal! Mohon cek kembali username dan password anda!");
+                                                                if (counter > 0) {
+                                                                        System.out.println("Sisa kesempatan login : "
+                                                                                        + counter);
+                                                                } else {
+                                                                        System.out.println(
+                                                                                        "Kesempatan Login Habis! Sistem akan Di-Lockdown!");
+                                                                        pelanggan();
+                                                                }   
+                                                                }
+                                                              
                                                         }
-                                                }
-                                        } else {
-                                                // Counter dipindah kesini agar counter menambah hanya saat login salah
-                                                counter--;
-                                                System.out.println("=============================================");
-                                                System.out.println("[DENIED] USERNAME DAN PASSWORD SALAH!!!");
-                                                System.out.println(
-                                                                "Login gagal! Mohon cek kembali username dan password anda!");
-                                                if (counter > 0) {
-                                                        System.out.println("Sisa kesempatan login : " + counter);
-                                                } else {
-                                                        System.out.println(
-                                                                        "Kesempatan Login Habis! Sistem akan Di-Lockdown!");
-                                                        pelanggan();
                                                 }
                                         }
                                 } while (akun.equalsIgnoreCase("staff") && counter > 0 && isContinue);
@@ -256,7 +292,6 @@ class App {
                                 pelanggan();
                         }
                 }
-                input.close();
         }
 
         public static void changePass() {
