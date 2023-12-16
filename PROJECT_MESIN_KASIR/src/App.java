@@ -63,8 +63,10 @@ class App {
                 System.out.print("Are you the cashier? (y/n): ");
                 langSelect = inputL.nextLine();
                 if (langSelect.equalsIgnoreCase("y")) {
+                        clearScreen();
                         kasirEN();
                 } else {
+                        clearScreen();
                         EnPelanggan();
                 }
                 inputL.close();
@@ -81,8 +83,10 @@ class App {
                 System.out.print("Apakah anda kasirnya? (y/t): ");
                 langSelect = inputL.nextLine();
                 if (langSelect.equalsIgnoreCase("y")) {
+                        clearScreen();
                         kasirID();
                 } else {
+                        clearScreen();
                         pelanggan();
                 }
                 inputL.close();
@@ -121,6 +125,7 @@ class App {
                                                         || (usr.equals(idA[0][1]) && ps.equals(idA[1][1]))
                                                         || (usr.equals(idA[0][2]) && ps.equals(idA[1][2]))) {
                                                 if (usr.equals(idA[0][0]) && ps.equals(idA[1][0])) {
+                                                        clearScreen();
                                                         System.out.println("Login sebagai Admin berhasil!");
                                                         System.out.println("Selamat datang kembali, administrator");
                                                         System.out.println("Apa yang ingin anda lakukan hari ini?");
@@ -136,6 +141,7 @@ class App {
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case "1":
+                                                                        clearScreen();
                                                                         inputDiskon();
                                                                         System.out.println(
                                                                                         "Apakah anda ingin Log out (y/n): ");
@@ -146,9 +152,11 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "2":
+                                                                        clearScreen();
                                                                         Restock();
                                                                         break;
                                                                 case "3":
+                                                                        clearScreen();
                                                                         pembukuanID();
                                                                         System.out.println(
                                                                                         "Apakah anda ingin Log out (y/n): ");
@@ -159,6 +167,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "4":
+                                                                        clearScreen();
                                                                         if (decision.equalsIgnoreCase("4")
                                                                                         && akun != null) {
                                                                                 isContinue = false;
@@ -166,6 +175,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "5":
+                                                                        clearScreen();
                                                                         Tampiljumbar();
                                                                         System.out.println(
                                                                                         "Apakah anda ingin Log out (y/n): ");
@@ -176,6 +186,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "6":
+                                                                        clearScreen();
                                                                         inputTambahan();
                                                                         System.out.println(
                                                                                         "Apakah anda ingin Log out (y/n): ");
@@ -186,6 +197,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "7":
+                                                                        clearScreen();
                                                                         changeAdminPassword();
                                                                         System.out.println(
                                                                                         "Apakah anda ingin Log out (y/n): ");
@@ -198,6 +210,7 @@ class App {
                                                         }
                                                         // Lanjutkan Tampilan Admin mulai dari sini...
                                                 } else {
+                                                        clearScreen();
                                                         System.out.println("Login sebagai kasir berhasil!");
                                                         System.out.println("Selamat datang kembali " + usr);
                                                         System.out.println("Apa yang ingin anda lakukan hari ini?");
@@ -209,9 +222,11 @@ class App {
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case ("1"):
+                                                                        clearScreen();
                                                                         setDiskon();
                                                                         break;
                                                                 case ("2"):
+                                                                        clearScreen();
                                                                         layaniPelanggan();
                                                                         break;
                                                                 case ("3"):
@@ -222,6 +237,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case ("4"):
+                                                                        clearScreen();
                                                                         changePass();
                                                                         System.out.println(
                                                                                         "Apakah anda ingin Log out (y/n): ");
@@ -251,6 +267,7 @@ class App {
                                         }
                                 } while (akun.equalsIgnoreCase("staff") && counter > 0 && isContinue);
                         } else if (akun.equalsIgnoreCase("pelanggan")) {
+                                clearScreen();
                                 pelanggan();
                         }
                 }
@@ -434,7 +451,7 @@ class App {
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
                                 System.out.println("=============================================");
-
+                                clearScreen();
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
@@ -494,12 +511,13 @@ class App {
                         hargaMakanan *= jumlahMak;
                         hargatotal = hargaMakanan + hargaMinuman;
                         // Trigger diskon
+                        clearScreen();
                         if (hargatotal > 50000 && hargatotal <= 75000) {
                                 System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[0] + "%!");
                                 double discountedPrice = hargatotal * discList[0] / 100;
                                 hargatotal = (int) (hargatotal - discountedPrice);
 
-                        }else if (hargatotal > 75000){
+                        } else if (hargatotal > 75000) {
                                 System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[1] + "%!");
                                 double discountedPrice = hargatotal * discList[1] / 100;
                                 hargatotal = (int) (hargatotal - discountedPrice);
@@ -511,6 +529,7 @@ class App {
                         stock[1][pilihMin] -= jumlahMin;
 
                         // Catatan Order dan Pembayaran
+                        clearScreen();
                         System.out.println("Pesanan pelanggan ke-" + i + " adalah " + makanan + " dan " + minuman);
                         System.out.println("Dengan jumlah barang sebanyak " + totalbarang);
                         System.out.println("Yaitu " + makanan + " sebanyak " + jumlahMak);
@@ -522,6 +541,7 @@ class App {
                         Method = inputInt.nextInt();
                         switch (Method) {
                                 case 1:
+                                        clearScreen();
                                         System.out.println("Pelanggan membayar secara cash, membuka tray kasir...");
                                         System.out.print("Masukan jumlah nominal yang akan dibayar: ");
                                         payment = inputInt.nextInt();
@@ -537,6 +557,7 @@ class App {
                                         }
                                         break;
                                 case 2:
+                                        clearScreen();
                                         System.out.println(
                                                         "Pelanggan membayar dengan bank. Instruksikan pelanggan untuk cara pembayaran");
                                         System.out.print("Masukan no rekening pada mesin (12 digit): ");
@@ -555,7 +576,7 @@ class App {
                                         }
                                         break;
                         }
-
+                        clearScreen();
                         System.out.println("==================================");
                         System.out.println("Update Sisa Stock Makanan: ");
                         System.out.println(makanan = menuRes[0][pilihMak] + " x" + stock[0][pilihMak]);
@@ -574,6 +595,7 @@ class App {
                                 continue;
                         }
                 }
+                clearScreen();
                 System.out.println("==================================");
                 System.out.println("Restoran sekarang tutup");
                 System.out.println("==================================");
@@ -631,6 +653,7 @@ class App {
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
 
+                                clearScreen();
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
@@ -691,13 +714,14 @@ class App {
                         hargaMakanan *= jumlahMak;
                         hargatotal = hargaMakanan + hargaMinuman;
 
-                        //Trigger move
+                        // Trigger move
+                        clearScreen();
                         if (hargatotal > 50000 && hargatotal <= 75000) {
                                 System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[0] + "%!");
                                 double discountedPrice = hargatotal * discList[0] / 100;
                                 hargatotal = (int) (hargatotal - discountedPrice);
 
-                        }else if (hargatotal > 75000){
+                        } else if (hargatotal > 75000) {
                                 System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[1] + "%!");
                                 double discountedPrice = hargatotal * discList[1] / 100;
                                 hargatotal = (int) (hargatotal - discountedPrice);
@@ -708,6 +732,7 @@ class App {
                         stock[0][pilihMak] -= jumlahMak;
                         stock[1][pilihMin] -= jumlahMin;
 
+                        clearScreen();
                         System.out.println("=============================================");
                         System.out.println("Pesanan pelanggan ke-" + i + " adalah " + makanan + " dan " + minuman);
                         System.out.println("Dengan jumlah barang sebanyak " + totalbarang);
@@ -720,22 +745,26 @@ class App {
                         Method = inputInt.nextInt();
                         switch (Method) {
                                 case 1:
+                                        clearScreen();
                                         System.out.println("=============================================");
                                         System.out.println("Pelanggan membayar secara cash, membuka tray kasir...");
                                         System.out.print("Masukan jumlah nominal yang akan dibayar: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
                                         if (payment < hargatotal) {
+                                                clearScreen();
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
                                         System.out.print("Apakah anda ingin mencetak struk(y/n): ");
                                         String decision = inputStr.nextLine();
                                         if (decision.equalsIgnoreCase("y")) {
+                                                clearScreen();
                                                 StrukCash();
                                         }
                                         break;
                                 case 2:
+                                        clearScreen();
                                         System.out.println(
                                                         "Anda membayar dengan bank, mohon ketik 12 digit nomer rekening anda.");
                                         System.out.print("Masukan no rekening pada mesin (12 digit): ");
@@ -744,12 +773,14 @@ class App {
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
                                         if (payment < hargatotal) {
+                                                clearScreen();
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
                                         System.out.print("apakah anda ingin cetak struk(y/n): ");
                                         decision = inputStr.nextLine();
                                         if (decision.equalsIgnoreCase("y")) {
+                                                clearScreen();
                                                 StrukBank();
                                         }
                                         break;
@@ -759,9 +790,11 @@ class App {
                         System.out.print(">>");
                         String moreCost = inputStr.nextLine();
                         if (moreCost.equalsIgnoreCase("n")) {
+                                clearScreen();
                                 totalcustomer = i;
                                 break;
                         } else {
+                                clearScreen();
                                 continue;
                         }
                 }
@@ -926,6 +959,7 @@ class App {
                                                         || (usr.equals(idA[0][1]) && ps.equals(idA[1][1]))
                                                         || (usr.equals(idA[0][2]) && ps.equals(idA[1][2]))) {
                                                 if (usr.equals(idA[0][0]) && ps.equals(idA[1][0])) {
+                                                        clearScreen();
                                                         System.out.println("Login as Administrator successful!");
                                                         System.out.println("Welcome back, administrator");
                                                         System.out.println("What do you want to do today?");
@@ -941,6 +975,7 @@ class App {
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case "1":
+                                                                        clearScreen();
                                                                         inputDiskon();
                                                                         System.out.println(
                                                                                         "Do you want to logout (y/n): ");
@@ -951,9 +986,11 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "2":
+                                                                        clearScreen();
                                                                         Restock();
                                                                         break;
                                                                 case "3":
+                                                                        clearScreen();
                                                                         pembukuanID();
                                                                         System.out.println(
                                                                                         "Do you want to logout (y/n): ");
@@ -964,6 +1001,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "4":
+                                                                        clearScreen();
                                                                         if (decision.equalsIgnoreCase("4")
                                                                                         && akun != null) {
                                                                                 isContinue = false;
@@ -971,6 +1009,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "5":
+                                                                        clearScreen();
                                                                         Tampiljumbar();
                                                                         System.out.println(
                                                                                         "Do you want to logout (y/n): ");
@@ -981,6 +1020,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "6":
+                                                                        clearScreen();
                                                                         inputTambahan();
                                                                         System.out.println(
                                                                                         "Do you want to logout (y/n): ");
@@ -991,6 +1031,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case "7":
+                                                                        clearScreen();
                                                                         changeAdminPassword();
                                                                         System.out.println(
                                                                                         "Do you want to logout (y/n): ");
@@ -1014,12 +1055,15 @@ class App {
                                                         decision = input.nextLine();
                                                         switch (decision) {
                                                                 case ("1"):
+                                                                        clearScreen();
                                                                         setDiskon();
                                                                         break;
                                                                 case ("2"):
+                                                                        clearScreen();
                                                                         servingCust();
                                                                         break;
                                                                 case ("3"):
+                                                                        clearScreen();
                                                                         if (decision.equalsIgnoreCase("3")
                                                                                         && akun != null) {
                                                                                 isContinue = false;
@@ -1027,6 +1071,7 @@ class App {
                                                                         }
                                                                         break;
                                                                 case ("4"):
+                                                                        clearScreen();
                                                                         changePass();
                                                                         System.out.println(
                                                                                         "Do you want to logout (y/n): ");
@@ -1041,21 +1086,26 @@ class App {
                                                 }
                                         } else {
                                                 // Counter dipindah kesini agar counter menambah hanya saat login salah
+                                                clearScreen();
                                                 counter--;
                                                 System.out.println("=============================================");
                                                 System.out.println("[DENIED] WRONG USERNAME OR PASSWORD!!!");
                                                 System.out.println(
                                                                 "Login failed! Please re-check your username and password!");
                                                 if (counter > 0) {
+                                                        clearScreen();
                                                         System.out.println("Login chances remaining : " + counter);
                                                 } else {
+                                                        clearScreen();
                                                         System.out.println(
                                                                         "Too many false logins, initiating system lockdown!");
+                                                        clearScreen();
                                                         EnPelanggan();
                                                 }
                                         }
                                 } while (akun.equalsIgnoreCase("staff") && counter > 0 && isContinue);
                         } else if (akun.equalsIgnoreCase("customer")) {
+                                clearScreen();
                                 EnPelanggan();
                         }
                 }
@@ -1090,7 +1140,7 @@ class App {
                                 System.out.print(">>");
                                 perubahan = inputStr.nextLine();
                                 System.out.println("=============================================");
-
+                                clearScreen();
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
@@ -1107,6 +1157,7 @@ class App {
                                                 }
                                         }
                                 }
+                                clearScreen();
                                 int max = 0;
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
@@ -1124,12 +1175,14 @@ class App {
                                         }
                                 }
                                 if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length) {
+                                        clearScreen();
                                         makanan = menuRes[0][pilihMak];
                                         hargaMakanan = price[0][pilihMak];
                                         minuman = menuRes[1][pilihMin];
                                         hargaMinuman = price[1][pilihMin];
 
                                 } else {
+                                        clearScreen();
                                         System.out.println("[WARNING] INVALID MENU ID!");
                                         System.out.println("Re-insert with the correct ID!");
                                         isbreak = false;
@@ -1137,8 +1190,10 @@ class App {
                                 }
 
                                 if (perubahan.equalsIgnoreCase("y")) {
+                                        clearScreen();
                                         pesananConfirm = true;
                                 } else {
+                                        clearScreen();
                                         continue;
                                 }
 
@@ -1150,13 +1205,20 @@ class App {
                         hargaMakanan *= jumlahMak;
                         hargatotal = hargaMakanan + hargaMinuman;
 
-                        // Trigger diskon 
-                        if (hargatotal >= 25000) {
-                                System.out.println("Customer recieved " + ((int) (diskon * 100)) + "% discount!");
-                                double discountedPrice = hargatotal * diskon;
+                        // Trigger diskon
+                           clearScreen();
+                        if (hargatotal > 50000 && hargatotal <= 75000) {
+                                clearScreen();
+                                System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[0] + "%!");
+                                double discountedPrice = hargatotal * discList[0] / 100;
+                                hargatotal = (int) (hargatotal - discountedPrice);
+
+                        } else if (hargatotal > 75000) {
+                                clearScreen();
+                                System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[1] + "%!");
+                                double discountedPrice = hargatotal * discList[1] / 100;
                                 hargatotal = (int) (hargatotal - discountedPrice);
                         }
-
                         totalToday += hargatotal;
                         stock[0][pilihMak] -= jumlahMak;
                         stock[1][pilihMin] -= jumlahMin;
@@ -1172,13 +1234,14 @@ class App {
                         Method = inputInt.nextInt();
                         switch (Method) {
                                 case 1:
+                                        clearScreen();
                                         System.out.println("Customer paid with cash, Opening cash tray...");
                                         System.out.print("Enter the payment amount: ");
-                                        payment = inputInt.nextInt(
-                                                                );
+                                        payment = inputInt.nextInt();
                                         change = payment - hargatotal;
                                         if (change < 0) {
-                                                System.out.println("Insufficient funds, please enter the correct amount");
+                                                System.out.println(
+                                                                "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
                                         System.out.print("Do you want to print a reciept(y/n): ");
@@ -1188,21 +1251,25 @@ class App {
                                         }
                                         break;
                                 case 2:
+                                        clearScreen();
                                         System.out.println(
+
                                                         "Customer paid with bank, Instruct the customer to pay");
                                         System.out.print("Insert the account number (12 digits): ");
                                         Idcode = inputStr.nextLine();
                                         System.out.print("Enter the payment amount: ");
-                                        payment = inputInt.nextInt(
-                                                                );
+                                        payment = inputInt.nextInt();
                                         change = payment - hargatotal;
                                         if (change > 0) {
-                                                System.out.println("Insufficient funds, please enter the correct amount");
+                                                clearScreen();
+                                                System.out.println(
+                                                                "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
                                         System.out.print("Do you want to print a reciept(y/n): ");
                                         String decision1 = inputStr.nextLine();
                                         if (decision1.equalsIgnoreCase("y")) {
+                                                clearScreen();
                                                 EnStrukBank();
                                         }
                                         break;
@@ -1220,9 +1287,11 @@ class App {
                         System.out.print(">>");
                         String moreCost = inputStr.nextLine();
                         if (moreCost.equalsIgnoreCase("n")) {
+                                clearScreen();
                                 totalcustomer = i;
                                 break;
                         } else {
+                                clearScreen();
                                 continue;
                         }
                 }
@@ -1264,6 +1333,7 @@ class App {
                                 perubahan = inputStr.nextLine();
 
                                 // Checking food and drink availability
+                                clearScreen();
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
                                                 if (jumlahMak > stock[j][k] && jumlahMin > stock[j][k]) {
@@ -1280,7 +1350,7 @@ class App {
                                                 }
                                         }
                                 }
-
+                                clearScreen();
                                 int max = 0;
                                 for (int j = 0; j < stock.length; j++) {
                                         for (int k = 0; k < stock[0].length; k++) {
@@ -1299,12 +1369,14 @@ class App {
                                 }
 
                                 if (pilihMak < menuRes[0].length && pilihMin < menuRes[1].length) {
+                                        clearScreen();
                                         makanan = menuRes[0][pilihMak];
                                         hargaMakanan = price[0][pilihMak];
                                         minuman = menuRes[1][pilihMin];
                                         hargaMinuman = price[1][pilihMin];
 
                                 } else {
+                                        clearScreen();
                                         System.out.println("[WARNING] INVALID FOOD ID!");
                                         System.out.println("Please input with the correct ID!");
                                         isBreak = false;
@@ -1312,9 +1384,11 @@ class App {
                                 }
 
                                 if (perubahan.equalsIgnoreCase("y")) {
+                                        clearScreen();
                                         pesananConfirm = true;
 
                                 } else {
+                                        clearScreen();
                                         continue;
                                 }
 
@@ -1332,7 +1406,7 @@ class App {
                                 double discountedPrice = hargatotal * discList[0] / 100;
                                 hargatotal = (int) (hargatotal - discountedPrice);
 
-                        }else if (hargatotal > 75000){
+                        } else if (hargatotal > 75000) {
                                 System.out.println("congrats you got " + discList[1] + "%!");
                                 double discountedPrice = hargatotal * discList[1] / 100;
                                 hargatotal = (int) (hargatotal - discountedPrice);
@@ -1355,12 +1429,14 @@ class App {
                         Method = inputInt.nextInt();
                         switch (Method) {
                                 case 1:
+                                        clearScreen();
                                         System.out.println("=============================================");
                                         System.out.println("Customer pays in cash, opening the cashier tray...");
                                         System.out.print("Enter the amount to be paid: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
                                         if (change < 0) {
+                                                clearScreen();
                                                 System.out.println(
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
@@ -1368,10 +1444,12 @@ class App {
                                         System.out.print("Do you want to print a reciept(y/n): ");
                                         String decision = inputStr.nextLine();
                                         if (decision.equalsIgnoreCase("y")) {
+                                                clearScreen();
                                                 EnStrukCash();
                                         }
                                         break;
                                 case 2:
+                                        clearScreen();
                                         System.out.println("=============================================");
                                         System.out.println(
                                                         "Customer pays by bank. Please insert the account numbers.");
@@ -1381,28 +1459,16 @@ class App {
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
                                         if (change > 0) {
+                                                clearScreen();
                                                 System.out.println(
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
-                                        if (hargatotal > 50000 && hargatotal <= 75000) {
-                                                int remp = discList[0];
-                                                int temps = hargatotal - (remp / 100 * hargatotal);
-                                                change = payment - temps;
-                                                System.out.println(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : "
-                                                                                + temps);
-                                        } else if (hargatotal >= 75000) {
-                                                int remp = discList[1];
-                                                int temps = hargatotal - (remp / 100 * hargatotal);
-                                                change = payment - temps;
-                                                System.out.println(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : "
-                                                                                + temps);
-                                        }
+
                                         System.out.print("Do you want to print a receipt? (y/n): ");
                                         String decision1 = inputStr.nextLine();
                                         if (decision1.equalsIgnoreCase("y")) {
+                                                clearScreen();
                                                 EnStrukBank();
                                         }
                                         break;
@@ -1413,9 +1479,11 @@ class App {
                         System.out.print(">>");
                         String morePurchase = inputStr.nextLine();
                         if (morePurchase.equalsIgnoreCase("n")) {
+                                clearScreen();
                                 totalcustomer = i;
                                 break;
                         } else {
+                                clearScreen();
                                 continue;
                         }
                 }
@@ -1426,8 +1494,10 @@ class App {
                 System.out.print("Log out (y/n): ");
                 String decision = inputStr.nextLine();
                 if (decision.equalsIgnoreCase("y")) {
+                        clearScreen();
                         main(namaList);
-                }else {
+                } else {
+                        clearScreen();
                         EnPelanggan();
                 }
 
@@ -1450,10 +1520,17 @@ class App {
                 System.out.print("Silahkan memilih bahasa | Please select a language (EN/ID): ");
                 langSelect = inputL.nextLine();
                 if (langSelect.equalsIgnoreCase("en")) {
+                        clearScreen();
                         langENGLISH();
                 } else if (langSelect.equalsIgnoreCase("id")) {
+                        clearScreen();
                         langINDO();
                 }
                 inputL.close();
+        }
+
+        static void clearScreen() {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
         }
 }
