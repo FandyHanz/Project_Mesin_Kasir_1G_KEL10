@@ -220,6 +220,7 @@ class App {
                                                                                 isContinue = false;
                                                                                 break;
                                                                         }
+                                                                        break;
                                                                 case ("4"):
                                                                         changePass();
                                                                         System.out.println(
@@ -716,13 +717,15 @@ class App {
                                                 int temps = hargatotal - (remp / 100 * hargatotal);
                                                 change = payment - temps;
                                                 System.out.println(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + temps);
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : "
+                                                                                + temps);
                                         } else if (hargatotal >= 75000) {
                                                 int remp = discList[1];
                                                 int temps = hargatotal - (remp / 100 * hargatotal);
                                                 change = payment - temps;
                                                 System.out.println(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + temps);
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : "
+                                                                                + temps);
                                         }
                                         System.out.print("Apakah anda ingin mencetak struk(y/n): ");
                                         String decision = inputStr.nextLine();
@@ -747,13 +750,15 @@ class App {
                                                 int temps = hargatotal - (remp / 100 * hargatotal);
                                                 change = payment - temps;
                                                 System.out.println(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + temps);
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : "
+                                                                                + temps);
                                         } else if (hargatotal >= 75000) {
                                                 int remp = discList[1];
                                                 int temps = hargatotal - (remp / 100 * hargatotal);
                                                 change = payment - temps;
                                                 System.out.println(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + temps);
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : "
+                                                                                + temps);
                                         }
                                         System.out.print("apakah anda ingin cetak struk(y/n): ");
                                         decision = inputStr.nextLine();
@@ -781,6 +786,8 @@ class App {
                 String decision = inputStr.nextLine();
                 if (decision.equalsIgnoreCase("y")) {
                         main(namaList);
+                } else {
+                        pelanggan();
                 }
 
                 inputStr.close();
@@ -1019,18 +1026,20 @@ class App {
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
-                                         if (hargatotal > 50000 && hargatotal <= 75000) {
+                                        if (hargatotal > 50000 && hargatotal <= 75000) {
                                                 int remp = discList[0];
                                                 int temps = hargatotal - (remp / 100 * hargatotal);
                                                 change = payment - temps;
                                                 System.out.println(
-                                                                "congratulation, your purchase has discounted and become : " + temps);
+                                                                "congratulation, your purchase has discounted and become : "
+                                                                                + temps);
                                         } else if (hargatotal >= 75000) {
                                                 int remp = discList[1];
                                                 int temps = hargatotal - (remp / 100 * hargatotal);
                                                 change = payment - temps;
                                                 System.out.println(
-                                                                "congratulation, your purchase has discounted and become : " + temps);
+                                                                "congratulation, your purchase has discounted and become : "
+                                                                                + temps);
                                         }
                                         System.out.print("Do you want to print a reciept(y/n): ");
                                         String decision = inputStr.nextLine();
@@ -1052,18 +1061,20 @@ class App {
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
-                                         if (hargatotal > 50000 && hargatotal <= 75000) {
+                                        if (hargatotal > 50000 && hargatotal <= 75000) {
                                                 int remp = discList[0];
                                                 int temps = hargatotal - (remp / 100 * hargatotal);
                                                 change = payment - temps;
                                                 System.out.println(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + temps);
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : "
+                                                                                + temps);
                                         } else if (hargatotal >= 75000) {
                                                 int remp = discList[1];
                                                 int temps = hargatotal - (remp / 100 * hargatotal);
                                                 change = payment - temps;
                                                 System.out.println(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + temps);
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : "
+                                                                                + temps);
                                         }
                                         System.out.print("Do you want to print a receipt? (y/n): ");
                                         String decision1 = inputStr.nextLine();
@@ -1092,7 +1103,8 @@ class App {
                 String decision = inputStr.nextLine();
                 if (decision.equalsIgnoreCase("y")) {
                         main(namaList);
-                        ;
+                }else {
+                        EnPelanggan();
                 }
 
                 inputStr.close();
