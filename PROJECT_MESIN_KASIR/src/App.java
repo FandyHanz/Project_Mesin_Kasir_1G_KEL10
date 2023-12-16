@@ -476,7 +476,7 @@ class App {
                                         System.out.println("[WARNING] ID MAKANAN TIDAK VALID!");
                                         System.out.println("Mohon input kembali dengan input yang benar!");
                                         isbreak = false;
-                                        break;
+                                        continue;
                                 }
 
                                 if (perubahan.equalsIgnoreCase("y")) {
@@ -520,7 +520,7 @@ class App {
                                         System.out.print("Masukan jumlah nominal yang akan dibayar: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (payment < hargatotal) {
+                                        if (change < 0) {
                                                 System.out.println("Biaya tidak cukup! Masukkan nominal yang sesuai");
                                                 continue;
                                         }
@@ -538,7 +538,7 @@ class App {
                                         System.out.print("Masukan nominal pembayaran: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (payment < hargatotal) {
+                                        if (change > 0) {
                                                 System.out.println("Biaya tidak cukup! Masukkan nominal yang sesuai");
                                                 continue;
                                         }
@@ -667,7 +667,7 @@ class App {
                                         System.out.println("[WARNING] ID MAKANAN TIDAK VALID!");
                                         System.out.println("Mohon input kembali dengan input yang benar!");
                                         isbreak = false;
-                                        break;
+                                        continue;
                                 }
 
                                 if (perubahan.equalsIgnoreCase("y")) {
@@ -684,29 +684,6 @@ class App {
                         hargaMinuman *= jumlahMin;
                         hargaMakanan *= jumlahMak;
                         hargatotal = hargaMakanan + hargaMinuman;
-                        // Diskon Trigger
-                        if (hargatotal > 50000) {
-                                System.out.print(
-                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "
-                                                                + discList[0]);
-                                double discountedPrice = hargatotal * diskon;
-                                hargatotal = (int) (hargatotal - discountedPrice);
-                                System.out.println(hargatotal);
-                        } else if (hargatotal > 50000 && hargatotal <= 75000) {
-                                System.out.print(
-                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "
-                                                                + discList[1]);
-                                double discountedPrice = hargatotal * diskon;
-                                hargatotal = (int) (hargatotal - discountedPrice);
-                                System.out.println(hargatotal);
-                        } else if (hargatotal > 75000 && hargatotal <= 100000) {
-                                System.out.print(
-                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "
-                                                                + discList[2]);
-                                double discountedPrice = hargatotal * diskon;
-                                hargatotal = (int) (hargatotal - discountedPrice);
-                                System.out.println(hargatotal);
-                        }
                         // Total hari ini + Harga Total Pesanan Sebelumnya
                         totalToday += hargatotal;
 
@@ -730,7 +707,7 @@ class App {
                                         System.out.print("Masukan jumlah nominal yang akan dibayar: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (payment < hargatotal) {
+                                        if (change < 0) {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
@@ -758,10 +735,10 @@ class App {
                                                         "Anda membayar dengan bank, mohon ketik 12 digit nomer rekening anda.");
                                         System.out.print("Masukan no rekening pada mesin (12 digit): ");
                                         Idcode = inputStr.nextLine();
-                                        System.out.print("Masukan nominal pembayaran: ");
+                                        System.out.print("MAsukan nominal pembayaran: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (payment < hargatotal) {
+                                        if (change < 0) {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
                                         }
@@ -997,7 +974,7 @@ class App {
                                         System.out.println("[WARNING] INVALID FOOD ID!");
                                         System.out.println("Please input with the correct ID!");
                                         isBreak = false;
-                                        break;
+                                        continue;
                                 }
 
                                 if (perubahan.equalsIgnoreCase("y")) {
@@ -1042,6 +1019,19 @@ class App {
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
                                         }
+                                         if (hargatotal > 50000 && hargatotal <= 75000) {
+                                                int remp = discList[0];
+                                                int temps = hargatotal - (remp / 100 * hargatotal);
+                                                change = payment - temps;
+                                                System.out.println(
+                                                                "congratulation, your purchase has discounted and become : " + temps);
+                                        } else if (hargatotal >= 75000) {
+                                                int remp = discList[1];
+                                                int temps = hargatotal - (remp / 100 * hargatotal);
+                                                change = payment - temps;
+                                                System.out.println(
+                                                                "congratulation, your purchase has discounted and become : " + temps);
+                                        }
                                         System.out.print("Do you want to print a reciept(y/n): ");
                                         String decision = inputStr.nextLine();
                                         if (decision.equalsIgnoreCase("y")) {
@@ -1061,6 +1051,19 @@ class App {
                                                 System.out.println(
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
+                                        }
+                                         if (hargatotal > 50000 && hargatotal <= 75000) {
+                                                int remp = discList[0];
+                                                int temps = hargatotal - (remp / 100 * hargatotal);
+                                                change = payment - temps;
+                                                System.out.println(
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + temps);
+                                        } else if (hargatotal >= 75000) {
+                                                int remp = discList[1];
+                                                int temps = hargatotal - (remp / 100 * hargatotal);
+                                                change = payment - temps;
+                                                System.out.println(
+                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + temps);
                                         }
                                         System.out.print("Do you want to print a receipt? (y/n): ");
                                         String decision1 = inputStr.nextLine();
