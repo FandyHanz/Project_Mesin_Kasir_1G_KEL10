@@ -494,9 +494,14 @@ class App {
                         hargaMakanan *= jumlahMak;
                         hargatotal = hargaMakanan + hargaMinuman;
                         // Trigger diskon
-                        if (hargatotal >= 25000) {
-                                System.out.println("Pelanggan mendapatkan diskon sebesar " + diskon + "%!");
-                                double discountedPrice = hargatotal * diskon;
+                        if (hargatotal > 50000 && hargatotal <= 75000) {
+                                System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[0] + "%!");
+                                double discountedPrice = hargatotal * discList[0] / 100;
+                                hargatotal = (int) (hargatotal - discountedPrice);
+
+                        }else if (hargatotal > 75000){
+                                System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[1] + "%!");
+                                double discountedPrice = hargatotal * discList[1] / 100;
                                 hargatotal = (int) (hargatotal - discountedPrice);
                         }
                         // Total hari ini + Harga Total Pesanan Sebelumnya
@@ -688,15 +693,15 @@ class App {
 
                         //Trigger move
                         if (hargatotal > 50000 && hargatotal <= 75000) {
-                                int remp = discList[0];
-                                hargatotal = hargatotal - (remp / 100 * hargatotal);
-                                System.out.println("Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + hargatotal);
-                        } else if (hargatotal >= 75000) {
-                                int remp = discList[1];
-                                hargatotal = hargatotal - (remp / 100 * hargatotal);
-                                System.out.println("Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi : " + hargatotal);
-                        }
+                                System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[0] + "%!");
+                                double discountedPrice = hargatotal * discList[0] / 100;
+                                hargatotal = (int) (hargatotal - discountedPrice);
 
+                        }else if (hargatotal > 75000){
+                                System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[1] + "%!");
+                                double discountedPrice = hargatotal * discList[1] / 100;
+                                hargatotal = (int) (hargatotal - discountedPrice);
+                        }
                         // Total hari ini + Harga Total Pesanan Sebelumnya
                         totalToday += hargatotal;
 
@@ -1323,20 +1328,15 @@ class App {
 
                         //
                         if (hargatotal > 50000 && hargatotal <= 75000) {
-                                                int remp = discList[0];
-                                                int temps = hargatotal - (remp / 100 * hargatotal);
-                                                change = payment - temps;
-                                                System.out.println(
-                                                                "congratulation, your purchase has discounted and become : "
-                                                                                + temps);
-                                        } else if (hargatotal >= 75000) {
-                                                int remp = discList[1];
-                                                int temps = hargatotal - (remp / 100 * hargatotal);
-                                                change = payment - temps;
-                                                System.out.println(
-                                                                "congratulation, your purchase has discounted and become : "
-                                                                                + temps);
-                                        }
+                                System.out.println("conrats you got " + discList[0] + "%!");
+                                double discountedPrice = hargatotal * discList[0] / 100;
+                                hargatotal = (int) (hargatotal - discountedPrice);
+
+                        }else if (hargatotal > 75000){
+                                System.out.println("congrats you got " + discList[1] + "%!");
+                                double discountedPrice = hargatotal * discList[1] / 100;
+                                hargatotal = (int) (hargatotal - discountedPrice);
+                        }
                         // Today's total + Total of Previous Orders
                         totalToday += hargatotal;
                         // Deducting food & drink from stock
