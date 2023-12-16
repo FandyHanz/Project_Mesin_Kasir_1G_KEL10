@@ -228,6 +228,13 @@ class App {
                                                                 case ("2"):
                                                                         clearScreen();
                                                                         layaniPelanggan();
+                                                                         System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
                                                                         break;
                                                                 case ("3"):
                                                                         if (decision.equalsIgnoreCase("3")
@@ -602,6 +609,7 @@ class App {
                 System.out.println("Laporan penjualan pada " + hariIni);
                 System.out.println("Pemasukan Hari ini: " + totalToday);
                 System.out.println("dengan jumlah pelanggan: " + totalcustomer);
+                System.out.println();
         }
 
         public static void setDiskon() {
@@ -1206,7 +1214,7 @@ class App {
                         hargatotal = hargaMakanan + hargaMinuman;
 
                         // Trigger diskon
-                           clearScreen();
+                        clearScreen();
                         if (hargatotal > 50000 && hargatotal <= 75000) {
                                 clearScreen();
                                 System.out.println("Pelanggan mendapatkan diskon sebesar " + discList[0] + "%!");
