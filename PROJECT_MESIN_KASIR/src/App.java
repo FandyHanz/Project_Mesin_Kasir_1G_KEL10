@@ -49,7 +49,7 @@ class App {
         public static int i = 0;
         public static int tampilan = 0, change = 0, payment = 0, payment1 = 0;
 
-                public static String langENGLISH() {
+        public static String langENGLISH() {
                 Scanner inputL = new Scanner(System.in);
                 String temp = null;
                 String langSelect;
@@ -93,7 +93,7 @@ class App {
                 boolean dont = true;
 
                 // Array 2D!!!
-String idA[][] = {
+                String idA[][] = {
                                 { "Admin", "Fadlih", "Afrizal" },
                                 { "bestAdmin", "Donat", "Udahkuduga" }
                 };
@@ -122,114 +122,114 @@ String idA[][] = {
                                                         || (usr.equals(idA[0][1]) && ps.equals(idA[1][1]))
                                                         || (usr.equals(idA[0][2]) && ps.equals(idA[1][2]))) {
                                                 if (usr.equals(admin) && ps.equals(adminpw)) {
-                                                                        System.out.println("Login sebagai Admin berhasil!");
-                                                                        System.out.println("Selamat datang kembali, administrator");
-                                                                        System.out.println("Apa yang ingin anda lakukan hari ini?");
+                                                        System.out.println("Login sebagai Admin berhasil!");
+                                                        System.out.println("Selamat datang kembali, administrator");
+                                                        System.out.println("Apa yang ingin anda lakukan hari ini?");
+                                                        System.out.println(
+                                                                        "=============================================");
+                                                        System.out.println(
+                                                                        "[1] Setup diskon | [2] Restock   | [3] Pembukuan");
+                                                        System.out.println(
+                                                                        "[4] Logout       | [5] Cek Stock | [6] Tambah Menu");
+                                                        decision = input.nextLine();
+                                                        switch (decision) {
+                                                                case "1":
+                                                                        inputDiskon();
                                                                         System.out.println(
-                                                                                        "=============================================");
-                                                                        System.out.println(
-                                                                                        "[1] Setup diskon | [2] Restock   | [3] Pembukuan");
-                                                                        System.out.println(
-                                                                                        "[4] Logout       | [5] Cek Stock | [6] Tambah Menu");
-                                                                                                                                                decision = input.nextLine();
-                                                                        switch (decision) {
-                                                                                case "1":
-                                                                                        inputDiskon();
-                                                                                        System.out.println(
-                                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                                        decision = input.nextLine();
-                                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                                                                                                                                isContinue = false;
-                                                                                                break;
-                                                                                        }
-                                                                                        break;
-                                                                                case "2":
-                                                                                        Restock();
-                                                                                        break;
-                                                                                case "3":
-                                                                                        pembukuanID();
-                                                                                        System.out.println(
-                                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                                        decision = input.nextLine();
-                                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                                                                                                                                isContinue = false;
-                                                                                                break;
-                                                                                        }
-                                                                                        break;
-                                                                                case "4":
-                                                                                         if (decision.equalsIgnoreCase("4")
-                                                                                        && akun != null) {
-                                                                                                isContinue = false;
-break;
-                                                                                        }
-                                                                                        break;
-                                                                                case "5":
-                                                                                        Tampiljumbar();
-                                                                                        System.out.println(
-                                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                                        decision = input.nextLine();
-                                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                                                                                                                                isContinue = false;
-                                                                                        }
-                                                                                        break;
-                                                                                case "6":
-                                                                                        inputTambahan();
-                                                                                        System.out.println(
-                                                                                                        "Apakah anda ingin Log out (y/n): ");
-                                                                                        decision = input.nextLine();
-                                                                                        if (decision.equalsIgnoreCase("y")) {
-                                                                                                                                                                                                isContinue = false;
-                                                                                        }
-                                                                                        break;
-                                                                                
-                                                                        }
-                                                                        // Lanjutkan Tampilan Admin mulai dari sini...
-                                                                } else {
-                                                                        System.out.println("Login sebagai kasir berhasil!");
-                                                                        System.out.println("Selamat datang kembali " + usr);
-                                                                        System.out.println("Apa yang ingin anda lakukan hari ini?");
-                                                                        System.out.println(
-                                                                                        "=============================================");
-                                                                        System.out.println(
-                                                                                        "[1] Input diskon | [2] Layani Pelanggan | [3] Log out");
+                                                                                        "Apakah anda ingin Log out (y/n): ");
                                                                         decision = input.nextLine();
-                                                                        switch (decision) {
-                                                                                case ("1"):
-                                                                                        setDiskon();
-                                                                                        break;
-                                                                                case ("2"):
-                                                                                        layaniPelanggan();
-                                                                                        break;
-                                                                                case ("3"):
-                                                                                        if (decision.equalsIgnoreCase("4")
-                                                                                                        && akun != null) {
-                                                                                                                                                                                                isContinue = false;
-                                                                                                break;
-                                                                                        }
-                                                                                        // Lanjutkan Tampilan kasir mulai dari sini...
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                                break;
                                                                         }
-                                                                }
-                                                        } else {
-                                                                // Counter dipindah kesini agar counter menambah hanya saat login salah
-                                                                     counter--;
-                                                                System.out.println("=============================================");
-                                                                System.out.println("[DENIED] USERNAME DAN PASSWORD SALAH!!!");
-                                                                System.out.println(
-                                                                                "Login gagal! Mohon cek kembali username dan password anda!");
-                                                                if (counter > 0) {
-                                                                        System.out.println("Sisa kesempatan login : " + counter);
-                                                                } else {
+                                                                        break;
+                                                                case "2":
+                                                                        Restock();
+                                                                        break;
+                                                                case "3":
+                                                                        pembukuanID();
                                                                         System.out.println(
-                                                                                        "Kesempatan Login Habis! Sistem akan Di-Lockdown!");
-                                                                        pelanggan();
-                                                                                                                }
+                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
+                                                                        break;
+                                                                case "4":
+                                                                        if (decision.equalsIgnoreCase("4")
+                                                                                        && akun != null) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
+                                                                        break;
+                                                                case "5":
+                                                                        Tampiljumbar();
+                                                                        System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                        }
+                                                                        break;
+                                                                case "6":
+                                                                        inputTambahan();
+                                                                        System.out.println(
+                                                                                        "Apakah anda ingin Log out (y/n): ");
+                                                                        decision = input.nextLine();
+                                                                        if (decision.equalsIgnoreCase("y")) {
+                                                                                isContinue = false;
+                                                                        }
+                                                                        break;
+
+                                                        }
+                                                        // Lanjutkan Tampilan Admin mulai dari sini...
+                                                } else {
+                                                        System.out.println("Login sebagai kasir berhasil!");
+                                                        System.out.println("Selamat datang kembali " + usr);
+                                                        System.out.println("Apa yang ingin anda lakukan hari ini?");
+                                                        System.out.println(
+                                                                        "=============================================");
+                                                        System.out.println(
+                                                                        "[1] Input diskon | [2] Layani Pelanggan | [3] Log out");
+                                                        decision = input.nextLine();
+                                                        switch (decision) {
+                                                                case ("1"):
+                                                                        setDiskon();
+                                                                        break;
+                                                                case ("2"):
+                                                                        layaniPelanggan();
+                                                                        break;
+                                                                case ("3"):
+                                                                        if (decision.equalsIgnoreCase("4")
+                                                                                        && akun != null) {
+                                                                                isContinue = false;
+                                                                                break;
+                                                                        }
+                                                                        // Lanjutkan Tampilan kasir mulai dari sini...
+                                                        }
+                                                }
+                                        } else {
+                                                // Counter dipindah kesini agar counter menambah hanya saat login salah
+                                                counter--;
+                                                System.out.println("=============================================");
+                                                System.out.println("[DENIED] USERNAME DAN PASSWORD SALAH!!!");
+                                                System.out.println(
+                                                                "Login gagal! Mohon cek kembali username dan password anda!");
+                                                if (counter > 0) {
+                                                        System.out.println("Sisa kesempatan login : " + counter);
+                                                } else {
+                                                        System.out.println(
+                                                                        "Kesempatan Login Habis! Sistem akan Di-Lockdown!");
+                                                        pelanggan();
+                                                }
                                         }
                                 } while (akun.equalsIgnoreCase("staff") && counter > 0 && isContinue);
                         } else if (akun.equalsIgnoreCase("pelanggan")) {
                                 pelanggan();
                         }
                 }
-        input.close();
+                input.close();
         }
 
         public static void inputDiskon() {
@@ -468,7 +468,7 @@ break;
                                         System.out.print("Masukan jumlah nominal yang akan dibayar: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change < 0) {
+                                        if (payment < hargatotal) {
                                                 System.out.println("Biaya tidak cukup! Masukkan nominal yang sesuai");
                                                 continue;
                                         }
@@ -486,7 +486,7 @@ break;
                                         System.out.print("Masukan nominal pembayaran: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change > 0) {
+                                        if (payment < hargatotal) {
                                                 System.out.println("Biaya tidak cukup! Masukkan nominal yang sesuai");
                                                 continue;
                                         }
@@ -632,6 +632,29 @@ break;
                         hargaMinuman *= jumlahMin;
                         hargaMakanan *= jumlahMak;
                         hargatotal = hargaMakanan + hargaMinuman;
+                        // Diskon Trigger
+                        if (hargatotal > 50000) {
+                                System.out.print(
+                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "
+                                                                + discList[0]);
+                                double discountedPrice = hargatotal * diskon;
+                                hargatotal = (int) (hargatotal - discountedPrice);
+                                System.out.println(hargatotal);
+                        } else if (hargatotal > 50000 && hargatotal <= 75000) {
+                                System.out.print(
+                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "
+                                                                + discList[1]);
+                                double discountedPrice = hargatotal * diskon;
+                                hargatotal = (int) (hargatotal - discountedPrice);
+                                System.out.println(hargatotal);
+                        } else if (hargatotal > 75000 && hargatotal <= 100000) {
+                                System.out.print(
+                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "
+                                                                + discList[2]);
+                                double discountedPrice = hargatotal * diskon;
+                                hargatotal = (int) (hargatotal - discountedPrice);
+                                System.out.println(hargatotal);
+                        }
                         // Total hari ini + Harga Total Pesanan Sebelumnya
                         totalToday += hargatotal;
 
@@ -655,15 +678,9 @@ break;
                                         System.out.print("Masukan jumlah nominal yang akan dibayar: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change < 0) {
+                                        if (payment < hargatotal) {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
-                                        }
-                                        if (hargatotal > 50000) {
-                                                System.out.print(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi :");
-                                                change = (int) (change - (change * diskon));
-                                                System.out.println(change);
                                         }
                                         System.out.print("Apakah anda ingin mencetak struk(y/n): ");
                                         String decision = inputStr.nextLine();
@@ -676,30 +693,12 @@ break;
                                                         "Anda membayar dengan bank, mohon ketik 12 digit nomer rekening anda.");
                                         System.out.print("Masukan no rekening pada mesin (12 digit): ");
                                         Idcode = inputStr.nextLine();
-                                        System.out.print("MAsukan nominal pembayaran: ");
+                                        System.out.print("Masukan nominal pembayaran: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change < 0) {
+                                        if (payment < hargatotal) {
                                                 System.out.println("Biaya tidak cukup masukan uang yang sesuai");
                                                 continue;
-                                        }
-                                        if (hargatotal > 50000) {
-                                                System.out.print(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "+ discList[0]);
-                                                change = (int) (change - (change * diskon));
-                                                System.out.println(change);
-                                        }
-                                        else if (hargatotal > 50000 && hargatotal <= 75000) {
-                                                System.out.print(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "+ discList[1]);
-                                                change = (int) (change - (change * diskon));
-                                                System.out.println(change);
-                                        }
-                                        if (hargatotal > 75000 && hargatotal <= 100000) {
-                                                System.out.print(
-                                                                "Selamat, anda mendapat diskon! Harga yang harus dibayar akan dipotong menjadi: "+ discList[2]);
-                                                change = (int) (change - (change * diskon));
-                                                System.out.println(change);
                                         }
                                         System.out.print("apakah anda ingin cetak struk(y/n): ");
                                         decision = inputStr.nextLine();
