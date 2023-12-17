@@ -553,7 +553,7 @@ class App {
                                         System.out.print("Masukan jumlah nominal yang akan dibayar: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change < 0) {
+                                        if (payment < hargatotal) {
                                                 System.out.println("Biaya tidak cukup! Masukkan nominal yang sesuai");
                                                 continue;
                                         }
@@ -572,7 +572,7 @@ class App {
                                         System.out.print("Masukan nominal pembayaran: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change < 0) {
+                                        if (payment < hargatotal) {
                                                 System.out.println("Biaya tidak cukup! Masukkan nominal yang sesuai");
                                                 continue;
                                         }
@@ -1247,7 +1247,7 @@ class App {
                                         System.out.print("Enter the payment amount: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change < 0) {
+                                        if (payment < hargatotal) {
                                                 System.out.println(
                                                                 "Insufficient funds, please enter the correct amount");
                                                 continue;
@@ -1268,7 +1268,7 @@ class App {
                                         System.out.print("Enter the payment amount: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change > 0) {
+                                        if (payment < hargatotal) {
                                                 clearScreen();
                                                 System.out.println(
                                                                 "Insufficient funds, please enter the correct amount");
@@ -1443,7 +1443,7 @@ class App {
                                         System.out.print("Enter the amount to be paid: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change < 0) {
+                                        if (payment < hargatotal) {
                                                 clearScreen();
                                                 System.out.println(
                                                                 "Insufficient funds, please enter the correct amount");
@@ -1466,7 +1466,7 @@ class App {
                                         System.out.print("Enter the payment amount: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change > 0) {
+                                        if (payment < hargatotal) {
                                                 clearScreen();
                                                 System.out.println(
                                                                 "Insufficient funds, please enter the correct amount");
