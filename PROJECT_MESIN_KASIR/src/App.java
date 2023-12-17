@@ -572,7 +572,7 @@ class App {
                                         System.out.print("Masukan nominal pembayaran: ");
                                         payment = inputInt.nextInt();
                                         change = payment - hargatotal;
-                                        if (change > 0) {
+                                        if (change < 0) {
                                                 System.out.println("Biaya tidak cukup! Masukkan nominal yang sesuai");
                                                 continue;
                                         }
